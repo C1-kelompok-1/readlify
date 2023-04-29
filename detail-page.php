@@ -102,11 +102,11 @@
 
           <div class="col-lg-4 col-12 mb-4 mb-lg-0">
             <div class="custom-block">
-              <a href="detail-page.php">
+              <a href="episode.php">
                 <div class="custom-block-info custom-block-overlay-info">
                   <!-- Judul episode -->
                   <h5 class="mb-1">
-                    <a href="listing-page.php">
+                    <a href="episode.php">
                       Duel
                     </a>
                   </h5>
@@ -120,11 +120,11 @@
 
           <div class="col-lg-4 col-12 mb-4 mb-lg-0">
             <div class="custom-block">
-              <a href="detail-page.php">
+              <a href="episode.php">
                 <div class="custom-block-info custom-block-overlay-info">
                   <!-- Judul episode -->
                   <h5 class="mb-1">
-                    <a href="listing-page.php">
+                    <a href="episode.php">
                       Serangan Mematikan
                     </a>
                   </h5>
@@ -138,11 +138,11 @@
 
           <div class="col-lg-4 col-12 mb-4 mb-lg-0">
             <div class="custom-block">
-              <a href="detail-page.php">
+              <a href="episode.php">
                 <div class="custom-block-info custom-block-overlay-info">
                   <!-- Judul episode -->
                   <h5 class="mb-1">
-                    <a href="listing-page.php">
+                    <a href="episode.php">
                       Apa yang sedang kau lakukan, Thomas?
                     </a>
                   </h5>
