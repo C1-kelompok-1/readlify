@@ -5,92 +5,48 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/login-register.css" />
+
   <title>Document</title>
+
+  <?php require 'layouts/auth/styles.php'; ?>
 </head>
 
 <body>
   <div class="container" id="container">
-    <div class="form-container register-container">
-      <form action="#">
-        <h1>Register</h1>
-        <input type="text" placeholder="Name" />
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
-        <select name="role">
-          <option value="Reader">Reader</option>
-          <option value="Creator">Creator</option>
-        </select>
-        <button>Register</button>
-        <span>or use your account</span>
-        <div class="social-container">
-          <a href="#" class="social"><img src="assets/images/social/facebook.svg" alt="" /><i class="lni lni-facebook-fill"></i></a>
-          <a href="#" class="social"><img src="assets/images/social/google.svg" alt="" /><i class="lni lni-google"></i></a>
-          <a href="#" class="social"><img src="assets/images/social/twitter.svg" alt="" /><i class="lni lni-linkedin-original"></i></a>
-        </div>
-      </form>
-    </div>
-
     <div class="form-container login-container">
       <form action="#">
-        <h1>Login</h1>
-        <input type="email" placeholder="Email" />
+        <h1>Masuk</h1>
+        <input type="text" placeholder="Email atau username" />
         <input type="password" placeholder="Password" />
         <select name="role">
-          <option value="Reader">Reader</option>
-          <option value="Creator">Creator</option>
-          <option value="Admin">Admin</option>
+          <option value="Pembaca">Pembaca</option>
+          <option value="Penulis">Penulis</option>
         </select>
+        <button>Masuk</button>
         <div class="content">
           <div class="checkbox">
             <input type="checkbox" name="checkbox" id="checkbox" />
-            <label>Remember me</label>
+            <label>Ingat saya</label>
           </div>
-          <div class="pass-link">
-            <a href="#">Forgot password?</a>
-          </div>
-        </div>
-        <button>Login</button>
-        <span>or use your account</span>
-        <div class="social-container">
-          <a href="#" class="social"><img src="assets/images/Social/facebook.svg" alt="" /><i class="lni lni-facebook-fill"></i></a>
-          <a href="#" class="social"><img src="assets/images/Social/google.svg" alt="" /><i class="lni lni-google"></i></a>
-          <a href="#" class="social"><img src="assets/images/Social/twitter.svg" alt="" /><i class="lni lni-linkedin-original"></i></a>
         </div>
       </form>
     </div>
 
     <div class="overlay-container">
       <div class="overlay">
-        <div class="overlay-panel overlay-left">
-          <h1 class="title">
-            Hello <br />
-            friends
-          </h1>
-          <p>if Yout have an account, login here and have fun</p>
-          <button class="ghost" id="login">
-            Login
-            <i class="lni lni-arrow-left login"></i>
-          </button>
-        </div>
         <div class="overlay-panel overlay-right">
-          <h1 class="title">
-            Start yout <br />
-            journy now
-          </h1>
           <p>
-            if you don't have an account yet, join us and start your journey.
+            Belum ada akun? daftar disini
           </p>
-          <button class="ghost" id="register">
-            Register
+          <a href="register.php" class="button ghost" id="register">
+            Daftar
             <i class="lni lni-arrow-right register"></i>
-          </button>
+          </a>
         </div>
       </div>
     </div>
   </div>
 
-  <script src="js/login-register.js"></script>
+  <?php require 'layouts/auth/scripts.php' ?>
 </body>
-
 </html>

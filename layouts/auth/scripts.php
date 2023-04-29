@@ -1,0 +1,1 @@
+<script src="js/login-register.js"></script>
