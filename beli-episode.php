@@ -25,60 +25,36 @@
       <div class="container">
         <div class="row justify-content-center">
 
-          <div class="col-lg-10 col-12"></div>
+          <div class="col-12">
             <div class="row">
-              <div class="col-lg-3 col-12">
-                <div class="custom-block-icon-wrap">
-                  <div class="custom-block-info custom-block-image-detail-page">
-                    <img src="https://cdn.gramedia.com/uploads/items/9786239726218.jpg" class="custom-block-image img-fluid" alt="">
+              <div class="col-12 mb-5">
+              <div class="profile-block profile-detail-block d-flex flex-wrap align-items-center mt-4">
+                  <!-- Judul novel -->
+                  <div class="d-flex mb-3 mb-lg-0 mb-md-0">
+                    <a href="detail-page.php">
+                      <strong>Bedebah Diujung Tanduk</strong>
+                    </a>
+                  </div>
+
+                  <!-- Nama penulis -->
+                  <div class="social-icon ms-lg-auto ms-md-auto">
+                    oleh <strong>Tere Liye</strong>
                   </div>
                 </div>
               </div>
-
-              <div class="col-lg-9 col-12">
+              <div class="col-12">
                 <div class="custom-block-info">
-                  <div class="custom-block-top d-flex mb-3">
-                    <!-- Genre -->
-                    <div class="badge badge-info me-2">Aksi</div>
-                    <div class="badge badge-info">Drama</div>
+                  <!-- Judul -->
+                  <h2 class="text-center mb-5">Serangan Mematikan</h2>
 
-                    <!-- Episode -->
-                    <div class="ms-auto">
-                      <div class="bi-heart badge d-inline-block me-3">
-                        <span>2.5k</span>
-                      </div>
-                      <small><span class="badge">3</span> Episode</small>
-                    </div>
+                  <div class="profile-block profile-detail-block d-flex flex-column align-items-center justify-content-center my-5">
+                    <h6 class="mb-4">Beli episode seharga <span class="text-warning">10 koin</span></h6>
+                    <a href="#" class="btn custom-btn px-5">Beli</a>
                   </div>
 
-                  <!-- Judul -->
-                  <h2 class="mb-2">Bedebah Diujung Tanduk</h2>
-
-                  <!-- Sipnosis -->
-                  <p>Di Negeri di Ujung Tanduk, pencuri, perampok, berkeliaran menjadi penegak hukum. Di depan, di belakang, mereka tidak malu-malu lagi.  Tapi setidaknya, Kawan, dalam situasi apapun, petarung sejati akan terus memilih kehormatan hidupnya. Bahkan ketika nasib di ujung tanduk. Dia akan terus bertarung habis-habisan, bersama sahabat sejati. Karena esok, matahari akan terbit sekali lagi. Bersama harapan.</p>
-
-                  <a href="#" class="btn custom-btn">Baca episode pertama</a>
-
-                  <div class="profile-block profile-detail-block d-flex flex-wrap align-items-center mt-4">
-                    <!-- Nama penulis -->
-                    <div class="d-flex mb-3 mb-lg-0 mb-md-0">
-                      <strong>Tere Liye</strong>
-                    </div>
-
-                    <!-- Sosial media penulis -->
-                    <ul class="social-icon ms-lg-auto ms-md-auto">
-                      <li class="social-icon-item">
-                        <a href="#" class="social-icon-link bi-instagram"></a>
-                      </li>
-
-                      <li class="social-icon-item">
-                        <a href="#" class="social-icon-link bi-twitter"></a>
-                      </li>
-
-                      <li class="social-icon-item">
-                        <a href="#" class="social-icon-link bi-linkedin"></a>
-                      </li>
-                    </ul>
+                  <div class="d-flex justify-content-between">
+                    <a href="#" class="btn custom-btn">Sebelumnya: Duel</a>
+                    <a href="#" class="btn custom-btn">Selanjutnya: Apa yang sedang kau lakukan, Thomas?</a>
                   </div>
                 </div>
               </div>
@@ -102,11 +78,11 @@
 
           <div class="col-lg-4 col-12 mb-4 mb-lg-0">
             <div class="custom-block">
-              <a href="episode.php">
+              <a href="detail-page.php">
                 <div class="custom-block-info custom-block-overlay-info">
                   <!-- Judul episode -->
                   <h5 class="mb-1">
-                    <a href="episode.php">
+                    <a href="listing-page.php">
                       Duel
                     </a>
                   </h5>
@@ -120,11 +96,11 @@
 
           <div class="col-lg-4 col-12 mb-4 mb-lg-0">
             <div class="custom-block">
-              <a href="beli-episode.php">
+              <a href="detail-page.php">
                 <div class="custom-block-info custom-block-overlay-info">
                   <!-- Judul episode -->
                   <h5 class="mb-1">
-                    <a href="beli-episode.php">
+                    <a href="listing-page.php">
                       Serangan Mematikan
                     </a>
                   </h5>
@@ -138,11 +114,11 @@
 
           <div class="col-lg-4 col-12 mb-4 mb-lg-0">
             <div class="custom-block">
-              <a href="episode.php">
+              <a href="detail-page.php">
                 <div class="custom-block-info custom-block-overlay-info">
                   <!-- Judul episode -->
                   <h5 class="mb-1">
-                    <a href="episode.php">
+                    <a href="listing-page.php">
                       Apa yang sedang kau lakukan, Thomas?
                     </a>
                   </h5>
@@ -153,14 +129,18 @@
               </a>
             </div>
           </div>
-
         </div>
       </div>
     </section>
   </main>
 
-  <?php require 'layouts/footer.php'; ?>
+  <a href="#" class="btn custom-btn position-fixed bottom-0 end-0 mb-4 me-4" style="z-index: 100;">
+    <div class="bi-heart">
+      <span>2.5k</span>
+    </div>
+  </a>
 
+  <?php require 'layouts/footer.php'; ?>
   <?php require 'layouts/scripts.php'; ?>
 
 </body>
