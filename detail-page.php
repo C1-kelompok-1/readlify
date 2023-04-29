@@ -2,289 +2,166 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>Readify</title>
+  <title>Readify</title>
 
-    <?php require 'layouts/styles.php'; ?>
+  <?php require 'layouts/styles.php'; ?>
 
 </head>
 
 <body>
 
-    <main>
-        <?php require 'layouts/navbar.php'; ?>
-    
-        <header class="site-header d-flex flex-column justify-content-center align-items-center">
-            <div class="container">
-                <div class="row">
+  <main>
+    <?php require 'layouts/navbar.php'; ?>
+  
+    <header class="site-header site-header-no-title d-flex flex-column justify-content-center align-items-center">
+    </header>
 
-                    <div class="col-lg-12 col-12 text-center">
+    <section class="latest-podcast-section section-padding pb-0" id="section_2">
+      <div class="container">
+        <div class="row justify-content-center">
 
-                        <h2 class="mb-0">Detail Page</h2>
-                    </div>
-
+          <div class="col-lg-10 col-12"></div>
+            <div class="row">
+              <div class="col-lg-3 col-12">
+                <div class="custom-block-icon-wrap">
+                  <div class="custom-block-info custom-block-image-detail-page">
+                    <img src="https://cdn.gramedia.com/uploads/items/9786239726218.jpg" class="custom-block-image img-fluid" alt="">
+                  </div>
                 </div>
-            </div>
-        </header>
+              </div>
 
-        <section class="latest-podcast-section section-padding pb-0" id="section_2">
-            <div class="container">
-                <div class="row justify-content-center">
+              <div class="col-lg-9 col-12">
+                <div class="custom-block-info">
+                  <div class="custom-block-top d-flex mb-3">
+                    <!-- Genre -->
+                    <div class="badge badge-info me-2">Aksi</div>
+                    <div class="badge badge-info">Drama</div>
 
-                    <div class="col-lg-10 col-12">
-                        <div class="section-title-wrap mb-5">
-                            <h4 class="section-title">Daily talk</h4>
-                        </div>
+                    <!-- Episode -->
+                    <div class="ms-auto">
+                      <div class="bi-heart badge d-inline-block me-3">
+                        <span>2.5k</span>
+                      </div>
+                      <small><span class="badge">3</span> Episode</small>
+                    </div>
+                  </div>
 
-                        <div class="row">
-                            <div class="col-lg-3 col-12">
-                                <div class="custom-block-icon-wrap">
-                                    <div class="custom-block-image-wrap custom-block-image-detail-page">
-                                        <img src="assets/images/podcast/11683425_4790593.jpg" class="custom-block-image img-fluid" alt="">
-                                    </div>
-                                </div>
-                            </div>
+                  <!-- Judul -->
+                  <h2 class="mb-2">Bedebah Diujung Tanduk</h2>
 
-                            <div class="col-lg-9 col-12">
-                                <div class="custom-block-info">
-                                    <div class="custom-block-top d-flex mb-1">
-                                        <small class="me-4">
-                                            <a href="#">
-                                                <i class="bi-play"></i>
-                                                Play now
-                                            </a>
-                                        </small>
+                  <!-- Sipnosis -->
+                  <p>Di Negeri di Ujung Tanduk, pencuri, perampok, berkeliaran menjadi penegak hukum. Di depan, di belakang, mereka tidak malu-malu lagi.  Tapi setidaknya, Kawan, dalam situasi apapun, petarung sejati akan terus memilih kehormatan hidupnya. Bahkan ketika nasib di ujung tanduk. Dia akan terus bertarung habis-habisan, bersama sahabat sejati. Karena esok, matahari akan terbit sekali lagi. Bersama harapan.</p>
 
-                                        <small>
-                                            <i class="bi-clock-fill custom-icon"></i>
-                                            50 Minutes
-                                        </small>
+                  <a href="#" class="btn custom-btn">Baca episode pertama</a>
 
-                                        <small class="ms-auto">Episode <span class="badge">15</span></small>
-                                    </div>
-
-                                    <h2 class="mb-2">Modern Vintage</h2>
-
-                                    <p>What is Content Marketing? If you are wondering what content marketing is all about, this is the place to start.</p>
-
-                                    <p>You are not allowed to redistribute this template ZIP file on any other template collection website. Please contact TemplateMo for more information.</p>
-
-                                    <p>Pod Talk php CSS Template is made by Bootstrap v5.2.2 framework. You are allowed to modify and use this template for your business websites.</p>
-
-                                    <div class="profile-block profile-detail-block d-flex flex-wrap align-items-center mt-5">
-                                        <div class="d-flex mb-3 mb-lg-0 mb-md-0">
-                                            <img src="assets/images/profile/woman-posing-black-dress-medium-shot.jpg" class="profile-block-image img-fluid" alt="">
-
-                                            <p>
-                                                Elsa
-                                                <img src="assets/images/verified.png" class="verified-image img-fluid" alt="">
-                                                <strong>Influencer</strong>
-                                            </p>
-                                        </div>
-
-                                        <ul class="social-icon ms-lg-auto ms-md-auto">
-                                            <li class="social-icon-item">
-                                                <a href="#" class="social-icon-link bi-instagram"></a>
-                                            </li>
-
-                                            <li class="social-icon-item">
-                                                <a href="#" class="social-icon-link bi-twitter"></a>
-                                            </li>
-
-                                            <li class="social-icon-item">
-                                                <a href="#" class="social-icon-link bi-whatsapp"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                  <div class="profile-block profile-detail-block d-flex flex-wrap align-items-center mt-4">
+                    <!-- Nama penulis -->
+                    <div class="d-flex mb-3 mb-lg-0 mb-md-0">
+                      <strong>Elsa</strong>
                     </div>
 
+                    <!-- Sosial media penulis -->
+                    <ul class="social-icon ms-lg-auto ms-md-auto">
+                      <li class="social-icon-item">
+                        <a href="#" class="social-icon-link bi-instagram"></a>
+                      </li>
+
+                      <li class="social-icon-item">
+                        <a href="#" class="social-icon-link bi-twitter"></a>
+                      </li>
+
+                      <li class="social-icon-item">
+                        <a href="#" class="social-icon-link bi-linkedin"></a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
+              </div>
             </div>
-        </section>
+          </div>
 
-        <section class="related-podcast-section section-padding">
-            <div class="container">
-                <div class="row">
+        </div>
+      </div>
+    </section>
 
-                    <div class="col-lg-12 col-12">
-                        <div class="section-title-wrap mb-5">
-                            <h4 class="section-title">Related episodes</h4>
-                        </div>
-                    </div>
+    <!-- Episode -->
+    <section class="related-podcast-section section-padding">
+      <div class="container">
+        <div class="row">
 
-                    <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-                        <div class="custom-block custom-block-full">
-                            <div class="custom-block-image-wrap">
-                                <a href="detail-page.php">
-                                    <img src="assets/images/podcast/27376480_7326766.jpg" class="custom-block-image img-fluid" alt="">
-                                </a>
-                            </div>
+          <div class="col-lg-12 col-12">
+            <div class="section-title-wrap mb-5">
+              <h4 class="section-title">Episode</h4>
+            </div>
+          </div>
 
-                            <div class="custom-block-info">
-                                <h5 class="mb-2">
-                                    <a href="detail-page.php">
-                                        Vintage Show
-                                    </a>
-                                </h5>
-
-                                <div class="profile-block d-flex">
-                                    <img src="assets/images/profile/woman-posing-black-dress-medium-shot.jpg" class="profile-block-image img-fluid" alt="">
-
-                                    <p>Elsa
-                                        <strong>Influencer</strong></p>
-                                </div>
-
-                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-
-                                <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="#" class="bi-headphones me-1">
-                                        <span>100k</span>
-                                    </a>
-
-                                    <a href="#" class="bi-heart me-1">
-                                        <span>2.5k</span>
-                                    </a>
-
-                                    <a href="#" class="bi-chat me-1">
-                                        <span>924k</span>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="social-share d-flex flex-column ms-auto">
-                                <a href="#" class="badge ms-auto">
-                                    <i class="bi-heart"></i>
-                                </a>
-
-                                <a href="#" class="badge ms-auto">
-                                    <i class="bi-bookmark"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-                        <div class="custom-block custom-block-full">
-                            <div class="custom-block-image-wrap">
-                                <a href="detail-page.php">
-                                    <img src="assets/images/podcast/27670664_7369753.jpg" class="custom-block-image img-fluid" alt="">
-                                </a>
-                            </div>
-
-                            <div class="custom-block-info">
-                                <h5 class="mb-2">
-                                    <a href="detail-page.php">
-                                        Vintage Show
-                                    </a>
-                                </h5>
-
-                                <div class="profile-block d-flex">
-                                    <img src="assets/images/profile/cute-smiling-woman-outdoor-portrait.jpg" class="profile-block-image img-fluid" alt="">
-
-                                    <p>
-                                        Taylor
-                                        <img src="assets/images/verified.png" class="verified-image img-fluid" alt="">
-                                        <strong>Creator</strong>
-                                    </p>
-                                </div>
-
-                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-
-                                <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="#" class="bi-headphones me-1">
-                                        <span>100k</span>
-                                    </a>
-
-                                    <a href="#" class="bi-heart me-1">
-                                        <span>2.5k</span>
-                                    </a>
-
-                                    <a href="#" class="bi-chat me-1">
-                                        <span>924k</span>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="social-share d-flex flex-column ms-auto">
-                                <a href="#" class="badge ms-auto">
-                                    <i class="bi-heart"></i>
-                                </a>
-
-                                <a href="#" class="badge ms-auto">
-                                    <i class="bi-bookmark"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-12">
-                        <div class="custom-block custom-block-full">
-                            <div class="custom-block-image-wrap">
-                                <a href="detail-page.php">
-                                    <img src="assets/images/podcast/12577967_02.jpg" class="custom-block-image img-fluid" alt="">
-                                </a>
-                            </div>
-
-                            <div class="custom-block-info">
-                                <h5 class="mb-2">
-                                    <a href="detail-page.php">
-                                        Daily Talk
-                                    </a>
-                                </h5>
-
-                                <div class="profile-block d-flex">
-                                    <img src="assets/images/profile/handsome-asian-man-listening-music-through-headphones.jpg" class="profile-block-image img-fluid" alt="">
-
-                                    <p>
-                                        William
-                                        <img src="assets/images/verified.png" class="verified-image img-fluid" alt="">
-                                        <strong>Vlogger</strong></p>
-                                </div>
-
-                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-
-                                <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="#" class="bi-headphones me-1">
-                                        <span>100k</span>
-                                    </a>
-
-                                    <a href="#" class="bi-heart me-1">
-                                        <span>2.5k</span>
-                                    </a>
-
-                                    <a href="#" class="bi-chat me-1">
-                                        <span>924k</span>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="social-share d-flex flex-column ms-auto">
-                                <a href="#" class="badge ms-auto">
-                                    <i class="bi-heart"></i>
-                                </a>
-
-                                <a href="#" class="badge ms-auto">
-                                    <i class="bi-bookmark"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
+          <div class="col-lg-4 col-12 mb-4 mb-lg-0">
+            <div class="custom-block">
+              <a href="detail-page.php">
+                <div class="custom-block-info custom-block-overlay-info">
+                  <!-- Judul episode -->
+                  <h5 class="mb-1">
+                    <a href="listing-page.php">
+                      Duel
+                    </a>
+                  </h5>
+  
+                  <!-- Nomor episode -->
+                  <p class="badge mb-0">Episode 1</p>
                 </div>
+              </a>
             </div>
-        </section>
-    </main>
+          </div>
 
-    <?php require 'layouts/footer.php'; ?>
+          <div class="col-lg-4 col-12 mb-4 mb-lg-0">
+            <div class="custom-block">
+              <a href="detail-page.php">
+                <div class="custom-block-info custom-block-overlay-info">
+                  <!-- Judul episode -->
+                  <h5 class="mb-1">
+                    <a href="listing-page.php">
+                      Serangan Mematikan
+                    </a>
+                  </h5>
 
-    <?php require 'layouts/scripts.php'; ?>
+                  <!-- Nomor episode -->
+                  <p class="badge mb-0">Episode 2</p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-12 mb-4 mb-lg-0">
+            <div class="custom-block">
+              <a href="detail-page.php">
+                <div class="custom-block-info custom-block-overlay-info">
+                  <!-- Judul episode -->
+                  <h5 class="mb-1">
+                    <a href="listing-page.php">
+                      Apa yang sedang kau lakukan, Thomas?
+                    </a>
+                  </h5>
+
+                  <!-- Nomor episode -->
+                  <p class="badge mb-0">Episode 3</p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <?php require 'layouts/footer.php'; ?>
+
+  <?php require 'layouts/scripts.php'; ?>
 
 </body>
 

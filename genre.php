@@ -66,9 +66,9 @@
 
                     <!-- Suka -->
                     <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                      <a href="#" class="bi-heart me-1">
+                      <div class="bi-heart me-1">
                         <span>2.5k</span>
-                      </a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -99,9 +99,9 @@
 
                     <!-- Suka -->
                     <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                      <a href="#" class="bi-heart me-1">
+                      <div class="bi-heart me-1">
                         <span>2.5k</span>
-                      </a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -132,9 +132,9 @@
 
                     <!-- Suka -->
                     <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                      <a href="#" class="bi-heart me-1">
+                      <div class="bi-heart me-1">
                         <span>2.5k</span>
-                      </a>
+                      </div>
                     </div>
                   </div>
                 </div>
