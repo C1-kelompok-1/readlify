@@ -529,6 +529,12 @@ main {
   padding: 30px;
 }
 
+.owl-carousel-info h4 {
+  width: 200px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .badge {
   background-color: var(--custom-btn-bg-color);
   font-family: var(--title-font-family);
@@ -608,7 +614,7 @@ main {
   transition: all 0.3s ease;
 }
 
-.custom-block:hover {
+.custom-block:not(.custom-block-no-hover):hover {
   background: var(--white-color);
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
   border-color: transparent;
@@ -722,7 +728,7 @@ main {
   border-color: transparent;
 }
 
-.custom-block-full:hover {
+.custom-block-full:not(.custom-block-no-hover):hover {
   border-color: var(--primary-color);
 }
 

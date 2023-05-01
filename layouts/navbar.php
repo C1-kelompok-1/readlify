@@ -29,6 +29,10 @@
         </li>
 
         <li class="nav-item">
+          <a class="nav-link" href="my-novels.php">Cerita saya</a>
+        </li>
+
+        <li class="nav-item">
           <a class="nav-link" href="contact.php">Beli koin</a>
         </li>
       </ul>
