@@ -247,7 +247,7 @@ main {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  min-height: 480px;
+  min-height: 320px;
   position: relative;
 }
 
