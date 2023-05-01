@@ -3,7 +3,7 @@
     <div class="row align-items-center justify-content-center">
       <div class="col-lg-3 col-12">
         <p class="copyright-text mb-0">
-          Copyright © 2036 Talk Pod Company
+          Copyright © Readlify 2023
         </p>
       </div>
     </div>

@@ -81,57 +81,28 @@
           </div>
 
           <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-            <div class="custom-block">
-              <a href="detail-page.php">
-                <div class="custom-block-info custom-block-overlay-info">
-                  <!-- Judul episode -->
-                  <h5 class="mb-1">
-                    <a href="listing-page.php">
-                      Duel
-                    </a>
-                  </h5>
-  
-                  <!-- Nomor episode -->
-                  <p class="badge mb-0">Episode 1</p>
-                </div>
-              </a>
-            </div>
+            <a href="detail-page.php" class="d-block h-100">
+              <div class="custom-block d-flex justify-content-center flex-column align-items-start h-100">
+                <p><strong>Duel</strong></p>
+                <p class="badge mb-0">Episode 1</p>
+              </div>
+            </a>
           </div>
-
           <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-            <div class="custom-block">
-              <a href="detail-page.php">
-                <div class="custom-block-info custom-block-overlay-info">
-                  <!-- Judul episode -->
-                  <h5 class="mb-1">
-                    <a href="listing-page.php">
-                      Serangan Mematikan
-                    </a>
-                  </h5>
-
-                  <!-- Nomor episode -->
-                  <p class="badge mb-0">Episode 2</p>
-                </div>
-              </a>
-            </div>
+            <a href="detail-page.php" class="d-block h-100">
+              <div class="custom-block d-flex justify-content-center flex-column align-items-start h-100">
+                <p><strong>Serangan Mematikan</strong></p>
+                <p class="badge mb-0">Episode 2</p>
+              </div>
+            </a>
           </div>
-
           <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-            <div class="custom-block">
-              <a href="detail-page.php">
-                <div class="custom-block-info custom-block-overlay-info">
-                  <!-- Judul episode -->
-                  <h5 class="mb-1">
-                    <a href="listing-page.php">
-                      Apa yang sedang kau lakukan, Thomas?
-                    </a>
-                  </h5>
-
-                  <!-- Nomor episode -->
-                  <p class="badge mb-0">Episode 3</p>
-                </div>
-              </a>
-            </div>
+            <a href="detail-page.php" class="d-block h-100">
+              <div class="custom-block d-flex justify-content-center flex-column align-items-start h-100">
+                <p><strong>Thomas, apa yang sedang kau lakukan?</strong></p>
+                <p class="badge mb-0">Episode 3</p>
+              </div>
+            </a>
           </div>
         </div>
       </div>

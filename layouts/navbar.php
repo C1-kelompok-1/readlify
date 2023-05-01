@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container">
     <a class="navbar-brand me-lg-5 me-0" href="index.php">
-      <img src="assets/images/pod-talk-logo.png" class="logo-image img-fluid" alt="templatemo pod talk">
+      <img src="assets/images/logo.png" class="logo-image img-fluid" alt="templatemo pod talk">
     </a>
 
     <form action="#" method="get" class="custom-form search-form flex-fill me-3" role="search">
       <div class="input-group input-group-lg">
-        <input name="search" type="search" class="form-control" id="search" placeholder="Search Novel" aria-label="Search">
+        <input name="search" type="search" class="form-control" id="search" placeholder="Cari Novel" aria-label="Search">
 
         <button type="submit" class="form-control" id="submit">
           <i class="bi-search"></i>
@@ -21,30 +21,20 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-lg-auto">
         <li class="nav-item">
-          <a class="nav-link active" href="index.php">Home</a>
+          <a class="nav-link active" href="index.php">Beranda</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="about.php">About</a>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
-
-          <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-            <li><a class="dropdown-item" href="listing-page.php">Listing Page</a></li>
-
-            <li><a class="dropdown-item" href="detail-page.php">Detail Page</a></li>
-          </ul>
+          <a class="nav-link" href="genre.php">Genre</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="contact.php">Contact</a>
+          <a class="nav-link" href="contact.php">Beli koin</a>
         </li>
       </ul>
 
       <div class="ms-4">
-        <a href="#section_3" class="btn custom-btn custom-border-btn smoothscroll">Get started</a>
+        <a href="login.php" class="btn custom-btn custom-border-btn smoothscroll">Masuk</a>
       </div>
     </div>
   </div>
