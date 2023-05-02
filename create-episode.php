@@ -40,6 +40,9 @@
                       <div class="form-group">
                         <input name="judul" type="text" class="form-control" id="judul" placeholder="Judul episode">
                       </div>
+                      <div class="form-group">
+                        <input name="harga_koin" type="number" class="form-control" id="harga_koin" placeholder="Harga koin">
+                      </div>
                       <div class="form-group mb-3">
                         <textarea name="konten" id="konten"></textarea>
                       </div>

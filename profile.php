@@ -26,7 +26,7 @@
           <div class="container">
             <div class="row">
               <div class="col-12 text-end mb-3">
-                <a href="my-novel-episode.php" class="btn custom-btn">
+                <a href="my-novel.php" class="btn custom-btn">
                   <i class="bi-arrow-left"></i>
                   Kembali
                 </a>
@@ -34,20 +34,26 @@
               <div class="col-12">
                 <div class="custom-block custom-block-full custom-block-no-hover">
                   <div class="custom-block-info">
-                    <h5 class="mb-4">Edit episode</h5>
+                    <h5 class="mb-4">Profil</h5>
 
                     <form action="#" method="get" class="custom-form me-3" role="search">
                       <div class="form-group">
-                        <input name="judul" type="text" class="form-control" id="judul" placeholder="Judul episode">
+                        <input name="username" type="text" class="form-control" id="username" placeholder="Username">
                       </div>
                       <div class="form-group">
-                        <input name="harga_koin" type="number" class="form-control" id="harga_koin" placeholder="Harga koin">
+                        <input name="email" type="email" class="form-control" id="email" placeholder="Email">
                       </div>
-                      <div class="form-group mb-3">
-                        <textarea name="konten" id="konten"></textarea>
+                      <div class="form-group">
+                        <input name="facebook_url" type="url" class="form-control" id="facebook_url" placeholder="URL Facebook">
+                      </div>
+                      <div class="form-group">
+                        <input name="instagram_url" type="url" class="form-control" id="instagram_url" placeholder="URL Instagram">
+                      </div>
+                      <div class="form-group">
+                        <input name="twitter_url" type="url" class="form-control" id="twitter_url" placeholder="URL Twitter">
                       </div>
                       <div class="form-group mt-3">
-                        <button type="submit" class="btn custom-btn">Edit novel</button>
+                        <button type="submit" class="btn custom-btn">Simpan</button>
                       </div>
                     </form>
                   </div>
