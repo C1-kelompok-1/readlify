@@ -24,16 +24,29 @@
 
                     <div class="col-lg-12 col-12">
                         <div class="text-center mb-5 pb-2">
-                            <h1 class="text-white">Read a Novel</h1>
+                            <h1 class="text-white">Readify</h1>
 
-                            <p class="text-white">Read it everywhere. Explore your fav novel.</p>
+                            <p class="text-white">Baca di mana saja. Jelajahi novel favorit Anda.</p>
 
-                            <a href="#section_2" class="btn custom-btn smoothscroll mt-3">Start reading</a>
+                            <a href="#section_2" class="btn custom-btn smoothscroll mt-3">Mulai Membaca</a>
+                        </div>
+
+                        <div class="mb-5">
+                            <form action="#" method="get" class="custom-form search-form flex-fill me-3" role="search">
+                                <div class="input-group input-group-lg">
+                                    <input name="search" type="search" class="form-control" id="search" placeholder="Cari Novel" aria-label="Search">
+
+                                    <button type="submit" class="form-control" id="submit">
+                                        <i class="bi-search"></i>
+                                    </button>
+                                </div>
+                            </form>
                         </div>
 
                         <div class="owl-carousel owl-theme">
                             <div class="owl-carousel-info-wrap item">
                                 <img src="assets/images/profile/smiling-business-woman-with-folded-hands-against-white-wall-toothy-smile-crossed-arms.jpg" class="owl-carousel-image img-fluid" alt="">
+
 
                                 <div class="owl-carousel-info">
                                     <h4 class="mb-2">
@@ -198,75 +211,65 @@
                 <div class="row justify-content-center">
 
                     <div class="col-lg-12 col-12">
-                        <div class="section-title-wrap mb-5">
-                            <h4 class="section-title">Lastest episodes</h4>
+                        <div class="section-title-wrap mb-5 mt-5">
+                            <h4 class="section-title">Terakhir dibaca</h4>
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-12 mb-4 mb-lg-0">
+                    <div class="col-lg-6 col-12">
                         <div class="custom-block d-flex">
                             <div class="">
                                 <div class="custom-block-icon-wrap">
                                     <div class="section-overlay"></div>
                                     <a href="detail-page.php" class="custom-block-image-wrap">
-                                        <img src="assets/images/podcast/11683425_4790593.jpg" class="custom-block-image img-fluid" alt="">
-
-                                        <a href="#" class="custom-block-icon">
-                                            <i class="bi-play-fill"></i>
-                                        </a>
+                                        <img src="assets/images/novel/Twilight.jpeg" class="custom-block-image img-fluid" alt="">
                                     </a>
                                 </div>
 
                                 <div class="mt-2">
                                     <a href="#" class="btn custom-btn">
-                                        Subscribe
+                                        Lanjut baca
                                     </a>
                                 </div>
                             </div>
 
                             <div class="custom-block-info">
                                 <div class="custom-block-top d-flex mb-1">
-                                    <small class="me-4">
-                                        <i class="bi-clock-fill custom-icon"></i>
-                                        50 Minutes
-                                    </small>
-
-                                    <small>Episode <span class="badge">15</span></small>
+                                    <small>Halaman <span class="badge">72</span></small>
                                 </div>
 
                                 <h5 class="mb-2">
                                     <a href="detail-page.php">
-                                        Modern Vintage
+                                        Twilight
                                     </a>
                                 </h5>
 
                                 <div class="profile-block d-flex">
-                                    <img src="assets/images/profile/woman-posing-black-dress-medium-shot.jpg" class="profile-block-image img-fluid" alt="">
+                                    <img src="assets/images/pengarang/Stephenie Meyer.jpg" class="profile-block-image img-fluid" alt="">
 
-                                    <p>
-                                        Elsa
-                                        <img src="assets/images/verified.png" class="verified-image img-fluid" alt="">
-                                        <strong>Influencer</strong>
+                                    <p> Stephenie Meyer
+                                        <strong>Pengarang</strong>
                                     </p>
                                 </div>
 
-                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                <p class="mb-0">
+                                    Bella pindah ke Forks dan bertemu keluarga Cullen yang misterius. Edward yang awalnya kasar pada Bella, tiba-tiba menyelamatkannya dari kecelakaan dan memiliki kekuatan super. Bella yakin Edward menyembunyikan sesuatu.</p>
 
                                 <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="#" class="bi-headphones me-1">
-                                        <span>120k</span>
+                                    <a href="#" class="bi-eye me-1">
+                                        <span>120jt</span>
                                     </a>
 
                                     <a href="#" class="bi-heart me-1">
-                                        <span>42.5k</span>
+                                        <span>24jt</span>
                                     </a>
 
                                     <a href="#" class="bi-chat me-1">
-                                        <span>11k</span>
+                                        <span>72k</span>
                                     </a>
 
                                     <a href="#" class="bi-download">
-                                        <span>50k</span>
+                                        <span>62k</span>
                                     </a>
                                 </div>
                             </div>
@@ -289,54 +292,45 @@
                                 <div class="custom-block-icon-wrap">
                                     <div class="section-overlay"></div>
                                     <a href="detail-page.php" class="custom-block-image-wrap">
-                                        <img src="assets/images/podcast/12577967_02.jpg" class="custom-block-image img-fluid" alt="">
-
-                                        <a href="#" class="custom-block-icon">
-                                            <i class="bi-play-fill"></i>
-                                        </a>
+                                        <img src="assets/images/novel/bumi.jpg" class="custom-block-image img-fluid" alt="">
                                     </a>
                                 </div>
 
                                 <div class="mt-2">
                                     <a href="#" class="btn custom-btn">
-                                        Subscribe
+                                        Lanjut baca
                                     </a>
                                 </div>
                             </div>
 
                             <div class="custom-block-info">
                                 <div class="custom-block-top d-flex mb-1">
-                                    <small class="me-4">
-                                        <i class="bi-clock-fill custom-icon"></i>
-                                        15 Minutes
-                                    </small>
-
-                                    <small>Episode <span class="badge">45</span></small>
+                                    <small>Halaman <span class="badge">35</span></small>
                                 </div>
 
                                 <h5 class="mb-2">
                                     <a href="detail-page.php">
-                                        Daily Talk
+                                        Bumi
                                     </a>
                                 </h5>
 
                                 <div class="profile-block d-flex">
-                                    <img src="assets/images/profile/handsome-asian-man-listening-music-through-headphones.jpg" class="profile-block-image img-fluid" alt="">
+                                    <img src="assets/images/pengarang/tere liye.jpeg" class="profile-block-image img-fluid" alt="">
 
-                                    <p>William
-                                        <strong>Vlogger</strong>
+                                    <p>Tere Liye
+                                        <strong>Pengarang</strong>
                                     </p>
                                 </div>
 
-                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                <p class="mb-0">Raib adalah seorang gadis berumur 15 tahun. Secara umum, tidak ada yang berbeda dari Raib dengan remaja pada umumnya. Namun, Raib memiliki rahasia yang ia simpan sendiri sejak kecil, yakni kemampuan untuk menghilangkan diri. </p>
 
                                 <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="#" class="bi-headphones me-1">
-                                        <span>140k</span>
+                                    <a href="#" class="bi-eye me-1">
+                                        <span>60jt</span>
                                     </a>
 
                                     <a href="#" class="bi-heart me-1">
-                                        <span>22.4k</span>
+                                        <span>2jt</span>
                                     </a>
 
                                     <a href="#" class="bi-chat me-1">
@@ -344,7 +338,7 @@
                                     </a>
 
                                     <a href="#" class="bi-download">
-                                        <span>62k</span>
+                                        <span>22k</span>
                                     </a>
                                 </div>
                             </div>
@@ -371,24 +365,24 @@
 
                     <div class="col-lg-12 col-12">
                         <div class="section-title-wrap mb-5">
-                            <h4 class="section-title">Topics</h4>
+                            <h4 class="section-title">Genre</h4>
                         </div>
                     </div>
 
                     <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
                         <div class="custom-block custom-block-overlay">
                             <a href="detail-page.php" class="custom-block-image-wrap">
-                                <img src="assets/images/topics/physician-consulting-his-patient-clinic.jpg" class="custom-block-image img-fluid" alt="">
+                                <img src="assets/images/novel/the love hypothesis.avif" class="custom-block-image img-fluid" alt="">
                             </a>
 
                             <div class="custom-block-info custom-block-overlay-info">
                                 <h5 class="mb-1">
                                     <a href="listing-page.php">
-                                        Productivity
+                                        Romantis
                                     </a>
                                 </h5>
 
-                                <p class="badge mb-0">50 Episodes</p>
+                                <p class="badge mb-0">20 Novel</p>
                             </div>
                         </div>
                     </div>
@@ -396,17 +390,17 @@
                     <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
                         <div class="custom-block custom-block-overlay">
                             <a href="detail-page.php" class="custom-block-image-wrap">
-                                <img src="assets/images/topics/repairman-doing-air-conditioner-service.jpg" class="custom-block-image img-fluid" alt="">
+                                <img src="assets/images/novel/the big sleep.jpg" class="custom-block-image img-fluid" alt="">
                             </a>
 
                             <div class="custom-block-info custom-block-overlay-info">
                                 <h5 class="mb-1">
                                     <a href="listing-page.php">
-                                        Technician
+                                        Misteri
                                     </a>
                                 </h5>
 
-                                <p class="badge mb-0">12 Episodes</p>
+                                <p class="badge mb-0">12 Novel</p>
                             </div>
                         </div>
                     </div>
@@ -414,17 +408,17 @@
                     <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
                         <div class="custom-block custom-block-overlay">
                             <a href="detail-page.php" class="custom-block-image-wrap">
-                                <img src="assets/images/topics/woman-practicing-yoga-mat-home.jpg" class="custom-block-image img-fluid" alt="">
+                                <img src="assets/images/novel/harry potter.jpg" class="custom-block-image img-fluid" alt="">
                             </a>
 
                             <div class="custom-block-info custom-block-overlay-info">
                                 <h5 class="mb-1">
                                     <a href="listing-page.php">
-                                        Mindfullness
+                                        Fantasi
                                     </a>
                                 </h5>
 
-                                <p class="badge mb-0">35 Episodes</p>
+                                <p class="badge mb-0">25 Novel</p>
                             </div>
                         </div>
                     </div>
@@ -432,17 +426,17 @@
                     <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
                         <div class="custom-block custom-block-overlay">
                             <a href="detail-page.php" class="custom-block-image-wrap">
-                                <img src="assets/images/topics/delicious-meal-with-sambal-arrangement.jpg" class="custom-block-image img-fluid" alt="">
+                                <img src="assets/images/novel/in the heart of the sea.jpg" class="custom-block-image img-fluid" alt="">
                             </a>
 
                             <div class="custom-block-info custom-block-overlay-info">
                                 <h5 class="mb-1">
                                     <a href="listing-page.php">
-                                        Cooking
+                                        Petualangan
                                     </a>
                                 </h5>
 
-                                <p class="badge mb-0">12 Episodes</p>
+                                <p class="badge mb-0">22 Novel</p>
                             </div>
                         </div>
                     </div>
@@ -457,7 +451,7 @@
 
                     <div class="col-lg-12 col-12">
                         <div class="section-title-wrap mb-5">
-                            <h4 class="section-title">Trending episodes</h4>
+                            <h4 class="section-title">Populer</h4>
                         </div>
                     </div>
 
@@ -465,38 +459,40 @@
                         <div class="custom-block custom-block-full">
                             <div class="custom-block-image-wrap">
                                 <a href="detail-page.php">
-                                    <img src="assets/images/podcast/27376480_7326766.jpg" class="custom-block-image img-fluid" alt="">
+                                    <img src="assets/images/novel/cantik itu luka2.png" class="custom-block-image img-fluid" alt="">
                                 </a>
                             </div>
 
                             <div class="custom-block-info">
                                 <h5 class="mb-2">
                                     <a href="detail-page.php">
-                                        Vintage Show
+                                        Cantik Itu Luka
                                     </a>
                                 </h5>
 
                                 <div class="profile-block d-flex">
-                                    <img src="assets/images/profile/woman-posing-black-dress-medium-shot.jpg" class="profile-block-image img-fluid" alt="">
+                                    <img src="assets/images/pengarang/eka kurniawan.jpg" class="profile-block-image img-fluid" alt="">
 
-                                    <p>Elsa
-                                        <strong>Influencer</strong>
+                                    <p>Eka Kurniawan
+                                        <strong>Pengarang</strong>
                                     </p>
                                 </div>
 
-                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                <p class="mb-0">Di akhir masa kolonial, seorang perempuan dipaksa menjadi pelacur. Kehidupan itu terus dijalaninya hingga ia memiliki tiga anak gadis yang kesemuanya cantik. Ketika mengandung anaknya yang keempat, ia berharap anak itu akan lahir buruk rupa. Itulah yang terjadi, meskipun secara ironik ia memberinya nama si Cantik.
+
+                                </p>
 
                                 <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="#" class="bi-headphones me-1">
-                                        <span>100k</span>
+                                    <a href="#" class="bi-eye me-1">
+                                        <span>200k</span>
                                     </a>
 
                                     <a href="#" class="bi-heart me-1">
-                                        <span>2.5k</span>
+                                        <span>15k</span>
                                     </a>
 
                                     <a href="#" class="bi-chat me-1">
-                                        <span>924k</span>
+                                        <span>92k</span>
                                     </a>
                                 </div>
                             </div>
@@ -517,40 +513,39 @@
                         <div class="custom-block custom-block-full">
                             <div class="custom-block-image-wrap">
                                 <a href="detail-page.php">
-                                    <img src="assets/images/podcast/27670664_7369753.jpg" class="custom-block-image img-fluid" alt="">
+                                    <img src="assets/images/novel/ancika.jpg" class="custom-block-image img-fluid" alt="">
                                 </a>
                             </div>
 
                             <div class="custom-block-info">
                                 <h5 class="mb-2">
                                     <a href="detail-page.php">
-                                        Vintage Show
+                                        Ancika 1995
                                     </a>
                                 </h5>
 
                                 <div class="profile-block d-flex">
-                                    <img src="assets/images/profile/cute-smiling-woman-outdoor-portrait.jpg" class="profile-block-image img-fluid" alt="">
+                                    <img src="assets/images/pengarang/pidi baiq.jpg" class="profile-block-image img-fluid" alt="">
 
-                                    <p>
-                                        Taylor
-                                        <img src="assets/images/verified.png" class="verified-image img-fluid" alt="">
-                                        <strong>Creator</strong>
+                                    <p>Pidi Baiq
+                                        <strong>Pengarang</strong>
                                     </p>
                                 </div>
 
-                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                <p class="mb-0">Ancika 1995 menceritakan kisah cinta Dilan setelah putus dengan Milea. Dilan yang kuliah di Bandung jatuh cinta dengan Ancika, gadis 17 tahun yang awalnya merasa kesal dengannya. Namun, Ancika mulai merasakan ketertarikan pada Dilan ketika mereka sering bertemu.
+                                </p>
 
                                 <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="#" class="bi-headphones me-1">
-                                        <span>100k</span>
+                                    <a href="#" class="bi-eye me-1">
+                                        <span>170k</span>
                                     </a>
 
                                     <a href="#" class="bi-heart me-1">
-                                        <span>2.5k</span>
+                                        <span>25k</span>
                                     </a>
 
                                     <a href="#" class="bi-chat me-1">
-                                        <span>924k</span>
+                                        <span>87k</span>
                                     </a>
                                 </div>
                             </div>
@@ -567,44 +562,43 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-12">
+                    <div class="col-lg-4 col-12 mb-4 mb-lg-0">
                         <div class="custom-block custom-block-full">
                             <div class="custom-block-image-wrap">
                                 <a href="detail-page.php">
-                                    <img src="assets/images/podcast/12577967_02.jpg" class="custom-block-image img-fluid" alt="">
+                                    <img src="assets/images/novel/nebula.jpg" class="custom-block-image img-fluid" alt="">
                                 </a>
                             </div>
 
                             <div class="custom-block-info">
                                 <h5 class="mb-2">
                                     <a href="detail-page.php">
-                                        Daily Talk
+                                        Nebula
                                     </a>
                                 </h5>
 
                                 <div class="profile-block d-flex">
-                                    <img src="assets/images/profile/handsome-asian-man-listening-music-through-headphones.jpg" class="profile-block-image img-fluid" alt="">
+                                    <img src="assets/images/pengarang/tere liye.jpeg" class="profile-block-image img-fluid" alt="">
 
-                                    <p>
-                                        William
-                                        <img src="assets/images/verified.png" class="verified-image img-fluid" alt="">
-                                        <strong>Vlogger</strong>
+                                    <p>Tere Liye
+                                        <strong>Pengarang</strong>
                                     </p>
                                 </div>
 
-                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                <p class="mb-0">Nebula adalah kelanjutan dari novel Selena. Di sana, Selena membantu Bibi Leh menyiapkan pernikahan, sementara persahabatan tiga mahasiswa diuji dengan pengkhianatan. Dua buku ini menceritakan tentang Akademi Bayangan Tingkat Tinggi dan orangtua Raib. Mereka juga memperkenalkan karakter kuat di dunia paralel dan membuka portal menuju Klan Aldebaran.
+                                </p>
 
                                 <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="#" class="bi-headphones me-1">
-                                        <span>100k</span>
+                                    <a href="#" class="bi-eye me-1">
+                                        <span>200k</span>
                                     </a>
 
                                     <a href="#" class="bi-heart me-1">
-                                        <span>2.5k</span>
+                                        <span>15k</span>
                                     </a>
 
                                     <a href="#" class="bi-chat me-1">
-                                        <span>924k</span>
+                                        <span>92k</span>
                                     </a>
                                 </div>
                             </div>
