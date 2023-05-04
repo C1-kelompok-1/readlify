@@ -25,11 +25,11 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="about.php">Genre</a>
+          <a class="nav-link" href="genre.php">Genre</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="about.php">Cerita Saya</a>
+          <a class="nav-link" href="my-novels.php">Cerita Saya</a>
         </li>
 
         <!-- <li class="nav-item dropdown">
@@ -48,7 +48,7 @@
       </ul>
 
       <div class="ms-4">
-        <a href="#section_3" class="btn custom-btn custom-border-btn smoothscroll">Masuk</a>
+        <a href="login.php" class="btn custom-btn custom-border-btn smoothscroll">Masuk</a>
       </div>
     </div>
     

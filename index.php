@@ -21,14 +21,10 @@
         <section class="hero-section">
             <div class="container">
                 <div class="row">
-
                     <div class="col-lg-12 col-12">
                         <div class="text-center mb-5 pb-2">
                             <h1 class="text-white">Readify</h1>
-
                             <p class="text-white">Baca di mana saja. Jelajahi novel favorit Anda.</p>
-
-                            <a href="#section_2" class="btn custom-btn smoothscroll mt-3">Mulai Membaca</a>
                         </div>
 
                         <div class="mb-5">
@@ -42,166 +38,7 @@
                                 </div>
                             </form>
                         </div>
-
-                        <div class="owl-carousel owl-theme">
-                            <div class="owl-carousel-info-wrap item">
-                                <img src="assets/images/profile/smiling-business-woman-with-folded-hands-against-white-wall-toothy-smile-crossed-arms.jpg" class="owl-carousel-image img-fluid" alt="">
-
-
-                                <div class="owl-carousel-info">
-                                    <h4 class="mb-2">
-                                        Candice
-                                        <img src="assets/images/verified.png" class="owl-carousel-verified-image img-fluid" alt="">
-                                    </h4>
-
-                                    <span class="badge">Storytelling</span>
-
-                                    <span class="badge">Business</span>
-                                </div>
-
-                                <div class="social-share">
-                                    <ul class="social-icon">
-                                        <li class="social-icon-item">
-                                            <a href="#" class="social-icon-link bi-twitter"></a>
-                                        </li>
-
-                                        <li class="social-icon-item">
-                                            <a href="#" class="social-icon-link bi-facebook"></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="owl-carousel-info-wrap item">
-                                <img src="assets/images/profile/handsome-asian-man-listening-music-through-headphones.jpg" class="owl-carousel-image img-fluid" alt="">
-
-                                <div class="owl-carousel-info">
-                                    <h4 class="mb-2">
-                                        William
-                                        <img src="assets/images/verified.png" class="owl-carousel-verified-image img-fluid" alt="">
-                                    </h4>
-
-                                    <span class="badge">Creative</span>
-
-                                    <span class="badge">Design</span>
-                                </div>
-
-                                <div class="social-share">
-                                    <ul class="social-icon">
-                                        <li class="social-icon-item">
-                                            <a href="#" class="social-icon-link bi-twitter"></a>
-                                        </li>
-
-                                        <li class="social-icon-item">
-                                            <a href="#" class="social-icon-link bi-facebook"></a>
-                                        </li>
-
-                                        <li class="social-icon-item">
-                                            <a href="#" class="social-icon-link bi-pinterest"></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="owl-carousel-info-wrap item">
-                                <img src="assets/images/profile/cute-smiling-woman-outdoor-portrait.jpg" class="owl-carousel-image img-fluid" alt="">
-
-                                <div class="owl-carousel-info">
-                                    <h4 class="mb-2">Taylor</h4>
-
-                                    <span class="badge">Modeling</span>
-
-                                    <span class="badge">Fashion</span>
-                                </div>
-
-                                <div class="social-share">
-                                    <ul class="social-icon">
-                                        <li class="social-icon-item">
-                                            <a href="#" class="social-icon-link bi-twitter"></a>
-                                        </li>
-
-                                        <li class="social-icon-item">
-                                            <a href="#" class="social-icon-link bi-facebook"></a>
-                                        </li>
-
-                                        <li class="social-icon-item">
-                                            <a href="#" class="social-icon-link bi-pinterest"></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="owl-carousel-info-wrap item">
-                                <img src="assets/images/profile/man-portrait.jpg" class="owl-carousel-image img-fluid" alt="">
-
-                                <div class="owl-carousel-info">
-                                    <h4 class="mb-2">Nick</h4>
-
-                                    <span class="badge">Acting</span>
-                                </div>
-
-                                <div class="social-share">
-                                    <ul class="social-icon">
-                                        <li class="social-icon-item">
-                                            <a href="#" class="social-icon-link bi-instagram"></a>
-                                        </li>
-
-                                        <li class="social-icon-item">
-                                            <a href="#" class="social-icon-link bi-youtube"></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="owl-carousel-info-wrap item">
-                                <img src="assets/images/profile/woman-posing-black-dress-medium-shot.jpg" class="owl-carousel-image img-fluid" alt="">
-
-                                <div class="owl-carousel-info">
-                                    <h4 class="mb-2">
-                                        Elsa
-                                        <img src="assets/images/verified.png" class="owl-carousel-verified-image img-fluid" alt="">
-                                    </h4>
-
-                                    <span class="badge">Influencer</span>
-                                </div>
-
-                                <div class="social-share">
-                                    <ul class="social-icon">
-                                        <li class="social-icon-item">
-                                            <a href="#" class="social-icon-link bi-instagram"></a>
-                                        </li>
-
-                                        <li class="social-icon-item">
-                                            <a href="#" class="social-icon-link bi-youtube"></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="owl-carousel-info-wrap item">
-                                <img src="assets/images/profile/smart-attractive-asian-glasses-male-standing-smile-with-freshness-joyful-casual-blue-shirt-portrait-white-background.jpg" class="owl-carousel-image img-fluid" alt="">
-
-                                <div class="owl-carousel-info">
-                                    <h4 class="mb-2">Chan</h4>
-
-                                    <span class="badge">Education</span>
-                                </div>
-
-                                <div class="social-share">
-                                    <ul class="social-icon">
-                                        <li class="social-icon-item">
-                                            <a href="#" class="social-icon-link bi-linkedin"></a>
-                                        </li>
-
-                                        <li class="social-icon-item">
-                                            <a href="#" class="social-icon-link bi-whatsapp"></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -256,20 +93,8 @@
                                     Bella pindah ke Forks dan bertemu keluarga Cullen yang misterius. Edward yang awalnya kasar pada Bella, tiba-tiba menyelamatkannya dari kecelakaan dan memiliki kekuatan super. Bella yakin Edward menyembunyikan sesuatu.</p>
 
                                 <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="#" class="bi-eye me-1">
-                                        <span>120jt</span>
-                                    </a>
-
                                     <a href="#" class="bi-heart me-1">
                                         <span>24jt</span>
-                                    </a>
-
-                                    <a href="#" class="bi-chat me-1">
-                                        <span>72k</span>
-                                    </a>
-
-                                    <a href="#" class="bi-download">
-                                        <span>62k</span>
                                     </a>
                                 </div>
                             </div>
@@ -325,20 +150,8 @@
                                 <p class="mb-0">Raib adalah seorang gadis berumur 15 tahun. Secara umum, tidak ada yang berbeda dari Raib dengan remaja pada umumnya. Namun, Raib memiliki rahasia yang ia simpan sendiri sejak kecil, yakni kemampuan untuk menghilangkan diri. </p>
 
                                 <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="#" class="bi-eye me-1">
-                                        <span>60jt</span>
-                                    </a>
-
                                     <a href="#" class="bi-heart me-1">
                                         <span>2jt</span>
-                                    </a>
-
-                                    <a href="#" class="bi-chat me-1">
-                                        <span>16k</span>
-                                    </a>
-
-                                    <a href="#" class="bi-download">
-                                        <span>22k</span>
                                     </a>
                                 </div>
                             </div>
@@ -371,13 +184,9 @@
 
                     <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
                         <div class="custom-block custom-block-overlay">
-                            <a href="detail-page.php" class="custom-block-image-wrap">
-                                <img src="assets/images/novel/the love hypothesis.avif" class="custom-block-image img-fluid" alt="">
-                            </a>
-
                             <div class="custom-block-info custom-block-overlay-info">
                                 <h5 class="mb-1">
-                                    <a href="listing-page.php">
+                                    <a href="genre.php">
                                         Romantis
                                     </a>
                                 </h5>
@@ -389,13 +198,9 @@
 
                     <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
                         <div class="custom-block custom-block-overlay">
-                            <a href="detail-page.php" class="custom-block-image-wrap">
-                                <img src="assets/images/novel/the big sleep.jpg" class="custom-block-image img-fluid" alt="">
-                            </a>
-
                             <div class="custom-block-info custom-block-overlay-info">
                                 <h5 class="mb-1">
-                                    <a href="listing-page.php">
+                                    <a href="genre.php">
                                         Misteri
                                     </a>
                                 </h5>
@@ -407,13 +212,9 @@
 
                     <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
                         <div class="custom-block custom-block-overlay">
-                            <a href="detail-page.php" class="custom-block-image-wrap">
-                                <img src="assets/images/novel/harry potter.jpg" class="custom-block-image img-fluid" alt="">
-                            </a>
-
                             <div class="custom-block-info custom-block-overlay-info">
                                 <h5 class="mb-1">
-                                    <a href="listing-page.php">
+                                    <a href="genre.php">
                                         Fantasi
                                     </a>
                                 </h5>
@@ -425,13 +226,9 @@
 
                     <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
                         <div class="custom-block custom-block-overlay">
-                            <a href="detail-page.php" class="custom-block-image-wrap">
-                                <img src="assets/images/novel/in the heart of the sea.jpg" class="custom-block-image img-fluid" alt="">
-                            </a>
-
                             <div class="custom-block-info custom-block-overlay-info">
                                 <h5 class="mb-1">
-                                    <a href="listing-page.php">
+                                    <a href="genre.php">
                                         Petualangan
                                     </a>
                                 </h5>
@@ -483,16 +280,8 @@
                                 </p>
 
                                 <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="#" class="bi-eye me-1">
-                                        <span>200k</span>
-                                    </a>
-
                                     <a href="#" class="bi-heart me-1">
                                         <span>15k</span>
-                                    </a>
-
-                                    <a href="#" class="bi-chat me-1">
-                                        <span>92k</span>
                                     </a>
                                 </div>
                             </div>
@@ -536,16 +325,8 @@
                                 </p>
 
                                 <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="#" class="bi-eye me-1">
-                                        <span>170k</span>
-                                    </a>
-
                                     <a href="#" class="bi-heart me-1">
                                         <span>25k</span>
-                                    </a>
-
-                                    <a href="#" class="bi-chat me-1">
-                                        <span>87k</span>
                                     </a>
                                 </div>
                             </div>
@@ -589,16 +370,8 @@
                                 </p>
 
                                 <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                                    <a href="#" class="bi-eye me-1">
-                                        <span>200k</span>
-                                    </a>
-
                                     <a href="#" class="bi-heart me-1">
                                         <span>15k</span>
-                                    </a>
-
-                                    <a href="#" class="bi-chat me-1">
-                                        <span>92k</span>
                                     </a>
                                 </div>
                             </div>
