@@ -38,6 +38,10 @@
 
                     <form action="#" method="get" class="custom-form me-3" role="search">
                       <div class="form-group">
+                        <label class="mb-1" for="sampul">Foto sampul</label>
+                        <input name="sampul" type="file" class="form-control" id="sampul" placeholder="Foto sampul">
+                      </div>
+                      <div class="form-group">
                         <input name="judul" type="text" class="form-control" id="judul" placeholder="Judul novel">
                       </div>
                       <div class="form-group">
