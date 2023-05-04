@@ -31,6 +31,17 @@
         <section class="section-padding">
           <div class="container">
             <div class="row">
+              <div class="col-12 mb-5">
+                <form action="cari.php" method="get" class="custom-form search-form bordered-search-form flex-fill me-3" role="search">
+                    <div class="input-group input-group-lg">
+                        <input name="search" type="search" class="form-control" id="search" placeholder="Cari Novel" aria-label="Search">
+
+                        <button type="submit" class="form-control" id="submit">
+                            <i class="bi-search"></i>
+                        </button>
+                    </div>
+                </form>
+              </div>
               <div class="col-lg-4 col-12 mb-4">
                 <div class="custom-block custom-block-full">
                   <div class="custom-block-image-wrap">

@@ -988,6 +988,11 @@ main {
   margin-bottom: 0;
 }
 
+.search-form.bordered-search-form .form-control {
+  border: 2px solid var(--secondary-color);
+  border-radius: 100px;
+}
+
 .search-form button[type="submit"] {
   background: var(--secondary-color);
   border-color: var(--secondary-color);
