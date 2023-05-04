@@ -30,7 +30,16 @@
       </ul>
 
       <div class="ms-4">
-        <a href="login.php" class="btn custom-btn custom-border-btn smoothscroll">Masuk</a>
+        <!-- <a href="login.php" class="btn custom-btn custom-border-btn smoothscroll">Masuk</a> -->
+        <div class="dropdown">
+          <a href="login.php" class="dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
+            karlensaputra
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="profil.php">Profil</a></li>
+            <li><a class="dropdown-item" href="logout.php">Keluar</a></li>
+          </ul>
+        </div>
       </div>
     </div>
     
