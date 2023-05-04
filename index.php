@@ -72,7 +72,7 @@
 
                             <div class="custom-block-info">
                                 <div class="custom-block-top d-flex mb-1">
-                                    <small>Halaman <span class="badge">72</span></small>
+                                    <small>Episode <span class="badge">72</span></small>
                                 </div>
 
                                 <h5 class="mb-2">
@@ -81,12 +81,10 @@
                                     </a>
                                 </h5>
 
-                                <div class="profile-block d-flex">
+                                <div class="profile-block align-items-center d-flex mb-3">
                                     <img src="assets/images/pengarang/Stephenie Meyer.jpg" class="profile-block-image img-fluid" alt="">
 
-                                    <p> Stephenie Meyer
-                                        <strong>Pengarang</strong>
-                                    </p>
+                                    <strong>Stephenie Meyer</strong>
                                 </div>
 
                                 <p class="mb-0">
@@ -97,16 +95,6 @@
                                         <span>24jt</span>
                                     </a>
                                 </div>
-                            </div>
-
-                            <div class="d-flex flex-column ms-auto">
-                                <a href="#" class="badge ms-auto">
-                                    <i class="bi-heart"></i>
-                                </a>
-
-                                <a href="#" class="badge ms-auto">
-                                    <i class="bi-bookmark"></i>
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -130,7 +118,7 @@
 
                             <div class="custom-block-info">
                                 <div class="custom-block-top d-flex mb-1">
-                                    <small>Halaman <span class="badge">35</span></small>
+                                    <small>Episode <span class="badge">35</span></small>
                                 </div>
 
                                 <h5 class="mb-2">
@@ -139,12 +127,9 @@
                                     </a>
                                 </h5>
 
-                                <div class="profile-block d-flex">
+                                <div class="profile-block align-items-center d-flex mb-3">
                                     <img src="assets/images/pengarang/tere liye.jpeg" class="profile-block-image img-fluid" alt="">
-
-                                    <p>Tere Liye
-                                        <strong>Pengarang</strong>
-                                    </p>
+                                    <strong>Tere Liye</strong>
                                 </div>
 
                                 <p class="mb-0">Raib adalah seorang gadis berumur 15 tahun. Secara umum, tidak ada yang berbeda dari Raib dengan remaja pada umumnya. Namun, Raib memiliki rahasia yang ia simpan sendiri sejak kecil, yakni kemampuan untuk menghilangkan diri. </p>
@@ -154,16 +139,6 @@
                                         <span>2jt</span>
                                     </a>
                                 </div>
-                            </div>
-
-                            <div class="d-flex flex-column ms-auto">
-                                <a href="#" class="badge ms-auto">
-                                    <i class="bi-heart"></i>
-                                </a>
-
-                                <a href="#" class="badge ms-auto">
-                                    <i class="bi-bookmark"></i>
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -285,16 +260,6 @@
                                     </a>
                                 </div>
                             </div>
-
-                            <div class="social-share d-flex flex-column ms-auto">
-                                <a href="#" class="badge ms-auto">
-                                    <i class="bi-heart"></i>
-                                </a>
-
-                                <a href="#" class="badge ms-auto">
-                                    <i class="bi-bookmark"></i>
-                                </a>
-                            </div>
                         </div>
                     </div>
 
@@ -330,16 +295,6 @@
                                     </a>
                                 </div>
                             </div>
-
-                            <div class="social-share d-flex flex-column ms-auto">
-                                <a href="#" class="badge ms-auto">
-                                    <i class="bi-heart"></i>
-                                </a>
-
-                                <a href="#" class="badge ms-auto">
-                                    <i class="bi-bookmark"></i>
-                                </a>
-                            </div>
                         </div>
                     </div>
 
@@ -374,16 +329,6 @@
                                         <span>15k</span>
                                     </a>
                                 </div>
-                            </div>
-
-                            <div class="social-share d-flex flex-column ms-auto">
-                                <a href="#" class="badge ms-auto">
-                                    <i class="bi-heart"></i>
-                                </a>
-
-                                <a href="#" class="badge ms-auto">
-                                    <i class="bi-bookmark"></i>
-                                </a>
                             </div>
                         </div>
                     </div>
