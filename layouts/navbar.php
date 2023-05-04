@@ -21,7 +21,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link <?= getPageName() == 'my-novels.php' ? 'active' : '' ?>" href="my-novels.php">Cerita Saya</a>
+          <a class="nav-link <?= getPageName() == 'novel-saya.php' ? 'active' : '' ?>" href="novel-saya.php">Cerita Saya</a>
         </li>
 
         <li class="nav-item">

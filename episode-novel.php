@@ -25,7 +25,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-12 d-flex justify-content-between mb-3">
-            <a href="my-novel.php" class="btn custom-btn">
+            <a href="detail-novel-saya.php" class="btn custom-btn">
               <i class="bi-arrow-left"></i>
               Kembali
             </a>

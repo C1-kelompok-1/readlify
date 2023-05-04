@@ -24,7 +24,7 @@
           <div class="container">
             <div class="row">
               <div class="col-12 d-flex justify-content-between mb-3">
-                <a href="my-novels.php" class="btn custom-btn">
+                <a href="novel-saya.php" class="btn custom-btn">
                   <i class="bi-arrow-left"></i>
                   Kembali
                 </a>
@@ -74,19 +74,19 @@
               </div>
 
               <div class="col-12 mb-3">
-                <a href="create-episode.php" class="btn custom-btn">
+                <a href="buat-episode.php" class="btn custom-btn">
                   <i class="bi-plus"></i>
-                  Tambah episode
+                  Buat episode
                 </a>
               </div>
 
               <div class="col-lg-4 col-12 mb-4 mb-lg-0">
                 <div class="custom-block">
-                  <a href="my-novel-episode.php">
+                  <a href="episode-novel.php">
                     <div class="custom-block-info custom-block-overlay-info">
                       <!-- Judul episode -->
                       <h5 class="mb-1">
-                        <a href="my-novel-episode.php">
+                        <a href="episode-novel.php">
                           Duel
                         </a>
                       </h5>

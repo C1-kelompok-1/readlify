@@ -26,7 +26,7 @@
           <div class="container">
             <div class="row">
               <div class="col-12 text-end mb-3">
-                <a href="my-novel.php" class="btn custom-btn">
+                <a href="detail-novel-saya.php" class="btn custom-btn">
                   <i class="bi-arrow-left"></i>
                   Kembali
                 </a>
@@ -34,7 +34,7 @@
               <div class="col-12">
                 <div class="custom-block custom-block-full custom-block-no-hover">
                   <div class="custom-block-info">
-                    <h5 class="mb-4">Tambah episode</h5>
+                    <h5 class="mb-4">Buat episode</h5>
 
                     <form action="#" method="get" class="custom-form me-3" role="search">
                       <div class="form-group">

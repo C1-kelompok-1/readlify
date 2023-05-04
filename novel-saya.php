@@ -24,7 +24,7 @@
           <div class="container">
             <div class="row">
               <div class="col-12 text-end mb-3">
-                <a href="create-novel.php" class="btn custom-btn">
+                <a href="buat-novel.php" class="btn custom-btn">
                   <i class="bi-plus"></i>
                   Buat novel
                 </a>
@@ -32,7 +32,7 @@
               <div class="col-lg-4 col-12 mb-4 mb-lg-0">
                 <div class="custom-block custom-block-full">
                   <div class="custom-block-image-wrap">
-                    <a href="my-novel.php">
+                    <a href="detail-novel-saya.php">
                       <img src="https://cdn.gramedia.com/uploads/items/9786239726218.jpg" class="custom-block-image img-fluid" alt="">
                     </a>
                   </div>
@@ -40,7 +40,7 @@
                   <div class="custom-block-info">
                     <!-- Judul -->
                     <h5 class="mb-2">
-                      <a href="my-novel.php">
+                      <a href="detail-novel-saya.php">
                         Bedebah Diujung Tanduk
                       </a>
                     </h5>
@@ -60,7 +60,7 @@
               <div class="col-lg-4 col-12 mb-4 mb-lg-0">
                 <div class="custom-block custom-block-full">
                   <div class="custom-block-image-wrap">
-                    <a href="my-novel.php">
+                    <a href="detail-novel-saya.php">
                       <img src="https://cdn.gramedia.com/uploads/items/9786239726218.jpg" class="custom-block-image img-fluid" alt="">
                     </a>
                   </div>
@@ -68,7 +68,7 @@
                   <div class="custom-block-info">
                     <!-- Judul -->
                     <h5 class="mb-2">
-                      <a href="my-novel.php">
+                      <a href="detail-novel-saya.php">
                         Bedebah Diujung Tanduk
                       </a>
                     </h5>
