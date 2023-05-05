@@ -16,6 +16,18 @@ class Database {
     }
   }
 
+  public function beginTransaction() {
+    $this->conn->beginTransaction();
+  }
+
+  public function commit() {
+    $this->conn->commit();
+  }
+
+  public function rollBack() {
+    $this->conn->rollBack();
+  }
+
   private function getDataType($data) {
     $type = null;
   
@@ -67,6 +79,11 @@ class Database {
    */
   public function query(string $query, array $params = []) {
     $stmt = $this->conn->prepare($query);
-    return $stmt->execute($params) && $stmt->rowCount();
+
+    if ($stmt->execute($params) && $stmt->rowCount()) {
+      return $this->conn->lastInsertId();
+    }
+
+    throw new PDOException('', $this->conn->errorCode());
   }
 }
