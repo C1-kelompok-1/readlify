@@ -29,7 +29,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="about.php">Cerita Saya</a>
+          <a class="nav-link" href="my-novels.php">Cerita Saya</a>
         </li>
 
         <!-- <li class="nav-item dropdown">
