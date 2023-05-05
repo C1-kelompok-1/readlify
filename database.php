@@ -1,11 +1,16 @@
 <?php
 
 class Database {
+  private $hostname = 'localhost';
+  private $database = 'readify';
+  private $username = 'root';
+  private $password = '';
+  
   private $conn;
 
-  public function __construct($hostname, $username, $password, $database) {
+  public function __construct() {
     try {
-      $this->conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
+      $this->conn = new PDO("mysql:host=$this->hostname;dbname=$this->database", $this->username, $this->password);
     } catch (PDOException $error) {
       die("Koneksi ke database gagal: " . $this->conn->errorInfo());
     }
