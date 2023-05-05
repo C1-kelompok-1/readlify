@@ -252,8 +252,7 @@ main {
 }
 
 .site-header.site-header-no-title {
-  min-height: 100px;
-
+  min-height: 150px;
 }
 
 .site-header h2 {
@@ -477,9 +476,10 @@ main {
   background-image: url("../assets/images/templatemo-wave-banner.jpg"),
     linear-gradient(#348cd2, #ffffff);
   background-repeat: no-repeat;
-  background-size: 108% 76%;
+  background-size: cover;
   background-position: top;
   padding-top: 200px;
+  height: 100vh;
 }
 
 .owl-carousel {
@@ -988,6 +988,11 @@ main {
   margin-bottom: 0;
 }
 
+.search-form.bordered-search-form .form-control {
+  border: 2px solid var(--secondary-color);
+  border-radius: 100px;
+}
+
 .search-form button[type="submit"] {
   background: var(--secondary-color);
   border-color: var(--secondary-color);
@@ -1102,7 +1107,7 @@ main {
 -----------------------------------------*/
 @media screen and (min-width: 2160px) {
   .hero-section {
-    background-size: 100% 90%;
+    /* background-size: 100% 90%; */
     /* T o o p l a t e . c o m   C u s t o m i z e d */
   }
 }
@@ -1115,7 +1120,7 @@ main {
 
 @media screen and (max-width: 1240px) {
   .hero-section {
-    background-size: 116%;
+    /* background-size: 116%; */
     /* T o o p l a t e . c o m   C u s t o m i z e d */
   }
 }
@@ -1146,7 +1151,7 @@ main {
   }
 
   .hero-section {
-    background-size: 160% 66%;
+    /* background-size: 160% 66%; */
     /* T o o p l a t e . c o m   C u s t o m i z e d */
   }
 
@@ -1201,7 +1206,7 @@ main {
 
 @media screen and (max-width: 540px) {
   .hero-section {
-    background-size: 180% 65%;
+    /* background-size: 180% 65%; */
     /* T o o p l a t e . c o m   C u s t o m i z e d */
   }
 

@@ -26,7 +26,7 @@
           <div class="container">
             <div class="row">
               <div class="col-12 text-end mb-3">
-                <a href="my-novel-episode.php" class="btn custom-btn">
+                <a href="episode-novel.php" class="btn custom-btn">
                   <i class="bi-arrow-left"></i>
                   Kembali
                 </a>

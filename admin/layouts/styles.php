@@ -1,7 +1,18 @@
-<!-- General CSS Files -->
-<link rel="stylesheet" href="../../assets/admin/modules/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="../../assets/admin/modules/fontawesome/css/all.min.css">
-
-<!-- Template CSS -->
-<link rel="stylesheet" href="../../assets/admin/css/style.css">
-<link rel="stylesheet" href="../../assets/admin/css/components.css">
+<!-- loader-->
+<link href="assets/css/pace.min.css" rel="stylesheet"/>
+<!--favicon-->
+<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+<!-- Vector CSS -->
+<link href="assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet"/>
+<!-- simplebar CSS-->
+<link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet"/>
+<!-- Bootstrap core CSS-->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
+<!-- animate CSS-->
+<link href="assets/css/animate.css" rel="stylesheet" type="text/css"/>
+<!-- Icons CSS-->
+<link href="assets/css/icons.css" rel="stylesheet" type="text/css"/>
+<!-- Sidebar CSS-->
+<link href="assets/css/sidebar-menu.css" rel="stylesheet"/>
+<!-- Custom Style-->
+<link href="assets/css/app-style.css" rel="stylesheet"/>

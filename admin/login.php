@@ -1,7 +1,4 @@
 <?php
-
-require '../../session.php';
-
 if (isset($_SESSION['logged_account']) && $_SESSION['logged_account']) {
   $accountRole = $_SESSION['logged_account']['role'];
 

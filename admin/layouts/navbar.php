@@ -1,29 +1,46 @@
-<?php
-
-require '../../helpers.php';
-
-$user = getLoggedUser();
-
-?>
-
-<!-- Navbar -->
-<div class="navbar-bg"></div>
-<nav class="navbar navbar-expand-lg main-navbar">
-  <form class="form-inline mr-auto">
-    <ul class="navbar-nav align-items-center mr-3">
-      <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
-      <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
-    </ul>
-  </form>
-  <ul class="navbar-nav navbar-right">
-    <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-      <div class="d-sm-none d-lg-inline-block">Hai, John</div></a>
-      <div class="dropdown-menu dropdown-menu-right">
-        <div class="dropdown-divider"></div>
-        <a href="logout.php" class="dropdown-item has-icon text-danger">
-          <i class="fas fa-sign-out-alt"></i> Keluar
+<!--Start topbar header-->
+<header class="topbar-nav">
+  <nav class="navbar navbar-expand fixed-top">
+    <ul class="navbar-nav mr-auto align-items-center">
+      <li class="nav-item">
+        <a class="nav-link toggle-menu" href="javascript:void();">
+          <i class="icon-menu menu-icon"></i>
         </a>
-      </div>
-    </li>
-  </ul>
-</nav>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav align-items-center right-nav-link">
+      <li class="nav-item">
+        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
+          <span class="user-profile">
+            Sarajhon Mccoy
+          </span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right mr-3">
+          <li class="dropdown-item user-details">
+            <a href="javaScript:void();">
+              <div class="media">
+                <div class="media-body">
+                  <h6 class="user-title">Sarajhon Mccoy</h6>
+                  <p class="user-subtitle">mccoy@example.com</p>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li class="dropdown-divider"></li>
+          <li class="dropdown-item">
+            <a href="profil.php">
+              <i class="icon-user mr-2"></i> Profil
+            </a>
+          </li>
+          <li class="dropdown-item">
+            <a href="#">
+              <i class="icon-power mr-2"></i> Logout
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</header>
+<!--End topbar header-->
