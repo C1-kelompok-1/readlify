@@ -1,3 +1,11 @@
+<?php
+require 'database.php';
+
+$db = new Database();
+
+$genres = $db->fetchAll('SELECT id, nama FROM genre');
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -50,8 +58,9 @@
                       <div class="form-group">
                         <select id="genre" class="form-control" name="genre">
                           <option value="0" selected disabled>Pilih genre</option>
-                          <option value="1">Aksi</option>
-                          <option value="2">Drama</option>
+                          <?php foreach ($genres as $genre): ?>
+                            <option value="<?= $genre['id']; ?>"><?= $genre['nama']; ?></option>
+                          <?php endforeach; ?>
                         </select>
                       </div>
                       <div class="form-group mt-3">

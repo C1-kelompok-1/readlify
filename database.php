@@ -38,7 +38,7 @@ class Database {
     $rows = [];
   
     if ($stmt->execute() && $stmt->rowCount() > 0) {
-      while($row = $stmt->fetchAll()) {
+      while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $rows[] = $row;
       }
     }
@@ -54,7 +54,7 @@ class Database {
     }
   
     if ($stmt->execute() && $stmt->rowCount() > 0) {
-      return $stmt->fetch();
+      return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     return null;
