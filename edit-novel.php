@@ -2,15 +2,11 @@
 require 'database.php';
 require 'helpers.php';
 
-$db = new Database();
-
 $novelId = $_GET['id'];
-$novel = $db->fetchOne('SELECT * FROM novel WHERE id = :id', [':id' => $novelId]);
-$novelGenres = $db->fetchAll('SELECT id_genre FROM genre_novel WHERE id_novel = :id_novel', [':id_novel' => $novelId]);
+$novel = fetchOne('SELECT * FROM novel WHERE id = :id', [':id' => $novelId]);
+$novelGenres = fetchAll('SELECT id_genre FROM genre_novel WHERE id_novel = :id_novel', [':id_novel' => $novelId]);
 
-var_dump($novelGenres);
-
-$genreOptions = $db->fetchAll('SELECT id, nama FROM genre');
+$genreOptions = fetchAll('SELECT id, nama FROM genre');
 
 if (isset($_POST['submit'])) {
   setOldInputs();
@@ -82,11 +78,11 @@ if (isset($_POST['submit'])) {
       imagepng($imgResized, 'photos/'.$filename);
     }
 
-    $db->beginTransaction();
+    beginTransaction();
 
     try {
       // edit novel
-      $db->query(
+      query(
         'UPDATE novel SET id_pengguna = :id_pengguna, judul = :judul, deskripsi = :deskripsi, photo_filename = :photo_filename WHERE id = :id',
         [
           ':id_pengguna' => 1,
@@ -97,19 +93,19 @@ if (isset($_POST['submit'])) {
         ]
       );
 
-      $db->query('DELETE FROM genre_novel WHERE id_novel = :id_novel', [':id_novel' => $novelId]);
+      query('DELETE FROM genre_novel WHERE id_novel = :id_novel', [':id_novel' => $novelId]);
 
       // buat genre novel
       foreach ($genres as $genre) {
-        $db->query(
+        query(
           'INSERT INTO genre_novel (id_novel, id_genre) VALUES (:id_novel, :id_genre)',
           [':id_novel' => $novelId, 'id_genre' => $genre]
         );
       }
 
-      $db->commit();
+      commit();
     } catch (PDOException $error) {
-      $db->rollBack();
+      rollBack();
     }
   }
 }

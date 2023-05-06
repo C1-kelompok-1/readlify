@@ -2,9 +2,7 @@
 require 'database.php';
 require 'helpers.php';
 
-$db = new Database();
-
-$genreOptions = $db->fetchAll('SELECT id, nama FROM genre');
+$genreOptions = fetchAll('SELECT id, nama FROM genre');
 
 if (isset($_POST['submit'])) {
   setOldInputs();
@@ -76,11 +74,11 @@ if (isset($_POST['submit'])) {
       imagepng($imgResized, 'photos/'.$filename);
     }
 
-    $db->beginTransaction();
+    beginTransaction();
 
     try {
       // buat novel
-      $novelId = $db->query(
+      $novelId = query(
         'INSERT INTO novel (id_pengguna, judul, deskripsi, photo_filename) VALUES (:id_pengguna, :judul, :deskripsi, :photo_filename)',
         [
           ':id_pengguna' => 1,
@@ -92,15 +90,15 @@ if (isset($_POST['submit'])) {
 
       // buat genre novel
       foreach ($genres as $genre) {
-        $db->query(
+        query(
           'INSERT INTO genre_novel (id_novel, id_genre) VALUES (:id_novel, :id_genre)',
           [':id_novel' => $novelId, 'id_genre' => $genre]
         );
       }
 
-      $db->commit();
+      commit();
     } catch (PDOException $error) {
-      $db->rollBack();
+      rollBack();
     }
   }
 }

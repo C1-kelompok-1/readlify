@@ -1,89 +1,102 @@
 <?php
 
-class Database {
-  private $hostname = 'localhost';
-  private $database = 'readify';
-  private $username = 'root';
-  private $password = '';
-  
-  private $conn;
+$hostname = 'localhost';
+$database = 'readify';
+$username = 'root';
+$password = '';
 
-  public function __construct() {
-    try {
-      $this->conn = new PDO("mysql:host=$this->hostname;dbname=$this->database", $this->username, $this->password);
-    } catch (PDOException $error) {
-      die("Koneksi ke database gagal: " . $this->conn->errorInfo());
+try {
+  $conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
+} catch (PDOException $error) {
+  die("Koneksi ke database gagal: " . $conn->errorInfo());
+}
+
+/**
+ * 
+ * Fungsi ini buat ngambil banyak data.
+ * 
+ */
+function fetchAll(string $query, array $params = []) {
+  global $conn;
+
+  $stmt = $conn->prepare($query);
+
+  foreach ($params as $param => $value) {  
+    $stmt->bindParam(':'.$param, $value, getDataType($value));
+  }
+
+  $rows = [];
+
+  if ($stmt->execute() && $stmt->rowCount()) {
+    while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+      $rows[] = $row;
     }
   }
 
-  public function beginTransaction() {
-    $this->conn->beginTransaction();
+  return $rows;
+}
+
+/**
+ * 
+ * Fungsi ini buat ngambil satu data aja.
+ * 
+ */
+function fetchOne(string $query, array $params = []) {
+  global $conn;
+
+  $stmt = $conn->prepare($query);
+
+  foreach ($params as $param => $value) {
+    $stmt->bindParam(':'.$param, $value, getDataType($value));
   }
 
-  public function commit() {
-    $this->conn->commit();
+  if ($stmt->execute() && $stmt->rowCount()) {
+    return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
-  public function rollBack() {
-    $this->conn->rollBack();
+  return null;
+}
+
+/**
+ * 
+ * Fungsi ini bisa dipake untuk insert, update, dan delete.
+ * 
+ */
+function query(string $query, array $params = []) {
+  global $conn;
+  
+  $stmt = $conn->prepare($query);
+
+  if ($stmt->execute($params) && $stmt->rowCount()) {
+    return $conn->lastInsertId();
   }
 
-  private function getDataType($data) {
-    $type = null;
-  
-    if (gettype($data) == 'string') $type = PDO::PARAM_STR;
-    else if (gettype($data) == 'integer') $type = PDO::PARAM_INT;
-    else if (gettype($data) == 'double') $type = PDO::PARAM_INT;
-    else if (gettype($data) == 'boolean') $type = PDO::PARAM_BOOL;
-    else $type = PDO::PARAM_NULL;
+  throw new PDOException('', $conn->errorCode());
+}
 
-    return $type;
-  }
+function getDataType($data) {
+  $type = null;
 
-  public function fetchAll(string $query, array $params = []) {
-    $stmt = $this->conn->prepare($query);
-  
-    foreach ($params as $param => $value) {  
-      $stmt->bindParam(':'.$param, $value, $this->getDataType($value));
-    }
-  
-    $rows = [];
-  
-    if ($stmt->execute() && $stmt->rowCount() > 0) {
-      while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $rows[] = $row;
-      }
-    }
-  
-    return $rows;
-  }
+  if (gettype($data) == 'string') $type = PDO::PARAM_STR;
+  else if (gettype($data) == 'integer') $type = PDO::PARAM_INT;
+  else if (gettype($data) == 'double') $type = PDO::PARAM_INT;
+  else if (gettype($data) == 'boolean') $type = PDO::PARAM_BOOL;
+  else $type = PDO::PARAM_NULL;
 
-  public function fetchOne(string $query, array $params = []) {
-    $stmt = $this->conn->prepare($query);
-  
-    foreach ($params as $param => $value) {
-      $stmt->bindParam(':'.$param, $value, $this->getDataType($value));
-    }
-  
-    if ($stmt->execute() && $stmt->rowCount() > 0) {
-      return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
+  return $type;
+}
 
-    return null;
-  }
+function beginTransaction() {
+  global $conn;
+  $conn->beginTransaction();
+}
 
-  /**
-   * 
-   * Method ini bisa dipake untuk insert, update, dan delete.
-   * 
-   */
-  public function query(string $query, array $params = []) {
-    $stmt = $this->conn->prepare($query);
+function commit() {
+  global $conn;
+  $conn->commit();
+}
 
-    if ($stmt->execute($params) && $stmt->rowCount()) {
-      return $this->conn->lastInsertId();
-    }
-
-    throw new PDOException('', $this->conn->errorCode());
-  }
+function rollBack() {
+  global $conn;
+  $conn->rollBack();
 }
