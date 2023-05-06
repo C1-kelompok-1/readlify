@@ -34,8 +34,6 @@ function tambahUser($conn, $email, $username, $password)
 
 // Cek apakah tombol submit sudah di klik
 if (isset($_POST["daftar"])) {
-  setOldInputs();
-
   $email = $_POST["email"];
   $username = $_POST["username"];
   $password = $_POST["password"];
@@ -88,6 +86,8 @@ if (isset($_POST["daftar"])) {
     } else {
       setAlert('danger', 'Email atau username sudah terdaftar. Silakan coba lagi.');
     }
+  } else {
+    setOldInputs();
   }
 }
 

@@ -8,8 +8,6 @@ require "helpers/auth.php";
 redirectIfAuthenticated('index.php');
 
 if (isset($_POST['login'])) {
-  setOldInputs();
-
   // Get input values
   $username = $_POST['username'];
   $password = $_POST['password'];
@@ -37,6 +35,8 @@ if (isset($_POST['login'])) {
     }
     
     setAlert('danger', 'Akun tidak ditemukan.');
+  } else {
+    setOldInputs();
   }
 }
 ?>
