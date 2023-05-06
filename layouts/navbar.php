@@ -25,21 +25,27 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="contact.php">Beli Koin</a>
+          <a class="nav-link" href="koin.php">Beli Koin</a>
         </li>
       </ul>
 
       <div class="ms-4">
-        <!-- <a href="login.php" class="btn custom-btn custom-border-btn smoothscroll">Masuk</a> -->
+        <?php if (isset($_SESSION['user'])) { ?>
         <div class="dropdown">
-          <a href="login.php" class="dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
-            karlensaputra
+          <a href="login.php" class="dropdown-toggle text-white fw-bold fs-5" data-bs-toggle="dropdown" aria-expanded="false">
+          <?php echo $_SESSION['user']; ?>
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="profil.php">Profil</a></li>
             <li><a class="dropdown-item" href="logout.php">Keluar</a></li>
           </ul>
         </div>
+        <?php } else { ?>
+          <div class="">
+             <a class="btn custom-btn custom-border-btn smoothscroll " href="login.php">Masuk</a> 
+          </div>
+        <?php } ?>
+
       </div>
     </div>
     
