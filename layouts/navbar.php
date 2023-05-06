@@ -1,4 +1,4 @@
-<?php require 'helpers.php'; ?>
+<?php require 'helpers/base.php'; ?>
 
 <nav class="navbar navbar-expand-lg">
   <div class="container">
@@ -31,18 +31,18 @@
 
       <div class="ms-4">
         <?php if (isset($_SESSION['user'])) { ?>
-        <div class="dropdown">
-          <a href="login.php" class="dropdown-toggle text-white fw-bold fs-5" data-bs-toggle="dropdown" aria-expanded="false">
-          <?php echo $_SESSION['user']; ?>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="profil.php">Profil</a></li>
-            <li><a class="dropdown-item" href="logout.php">Keluar</a></li>
-          </ul>
-        </div>
+          <div class="dropdown">
+            <a href="login.php" class="dropdown-toggle text-white fw-bold fs-5" data-bs-toggle="dropdown" aria-expanded="false">
+              <?= $_SESSION['user']['username']; ?>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="profil.php">Profil</a></li>
+              <li><a class="dropdown-item" href="logout.php">Keluar</a></li>
+            </ul>
+          </div>
         <?php } else { ?>
-          <div class="">
-             <a class="btn custom-btn custom-border-btn smoothscroll " href="login.php">Masuk</a> 
+          <div>
+            <a class="btn custom-btn custom-border-btn smoothscroll " href="login.php">Masuk</a> 
           </div>
         <?php } ?>
 

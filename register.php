@@ -1,5 +1,7 @@
 <?php
-include('koneksi.php');
+include 'koneksi.php';
+require 'helpers/base.php';
+require 'helpers/input.php';
 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
@@ -10,7 +12,7 @@ function getInputValue($name)
   }
 }
 // Fungsi untuk menambahkan user ke database
-function tambahUser($conn, $email, $username, $password, $role)
+function tambahUser($conn, $email, $username, $password)
 {
   // Cek apakah email atau username sudah ada di database
   $query = "SELECT * FROM pengguna WHERE email = '$email' OR username = '$username'";
@@ -21,7 +23,7 @@ function tambahUser($conn, $email, $username, $password, $role)
     return false;
   } else {
     // Jika belum ada, tambahkan pengguna ke database
-    $sql = "INSERT INTO pengguna (role, username, password, email) VALUES ('$role', '$username', '$password', '$email')";
+    $sql = "INSERT INTO pengguna (role, username, password, email) VALUES ('pembaca', '$username', '$password', '$email')";
     $query = mysqli_query($conn, $sql);
     return $query;
   }
@@ -29,36 +31,59 @@ function tambahUser($conn, $email, $username, $password, $role)
 
 // Cek apakah tombol submit sudah di klik
 if (isset($_POST["daftar"])) {
+  setOldInputs();
+
   $email = $_POST["email"];
   $username = $_POST["username"];
   $password = $_POST["password"];
   $konfirmasipw = $_POST["konfirmasipw"];
-  $role = $_POST["role"];
 
+  // cek email
+  if (!$email) {
+    setInputError('email', 'Tolong isi emailmu');
+  }
 
-  if (empty($email) || empty($username) || empty($password) || empty($konfirmasipw)) {
-    echo "<script>alert('Email, username, password, dan konfirmasi password harus diisi!')</script>";
-    header('Location: register.php');
-  } else {
+  // cek email valid
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    setInputError('email', 'Emailmu tidak valid');
+  }
+  
+  // cek username
+  if (!$username) {
+    setInputError('username', 'Tolong isi usernamemu');
+  }
 
-    // // Cek apakah password dan konfirmasi password sama
-    if ($password === $konfirmasipw) {
-      // Enkripsi password
-      $password = password_hash($password, PASSWORD_DEFAULT);
+  // cek password
+  if (!$password) {
+    setInputError('password', 'Tolong isi passwordmu');
+  }
 
-      // Tambahkan user ke database
-      $result = tambahUser($conn, $email, $username, $password, $role);
-      if ($result) {
-        $_SESSION['success'] = "Registrasi berhasil. Silakan login.";
-        echo "<script>alert('Registrasi berhasil. Silakan login.')</script>";
-        header('Location: login.php');
-      } else {
-        // $_SESSION['error'] = "Registrasi gagal. Silakan coba lagi.";
-        echo "<script>alert('Email atau username sudah terdaftar. Silakan coba lagi.')</script>";
-        // header('Location: register.php');
-      }
+  // cek panjang password
+  if (strlen($password) < 8) {
+    setInputError('password', 'Password harus berisi minimal 8 karakter');
+  }
+
+  // cek konfirmasi password
+  if (!$konfirmasipw) {
+    setInputError('konfirmasipw', 'Tolong isi konfirmasi password');
+  }
+
+  // cek kecocokan password
+  if ($konfirmasipw != $password) {
+    setInputError('konfirmasipw', 'Password tidak cocok');
+  }
+  
+  if (!isThereAnyError()) {
+    // Enkripsi password
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
+    // Tambahkan user ke database
+    $result = tambahUser($conn, $email, $username, $password);
+    if ($result) {
+      setAlert('success', 'Akun berhasil terdaftar, silakan login.');
+      redirect('login.php');
     } else {
-      echo "<script>alert('Password dan konfirmasi password tidak sama!.')</script>";
+      setAlert('danger', 'Email atau username sudah terdaftar. Silakan coba lagi.');
     }
   }
 }
@@ -73,8 +98,9 @@ if (isset($_POST["daftar"])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Document</title>
+  <title>Readify | Register</title>
 
+  <?php require 'layouts/favicon.php'; ?>
   <?php require 'layouts/auth/styles.php'; ?>
 </head>
 
@@ -83,14 +109,21 @@ if (isset($_POST["daftar"])) {
     <div class="form-container register-container">
       <form action="#" method="post">
         <h1>Buat akun</h1>
-        <input type="email" name="email" placeholder="Email" />
-        <input type="text" name="username" placeholder="Username" />
+
+        <?= getAlert(); ?>
+        
+        <input type="email" name="email" placeholder="Email" value="<?= getOldInput('email'); ?>" />
+        <?= getInputError('email'); ?>
+
+        <input type="text" name="username" placeholder="Username" value="<?= getOldInput('username'); ?>" />
+        <?= getInputError('username'); ?>
+
         <input type="password" name="password" placeholder="Password" />
+        <?= getInputError('password'); ?>
+
         <input type="password" name="konfirmasipw" placeholder="Konfirmasi password" />
-        <select name="role">
-          <option value="Pembaca">Pembaca</option>
-          <option value="Penulis">Penulis</option>
-        </select>
+        <?= getInputError('konfirmasipw'); ?>
+
         <button type="submit" name="daftar">Daftar</button>
       </form>
     </div>

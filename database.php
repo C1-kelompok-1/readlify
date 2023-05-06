@@ -22,7 +22,7 @@ function fetchAll(string $query, array $params = []) {
   $stmt = $conn->prepare($query);
 
   foreach ($params as $param => $value) {  
-    $stmt->bindParam(':'.$param, $value, getDataType($value));
+    $stmt->bindParam($param, $value, getDataType($value));
   }
 
   $rows = [];
@@ -47,7 +47,7 @@ function fetchOne(string $query, array $params = []) {
   $stmt = $conn->prepare($query);
 
   foreach ($params as $param => $value) {
-    $stmt->bindParam(':'.$param, $value, getDataType($value));
+    $stmt->bindParam($param, $value, getDataType($value));
   }
 
   if ($stmt->execute() && $stmt->rowCount()) {

@@ -1,6 +1,7 @@
 <?php
 require 'database.php';
-require 'helpers.php';
+require 'helpers/input.php';
+require 'helpers/string.php';
 
 $novelId = $_GET['id'];
 $novel = fetchOne('SELECT * FROM novel WHERE id = :id', [':id' => $novelId]);

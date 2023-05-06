@@ -1,6 +1,7 @@
 <?php
 require 'database.php';
-require 'helpers.php';
+require 'helpers/input.php';
+require 'helpers/string.php';
 
 $genreOptions = fetchAll('SELECT id, nama FROM genre');
 

@@ -1,7 +1,8 @@
 <?php
 
 require 'session.php';
+require 'helpers/base.php';
 
 session_destroy();
-header('Location: login.php');
+redirect('login.php');
 die;
