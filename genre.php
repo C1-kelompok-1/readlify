@@ -1,164 +1,109 @@
 <?php
 
+require 'database.php';
 require 'helpers/auth.php';
 
 redirectIfNotAuthenticated('login.php');
+
+$genreOptions = fetchAll('SELECT id, nama FROM genre');
+$novels = [];
+
+if (isset($_GET['genre'])) {
+  $novelSql = 'SELECT novel.*, pengguna.username, genre_novel.*
+                FROM novel
+                INNER JOIN pengguna ON pengguna.id = novel.id_pengguna
+                INNER JOIN genre_novel ON genre_novel.id_novel = novel.id
+                WHERE genre_novel.id_genre = :id_genre';
+  $novelParams = [':id_genre' => $_GET['id']];
+  $novels = fetchAll($novelSql, $novelParams);
+}
 
 ?>
 
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <title>Readify | Genre</title>
 
-  <title>Readify | Genre</title>
+    <?php require 'layouts/favicon.php'; ?>
+    <?php require 'layouts/styles.php'; ?>
+  </head>
 
-  <?php require 'layouts/favicon.php'; ?>
-  <?php require 'layouts/styles.php'; ?>
-</head>
+  <body>
+    <main>
+      <?php require 'layouts/navbar.php'; ?>
 
-<body>
-
-  <main>
-    <?php require 'layouts/navbar.php'; ?>
-
-    <header class="site-header d-flex flex-column justify-content-center align-items-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 col-12 text-center">
-            <h2 class="mb-0">Pilih genre kesukaanmu</h2>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <section class="section-padding">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 col-12">
-            <div class="section-title-wrap mb-5">
-              <a href="#" class="btn custom-btn section-title me-3">Drama</a>
-              <a href="#" class="btn custom-btn section-title me-3">Romantis</a>
-              <a href="#" class="btn custom-btn section-title me-3">Fantasi</a>
-              <a href="#" class="btn custom-btn section-title me-3">Komedi</a>
-              <a href="#" class="btn custom-btn section-title">Aksi</a>
-            </div>
-          </div>
-          <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-            <div class="custom-block custom-block-full">
-              <div class="custom-block-image-wrap">
-                <a href="detail-page.php">
-                  <img src="https://cdn.gramedia.com/uploads/items/9786239726218.jpg"
-                    class="custom-block-image img-fluid" alt="">
-                </a>
-              </div>
-
-              <div class="custom-block-info">
-                <!-- Judul -->
-                <h5 class="mb-2">
-                  <a href="detail-page.php">
-                    Bedebah Diujung Tanduk
-                  </a>
-                </h5>
-
-                <!-- Nama penulis -->
-                <div class="profile-block d-flex">
-                  <p>Elsa</p>
-                </div>
-
-                <!-- Sipnosis -->
-                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-
-                <!-- Suka -->
-                <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                  <div class="bi-heart me-1">
-                    <span>2.5k</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-            <div class="custom-block custom-block-full">
-              <div class="custom-block-image-wrap">
-                <a href="detail-page.php">
-                  <img src="https://cdn.gramedia.com/uploads/items/9786239726218.jpg"
-                    class="custom-block-image img-fluid" alt="">
-                </a>
-              </div>
-
-              <div class="custom-block-info">
-                <!-- Judul -->
-                <h5 class="mb-2">
-                  <a href="detail-page.php">
-                    Bedebah Diujung Tanduk
-                  </a>
-                </h5>
-
-                <!-- Nama penulis -->
-                <div class="profile-block d-flex">
-                  <p>Elsa</p>
-                </div>
-
-                <!-- Sipnosis -->
-                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-
-                <!-- Suka -->
-                <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                  <div class="bi-heart me-1">
-                    <span>2.5k</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-            <div class="custom-block custom-block-full">
-              <div class="custom-block-image-wrap">
-                <a href="detail-page.php">
-                  <img src="https://cdn.gramedia.com/uploads/items/9786239726218.jpg"
-                    class="custom-block-image img-fluid" alt="">
-                </a>
-              </div>
-
-              <div class="custom-block-info">
-                <!-- Judul -->
-                <h5 class="mb-2">
-                  <a href="detail-page.php">
-                    Bedebah Diujung Tanduk
-                  </a>
-                </h5>
-
-                <!-- Nama penulis -->
-                <div class="profile-block d-flex">
-                  <p>Elsa</p>
-                </div>
-
-                <!-- Sipnosis -->
-                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-
-                <!-- Suka -->
-                <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                  <div class="bi-heart me-1">
-                    <span>2.5k</span>
-                  </div>
-                </div>
-              </div>
+      <header class="site-header d-flex flex-column justify-content-center align-items-center">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 col-12 text-center">
+              <h2 class="mb-0">Pilih genre kesukaanmu</h2>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  </main>
+      </header>
 
-  <?php require 'layouts/footer.php'; ?>
+      <section class="section-padding">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="mb-5">
+                <?php foreach ($genreOptions as $genre): ?>
+                  <a href="genre.php?genre=<?= $genre['nama']; ?>&id=<?= $genre['id']; ?>" class="btn custom-btn me-3 mb-3 <?= $genre['id'] == $_GET['id'] ? 'active' : ''; ?>"><?= $genre['nama']; ?></a>
+                <?php endforeach; ?>
+              </div>
+            </div>
+            <?php if (count($novels) > 0): ?>
+              <?php foreach ($novels as $novel): ?>
+                <div class="col-lg-4 col-12 mb-4 mb-lg-0">
+                  <div class="custom-block custom-block-full">
+                    <div class="custom-block-image-wrap">
+                      <a href="novel.php?slug=<?= $novel['slug']; ?>">
+                        <img src="<?= 'photos/'.$novel['photo_filename']; ?>"
+                          class="custom-block-image img-fluid" alt="<?= $novel['judul']; ?>">
+                      </a>
+                    </div>
+  
+                    <div class="custom-block-info">
+                      <!-- Judul -->
+                      <h5 class="mb-2">
+                        <a href="novel.php?slug=<?= $novel['slug']; ?>">
+                          <?= $novel['judul']; ?>
+                        </a>
+                      </h5>
+  
+                      <!-- Nama penulis -->
+                      <div class="profile-block d-flex">
+                        <p><?= $novel['username']; ?></p>
+                      </div>
+  
+                      <!-- Sipnosis -->
+                      <p class="mb-0"><?= strlen($novel['deskripsi']) > 100 ? substr($novel['deskripsi'], 0, 100) : $novel['deskripsi']; ?></p>
+  
+                      <!-- Suka -->
+                      <div class="custom-block-bottom d-flex justify-content-between mt-3">
+                        <div class="bi-heart me-1">
+                          <span>2.5k</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <?php endforeach; ?>
+            <?php else: ?>
+              <strong class="text-center py-5">Mohon pilih salah satu genre</strong>
+            <?php endif; ?>
+          </div>
+        </div>
+      </section>
+    </main>
 
-  <?php require 'layouts/scripts.php'; ?>
-
-</body>
-
+    <?php require 'layouts/footer.php'; ?>
+    <?php require 'layouts/scripts.php'; ?>
+  </body>
 </html>
