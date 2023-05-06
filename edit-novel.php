@@ -7,6 +7,8 @@ require 'helpers/base.php';
 
 redirectIfNotAuthenticated('login.php');
 
+$user = getLoginUser();
+
 $novelSlug = $_GET['slug'];
 
 $novel = fetchOne('SELECT * FROM novel WHERE slug = :slug', [':slug' => $novelSlug]);
@@ -21,8 +23,6 @@ if (!$novel) {
 }
 
 if (isset($_POST['submit'])) {
-  $errors = [];
-
   $thumbnail = isset($_FILES['thumbnail']) ? $_FILES['thumbnail'] : null;
   $title = $_POST['title'];
   $description = $_POST['description'];
@@ -95,7 +95,7 @@ if (isset($_POST['submit'])) {
       $novelSql = 'UPDATE novel SET id_pengguna = :id_pengguna, judul = :judul, slug = :slug, deskripsi = :deskripsi, photo_filename = :photo_filename WHERE id = :id';
       $slug = slugify($title);
       $novelParams = [
-        ':id_pengguna' => 1,
+        ':id_pengguna' => $user['id'],
         ':judul' => $title,
         ':slug' => $slug,
         ':deskripsi' => $description,
@@ -122,9 +122,9 @@ if (isset($_POST['submit'])) {
       rollBack();
       setAlert('danger', 'Gagal membuat novel');
     }
+  } else {
+    setOldInputs();
   }
-} else {
-  setOldInputs();
 }
 ?>
 

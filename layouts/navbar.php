@@ -1,6 +1,8 @@
 <?php
 require 'helpers/auth.php';
 require 'helpers/base.php';
+
+$user = getLoginUser();
 ?>
 
 <nav class="navbar navbar-expand-lg">
@@ -23,9 +25,11 @@ require 'helpers/base.php';
           <a class="nav-link <?= getPageName() == 'genre.php' ? 'active' : '' ?>" href="genre.php">Genre</a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link <?= getPageName() == 'novel-saya.php' ? 'active' : '' ?>" href="novel-saya.php">Cerita Saya</a>
-        </li>
+        <?php if ($user['role'] == 'penulis'): ?>
+          <li class="nav-item">
+            <a class="nav-link <?= getPageName() == 'novel-saya.php' ? 'active' : '' ?>" href="novel-saya.php">Cerita Saya</a>
+          </li>
+        <?php endif; ?>
 
         <li class="nav-item">
           <a class="nav-link" href="koin.php">Beli Koin</a>
@@ -33,7 +37,7 @@ require 'helpers/base.php';
       </ul>
 
       <div class="ms-4">
-        <?php if ($user = getLoginUser()) { ?>
+        <?php if ($user) { ?>
           <div class="dropdown">
             <a href="login.php" class="dropdown-toggle text-white fw-bold fs-5" data-bs-toggle="dropdown" aria-expanded="false">
               <?= $user['username']; ?>

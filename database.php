@@ -67,7 +67,7 @@ function query(string $query, array $params = []) {
   
   $stmt = $conn->prepare($query);
 
-  if ($stmt->execute($params) && $stmt->rowCount()) {
+  if ($stmt->execute($params)) {
     return $conn->lastInsertId();
   }
 

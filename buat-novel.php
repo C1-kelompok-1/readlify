@@ -10,8 +10,6 @@ redirectIfNotAuthenticated('login.php');
 $genreOptions = fetchAll('SELECT id, nama FROM genre');
 
 if (isset($_POST['submit'])) {
-  $errors = [];
-
   $thumbnail = isset($_FILES['thumbnail']) ? $_FILES['thumbnail'] : null;
   $title = $_POST['title'];
   $description = $_POST['description'];
