@@ -1247,3 +1247,7 @@ main {
     max-width: 200px;
   }
 }
+
+.content-episode p {
+  word-break: break-all;
+}

@@ -21,7 +21,7 @@ $novels = fetchAll($novelSql, $novelParams);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Readify | novel saya</title>
+    <title>Readify | Novel saya</title>
 
     <?php require 'layouts/favicon.php'; ?>
     <?php require 'layouts/styles.php'; ?>

@@ -36,6 +36,10 @@ $genreSql = 'SELECT nama FROM genre WHERE id IN (SELECT id_genre FROM genre_nove
 $genreParams = [':id_novel' => $novel['id']];
 $genres = fetchAll($genreSql, $genreParams);
 
+$episodeSql = 'SELECT * FROM episode_novel WHERE id_novel = :id_novel';
+$episodeParams = [':id_novel' => $novel['id']];
+$episodes = fetchAll($episodeSql, $episodeParams);
+
 if (!$novel) {
   redirect('404.html');
 }
@@ -105,9 +109,9 @@ if (!$novel) {
                     <div class="custom-block-top d-flex mb-3">
                       <!-- Genre -->
                       <?php foreach ($genres as $index => $genre): ?>
-                        <div class="badge badge-info <?= $index < count($genres) ? 'me-2' : ''; ?>">
-                          <?= $genre['nama']; ?>
-                        </div>
+                      <div class="badge badge-info <?= $index < count($genres) ? 'me-2' : ''; ?>">
+                        <?= $genre['nama']; ?>
+                      </div>
                       <?php endforeach; ?>
 
                       <!-- Episode -->
@@ -115,7 +119,7 @@ if (!$novel) {
                         <div class="bi-heart badge d-inline-block me-3">
                           <span>2.5k</span>
                         </div>
-                        <small><span class="badge">3</span> Episode</small>
+                        <small><span class="badge"><?= count($episodes); ?></span> Episode</small>
                       </div>
                     </div>
 
@@ -129,33 +133,34 @@ if (!$novel) {
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-12 mb-3">
-          <a href="buat-episode.php" class="btn custom-btn">
-            <i class="bi-plus"></i>
-            Buat episode
-          </a>
-        </div>
-
-        <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-          <div class="custom-block">
-            <a href="episode-novel.php">
-              <div class="custom-block-info custom-block-overlay-info">
-                <!-- Judul episode -->
-                <h5 class="mb-1">
-                  <a href="episode-novel.php">
-                    Duel
-                  </a>
-                </h5>
-
-                <!-- Nomor episode -->
-                <p class="badge mb-0">Episode 1</p>
-              </div>
+          <div class="col-12 mb-3">
+            <a href="buat-episode.php?slug=<?= $slug; ?>" class="btn custom-btn">
+              <i class="bi-plus"></i>
+              Buat episode
             </a>
           </div>
+  
+          <?php foreach ($episodes as $index => $episode): ?>
+            <div class="col-lg-4 col-12 mb-4 mb-lg-0">
+              <div class="custom-block">
+                <a href="episode-novel.php?slug=<?= $episode['slug']; ?>">
+                  <div class="custom-block-info custom-block-overlay-info">
+                    <!-- Judul episode -->
+                    <h5 class="mb-1">
+                      <a href="episode-novel.php?slug=<?= $episode['slug']; ?>">
+                        <?= $episode['judul']; ?>
+                      </a>
+                    </h5>
+  
+                    <!-- Nomor episode -->
+                    <p class="badge mb-0">Episode <?= $index + 1; ?></p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          <?php endforeach; ?>
         </div>
-      </div>
       </div>
     </section>
   </main>
@@ -170,7 +175,7 @@ if (!$novel) {
   <script src="js/sweetalert2.all.min.js"></script>
   <?php require 'layouts/scripts.php'; ?>
   <script>
-    $('#hapus').click(function() {
+    $('#hapus').click(function () {
       Swal.fire({
         title: '<h6>Apakah anda yakin ingin menghapus novel ini?</h6>',
         showCancelButton: true,
