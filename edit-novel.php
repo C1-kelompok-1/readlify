@@ -2,7 +2,10 @@
 require 'database.php';
 require 'helpers/input.php';
 require 'helpers/string.php';
+require 'helpers/auth.php';
 require 'helpers/base.php';
+
+redirectIfNotAuthenticated('login.php');
 
 $novelSlug = $_GET['slug'];
 

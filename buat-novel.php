@@ -5,6 +5,8 @@ require 'helpers/string.php';
 require 'helpers/auth.php';
 require 'helpers/base.php';
 
+redirectIfNotAuthenticated('login.php');
+
 $genreOptions = fetchAll('SELECT id, nama FROM genre');
 
 if (isset($_POST['submit'])) {
