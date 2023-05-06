@@ -27,19 +27,23 @@
               </div>
             </a>
           </li>
-          <li class="dropdown-divider"></li>
-          <li class="dropdown-item">
-            <a href="profil.php">
-              <i class="icon-user mr-2"></i> Profil
-            </a>
-          </li>
-          <li class="dropdown-item">
-            <a href="#">
-              <i class="icon-power mr-2"></i> Logout
-            </a>
-          </li>
-        </ul>
+
+  
+
+
+      <li class="dropdown-divider"></li>
+      <li class="dropdown-item">
+        <a href="profil.php">
+          <i class="icon-user mr-2"></i> Profil
+        </a>
       </li>
+      <li class="dropdown-item">
+        <a href="#">
+          <i class="icon-power mr-2"></i> Logout
+        </a>
+      </li>
+    </ul>
+    </li>
     </ul>
   </nav>
 </header>
