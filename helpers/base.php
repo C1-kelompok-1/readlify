@@ -15,30 +15,13 @@ if (!function_exists('getPageName')) {
   }
 }
 
-if (!function_exists('getLoginUser')) {
-  function getLoginUser() {
-    if (isset($_SESSION['login_user'])) {
-      return $_SESSION['login_user'];
-    }
-    
-    return null;
-  }
-}
-
-if (!function_exists('roles')) {
-  function roles($role) {
-    $user = getLoginUser();
-    return $user['role'] == $role;
-  }
-}
-
-if (!function_exists('alert')) {
+if (!function_exists('setAlert')) {
   function setAlert($type, $message) {
     $_SESSION['alert'] = compact('message', 'type');
   }
 }
 
-if (!function_exists('alert')) {
+if (!function_exists('getAlert')) {
   function getAlert() {
     if (isset($_SESSION['alert'])) {
       $type =  $_SESSION['alert']['type'];

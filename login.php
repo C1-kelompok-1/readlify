@@ -3,6 +3,9 @@ require "session.php";
 require "database.php";
 require "helpers/base.php";
 require "helpers/input.php";
+require "helpers/auth.php";
+
+redirectIfAuthenticated('index.php');
 
 if (isset($_POST['login'])) {
   setOldInputs();

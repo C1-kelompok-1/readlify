@@ -2,6 +2,9 @@
 include 'koneksi.php';
 require 'helpers/base.php';
 require 'helpers/input.php';
+require 'helpers/auth.php';
+
+redirectIfAuthenticated('index.php');
 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 

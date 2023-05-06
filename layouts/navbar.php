@@ -1,4 +1,7 @@
-<?php require 'helpers/base.php'; ?>
+<?php
+require 'helpers/auth.php';
+require 'helpers/base.php';
+?>
 
 <nav class="navbar navbar-expand-lg">
   <div class="container">
@@ -30,10 +33,10 @@
       </ul>
 
       <div class="ms-4">
-        <?php if (isset($_SESSION['user'])) { ?>
+        <?php if ($user = getLoginUser()) { ?>
           <div class="dropdown">
             <a href="login.php" class="dropdown-toggle text-white fw-bold fs-5" data-bs-toggle="dropdown" aria-expanded="false">
-              <?= $_SESSION['user']['username']; ?>
+              <?= $user['username']; ?>
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="profil.php">Profil</a></li>
