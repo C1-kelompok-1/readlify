@@ -1,6 +1,17 @@
 <?php
+require 'helpers/string.php';
 require 'helpers/auth.php';
-require 'helpers/base.php';
+
+function getPageName() {
+  $segments = explode('/', $_SERVER['REQUEST_URI']);
+  foreach ($segments as $segment) {
+    if (str_contains($segment, '.php')) {
+      return $segment;
+    }
+  }
+
+  return null;
+}
 
 $user = getLoginUser();
 ?>

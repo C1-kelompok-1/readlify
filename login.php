@@ -1,7 +1,7 @@
 <?php
 require "session.php";
 require "database.php";
-require "helpers/base.php";
+require "helpers/alert.php";
 require "helpers/input.php";
 require "helpers/auth.php";
 
@@ -21,7 +21,7 @@ if (isset($_POST['login'])) {
     setInputError('password', 'Tolong isi passwordmu');
   }
 
-  if (!isThereAnyError()) {
+  if (!isThereAnyInputError()) {
     // Check user credentials in database
     $userSql = "SELECT * FROM pengguna WHERE username = :username OR email = :email";
     $userParams = ['username' => $username, 'email' => $username];
@@ -30,6 +30,18 @@ if (isset($_POST['login'])) {
     if ($user) {
       if (password_verify($password, $user['password'])) {
         $_SESSION['user'] = $user;
+
+        if (isset($_POST['remember_me'])) {
+          setcookie(
+            'readify_remember',
+            base64_encode($user['id']),
+            time() + 606024 * 30,
+            '/',
+            false,
+            true
+          );
+        }
+
         redirect('index.php');
       }
     }
@@ -64,12 +76,12 @@ if (isset($_POST['login'])) {
         <?= getInputError('username'); ?>
         <input type="password" name="password" placeholder="Password" />
         <?= getInputError('password'); ?>
-        <!-- <div class="content">
+        <div class="content">
           <div class="checkbox">
-            <input type="checkbox" name="checkbox" id="checkbox" />
+            <input type="checkbox" name="remember_me" id="checkbox" />
             <label>Ingat saya</label>
           </div>
-        </div> -->
+        </div>
         <button type="submit" name="login">Masuk</button>
       </form>
     </div>

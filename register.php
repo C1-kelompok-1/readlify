@@ -1,6 +1,6 @@
 <?php
 include 'koneksi.php';
-require 'helpers/base.php';
+require 'helpers/alert.php';
 require 'helpers/input.php';
 require 'helpers/auth.php';
 
@@ -74,7 +74,7 @@ if (isset($_POST["daftar"])) {
     setInputError('konfirmasipw', 'Password tidak cocok');
   }
   
-  if (!isThereAnyError()) {
+  if (!isThereAnyInputError()) {
     // Enkripsi password
     $password = password_hash($password, PASSWORD_DEFAULT);
 

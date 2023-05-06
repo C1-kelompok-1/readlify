@@ -1,12 +1,22 @@
 <?php
 
 if (!function_exists('str_contains')) {
+  /**
+   * 
+   * Mengecek apakah suatu string terdapat di string lain.
+   * 
+   */
   function str_contains(string $haystack, string $needle) {
     return '' === $needle || false !== strpos($haystack, $needle);
   }
 }
 
 if (!function_exists('generateRandomString')) {
+  /**
+   * 
+   * Menghasilkan string random.
+   * 
+   */
   function generateRandomString(int $length = 10) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
@@ -19,6 +29,11 @@ if (!function_exists('generateRandomString')) {
 }
 
 if (!function_exists('slugify')) {
+  /**
+   * 
+   * Untuk membuat slug, contoh: "Ini adalah slug" menjadi "ini-adalah-slug".
+   * 
+   */
   function slugify(string $text, string $divider = '-') {
     // replace non letter or digits by divider
     $text = preg_replace('~[^\pL\d]+~u', $divider, $text);

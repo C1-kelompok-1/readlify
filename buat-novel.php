@@ -3,7 +3,7 @@ require 'database.php';
 require 'helpers/input.php';
 require 'helpers/string.php';
 require 'helpers/auth.php';
-require 'helpers/base.php';
+require 'helpers/alert.php';
 
 redirectIfNotAuthenticated('login.php');
 
@@ -52,7 +52,7 @@ if (isset($_POST['submit'])) {
     setInputError('genres', 'Pilih setidaknya satu jenis genre');
   }
 
-  if (!isThereAnyError()) {
+  if (!isThereAnyInputError()) {
     // simpan dan ubah ukuran thumbnail
     $tmpPath = $thumbnail['tmp_name'];
       
