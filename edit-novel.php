@@ -64,63 +64,71 @@ if (isset($_POST['submit'])) {
   }
 
   if (!isThereAnyInputError()) {
-    if ($thumbnail['size']) {
-      // simpan dan ubah ukuran thumbnail
-      $tmpPath = $thumbnail['tmp_name'];
-        
-      if ($thumbnailExt == 'jpg') {
-        $image = imagecreatefromjpeg($tmpPath);
+    $usedNovelSql = 'SELECT id FROM novel WHERE judul = :judul AND id_pengguna != :id_pengguna';
+    $usedNovelParams = [':judul' => $title, ':id_pengguna' => $user['id']];
+    $usedNovel = fetchOne($usedNovelSql, $usedNovelParams);
+    if ($usedNovel) {
+      setAlert('danger', 'Judul novel sudah digunakan');
+      setOldInputs();
+    } else {
+      if ($thumbnail['size']) {
+        // simpan dan ubah ukuran thumbnail
+        $tmpPath = $thumbnail['tmp_name'];
+          
+        if ($thumbnailExt == 'jpg') {
+          $image = imagecreatefromjpeg($tmpPath);
+        }
+  
+        if ($thumbnailExt == 'png') {
+          $image = imagecreatefrompng($tmpPath);
+        }
+  
+        $imgResized = imagescale($image , 500, 400);
+        $filename = generateRandomString().'.'.$thumbnailExt;
+  
+        if ($thumbnailExt == 'jpg') {
+          imagejpeg($imgResized, 'photos/'.$filename);
+        }
+  
+        if ($thumbnailExt == 'png') {
+          imagepng($imgResized, 'photos/'.$filename);
+        }
       }
-
-      if ($thumbnailExt == 'png') {
-        $image = imagecreatefrompng($tmpPath);
+  
+      beginTransaction();
+  
+      try {
+        // edit novel
+        $novelSql = 'UPDATE novel SET id_pengguna = :id_pengguna, judul = :judul, slug = :slug, deskripsi = :deskripsi, photo_filename = :photo_filename WHERE id = :id';
+        $slug = slugify($title);
+        $novelParams = [
+          ':id_pengguna' => $user['id'],
+          ':judul' => $title,
+          ':slug' => $slug,
+          ':deskripsi' => $description,
+          ':photo_filename' => $thumbnail['size'] ? $filename : $novel['photo_filename'],
+          ':id' => $novel['id']
+        ];
+        query($novelSql, $novelParams);
+  
+        query('DELETE FROM genre_novel WHERE id_novel = :id_novel', [':id_novel' => $novel['id']]);
+  
+        // buat genre novel
+        foreach ($genres as $genre) {
+          query(
+            'INSERT INTO genre_novel (id_novel, id_genre) VALUES (:id_novel, :id_genre)',
+            [':id_novel' => $novel['id'], ':id_genre' => $genre]
+          );
+        }
+  
+        commit();
+  
+        setAlert('success', 'Novel berhasil diedit');
+        redirect('detail-novel-saya.php?slug='.$slug);
+      } catch (PDOException $error) {
+        rollBack();
+        setAlert('danger', 'Gagal membuat novel');
       }
-
-      $imgResized = imagescale($image , 500, 400);
-      $filename = generateRandomString().'.'.$thumbnailExt;
-
-      if ($thumbnailExt == 'jpg') {
-        imagejpeg($imgResized, 'photos/'.$filename);
-      }
-
-      if ($thumbnailExt == 'png') {
-        imagepng($imgResized, 'photos/'.$filename);
-      }
-    }
-
-    beginTransaction();
-
-    try {
-      // edit novel
-      $novelSql = 'UPDATE novel SET id_pengguna = :id_pengguna, judul = :judul, slug = :slug, deskripsi = :deskripsi, photo_filename = :photo_filename WHERE id = :id';
-      $slug = slugify($title);
-      $novelParams = [
-        ':id_pengguna' => $user['id'],
-        ':judul' => $title,
-        ':slug' => $slug,
-        ':deskripsi' => $description,
-        ':photo_filename' => $thumbnail['size'] ? $filename : $novel['photo_filename'],
-        ':id' => $novel['id']
-      ];
-      query($novelSql, $novelParams);
-
-      query('DELETE FROM genre_novel WHERE id_novel = :id_novel', [':id_novel' => $novel['id']]);
-
-      // buat genre novel
-      foreach ($genres as $genre) {
-        query(
-          'INSERT INTO genre_novel (id_novel, id_genre) VALUES (:id_novel, :id_genre)',
-          [':id_novel' => $novel['id'], ':id_genre' => $genre]
-        );
-      }
-
-      commit();
-
-      setAlert('success', 'Novel berhasil diedit');
-      redirect('detail-novel-saya.php?slug='.$slug);
-    } catch (PDOException $error) {
-      rollBack();
-      setAlert('danger', 'Gagal membuat novel');
     }
   } else {
     setOldInputs();

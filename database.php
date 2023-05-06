@@ -22,13 +22,9 @@ if (!function_exists('fetchAll')) {
   
     $stmt = $conn->prepare($query);
   
-    foreach ($params as $param => $value) {  
-      $stmt->bindParam($param, $value, getDataType($value));
-    }
-  
     $rows = [];
   
-    if ($stmt->execute() && $stmt->rowCount()) {
+    if ($stmt->execute($params) && $stmt->rowCount()) {
       while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $rows[] = $row;
       }
@@ -49,13 +45,10 @@ if (!function_exists('fetchOne')) {
   
     $stmt = $conn->prepare($query);
   
-    foreach ($params as $param => $value) {
-      $stmt->bindParam($param, $value, getDataType($value));
-    }
-  
-    if ($stmt->execute() && $stmt->rowCount()) {
+    if ($stmt->execute($params) && $stmt->rowCount()) {
       return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
   
     return null;
   }

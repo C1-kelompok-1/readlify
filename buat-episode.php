@@ -7,7 +7,7 @@ require 'helpers/string.php';
 require 'helpers/auth.php';
 
 $slug = $_GET['slug'];
-$novel = fetchOne('SELECT id FROM novel WHERE slug = :slug', [':slug' => $slug]);
+$novel = fetchOne('SELECT id, slug FROM novel WHERE slug = :slug', [':slug' => $slug]);
 
 if (!$novel) {
   redirect('404.html');
@@ -57,7 +57,7 @@ if (isset($_POST['submit'])) {
       commit();
 
       setAlert('success', 'Episode berhasil dibuat');
-      redirect('episode-novel.php?slug='.$slug);
+      redirect('episode-novel.php?novel_slug='.$novel['slug'].'&episode_slug='.$slug);
     } catch (PDOException $error) {
       rollBack();
       setAlert('danger', 'Gagal membuat episode');
@@ -97,7 +97,7 @@ if (isset($_POST['submit'])) {
               <?= getAlert(); ?>
             </div>
             <div class="col-12 text-end mb-3">
-              <a href="detail-novel-saya.php" class="btn custom-btn">
+              <a href="detail-novel-saya.php?slug=<?= $novel['slug']; ?>" class="btn custom-btn">
                 <i class="bi-arrow-left"></i>
                 Kembali
               </a>

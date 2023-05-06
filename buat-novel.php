@@ -53,60 +53,69 @@ if (isset($_POST['submit'])) {
   }
 
   if (!isThereAnyInputError()) {
-    // simpan dan ubah ukuran thumbnail
-    $tmpPath = $thumbnail['tmp_name'];
-      
-    if ($thumbnailExt == 'jpg') {
-      $image = imagecreatefromjpeg($tmpPath);
-    }
-
-    if ($thumbnailExt == 'png') {
-      $image = imagecreatefrompng($tmpPath);
-    }
-
-    $imgResized = imagescale($image , 290, 210);
-    $filename = generateRandomString().'.'.$thumbnailExt;
-
-    if ($thumbnailExt == 'jpg') {
-      imagejpeg($imgResized, 'photos/'.$filename);
-    }
-
-    if ($thumbnailExt == 'png') {
-      imagepng($imgResized, 'photos/'.$filename);
-    }
-
-    beginTransaction();
-
-    try {
-      // buat novel
-      $user = getLoginUser();
-
-      $novelSql = 'INSERT INTO novel (id_pengguna, judul, slug, deskripsi, photo_filename) VALUES (:id_pengguna, :judul, :slug, :deskripsi, :photo_filename)';
-      $slug = slugify($title);
-      $novelParams = [
-        ':id_pengguna' => $user['id'],
-        ':judul' => $title,
-        ':slug' => $slug,
-        ':deskripsi' => $description,
-        ':photo_filename' => $filename,
-      ];
-      $novelId = query($novelSql, $novelParams);
-
-      // buat genre novel
-      $genreSql = 'INSERT INTO genre_novel (id_novel, id_genre) VALUES (:id_novel, :id_genre)';
-      foreach ($genres as $genreId) {
-        $genreParams = [':id_novel' => $novelId, ':id_genre' => $genreId];
-        query($genreSql, $genreParams);
+    // cek apakah judul novel sudah ada
+    $usedNovelSql = 'SELECT id FROM novel WHERE judul = :judul';
+    $usedNovelParams = [':judul' => $title];
+    $usedNovel = fetchOne($usedNovelSql, $usedNovelParams);
+    if ($usedNovel) {
+      setAlert('danger', 'Judul novel sudah digunakan');
+      setOldInputs();
+    } else {
+      // simpan dan ubah ukuran thumbnail
+      $tmpPath = $thumbnail['tmp_name'];
+        
+      if ($thumbnailExt == 'jpg') {
+        $image = imagecreatefromjpeg($tmpPath);
       }
 
-      commit();
+      if ($thumbnailExt == 'png') {
+        $image = imagecreatefrompng($tmpPath);
+      }
 
-      setAlert('success', 'Novel berhasil dibuat');
-      redirect('detail-novel-saya.php?slug='.$slug);
-    } catch (PDOException $error) {
-      rollBack();
-      setAlert('danger', 'Gagal membuat novel');
-    }
+      $imgResized = imagescale($image , 290, 210);
+      $filename = generateRandomString().'.'.$thumbnailExt;
+
+      if ($thumbnailExt == 'jpg') {
+        imagejpeg($imgResized, 'photos/'.$filename);
+      }
+
+      if ($thumbnailExt == 'png') {
+        imagepng($imgResized, 'photos/'.$filename);
+      }
+
+      beginTransaction();
+
+      try {
+        // buat novel
+        $user = getLoginUser();
+
+        $novelSql = 'INSERT INTO novel (id_pengguna, judul, slug, deskripsi, photo_filename) VALUES (:id_pengguna, :judul, :slug, :deskripsi, :photo_filename)';
+        $slug = slugify($title);
+        $novelParams = [
+          ':id_pengguna' => $user['id'],
+          ':judul' => $title,
+          ':slug' => $slug,
+          ':deskripsi' => $description,
+          ':photo_filename' => $filename,
+        ];
+        $novelId = query($novelSql, $novelParams);
+
+        // buat genre novel
+        $genreSql = 'INSERT INTO genre_novel (id_novel, id_genre) VALUES (:id_novel, :id_genre)';
+        foreach ($genres as $genreId) {
+          $genreParams = [':id_novel' => $novelId, ':id_genre' => $genreId];
+          query($genreSql, $genreParams);
+        }
+
+        commit();
+
+        setAlert('success', 'Novel berhasil dibuat');
+        redirect('detail-novel-saya.php?slug='.$slug);
+      } catch (PDOException $error) {
+        rollBack();
+        setAlert('danger', 'Gagal membuat novel');
+      }
+    }    
   } else {
     setOldInputs();
   }
@@ -137,6 +146,9 @@ if (isset($_POST['submit'])) {
       <section class="section-padding">
         <div class="container">
           <div class="row">
+            <div class="col-12">
+              <?= getAlert(); ?>
+            </div>
             <div class="col-12 text-end mb-3">
               <a href="novel-saya.php" class="btn custom-btn">
                 <i class="bi-arrow-left"></i>

@@ -4,9 +4,12 @@ require 'helpers/auth.php';
 
 redirectIfNotAuthenticated('login.php');
 
-$slug = $_GET['slug'];
+$novelSlug = $_GET['novel_slug'];
+$episodeSlug = $_GET['episode_slug'];
 
-$episode = fetchOne('SELECT * FROM episode_novel WHERE slug = :slug', [':slug' => $slug]);
+$episodeSql = 'SELECT episode_novel.* FROM episode_novel JOIN novel ON episode_novel.id_novel = novel.id WHERE novel.slug = :novel_slug AND episode_novel.slug = :episode_slug';
+$episodeParams = [':novel_slug' => $novelSlug, ':episode_slug' => $episodeSlug];
+$episode = fetchOne($episodeSql, $episodeParams);
 
 if (!$episode) {
   redirect('404.html');
@@ -75,7 +78,7 @@ if (isset($_POST['hapus'])) {
                   <i class="bi-trash"></i>
                   Hapus
                 </button>
-                <a href="edit-episode.php?slug=<?= $episode['slug']; ?>" class="btn custom-btn">
+                <a href="edit-episode.php?novel_slug=<?= $novelSlug ?>&episode_slug=<?= $episodeSlug; ?>" class="btn custom-btn">
                   <i class="bi-pencil"></i>
                   Edit
                 </a>
@@ -97,7 +100,7 @@ if (isset($_POST['hapus'])) {
       </section>
     </main>
 
-    <form action="episode-novel.php?slug=<?= $episode['slug']; ?>" id="submit-hapus" method="post" hidden>
+    <form action="episode-novel.php?novel_slug=<?= $novelSlug ?>&episode_slug=<?= $episodeSlug; ?>" id="submit-hapus" method="post" hidden>
       <input type="hidden" name="hapus" />
       <input type="hidden" name="id_episode" value="<?= $episode['id']; ?>" />
     </form>

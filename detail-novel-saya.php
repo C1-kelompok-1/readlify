@@ -144,11 +144,11 @@ if (!$novel) {
           <?php foreach ($episodes as $index => $episode): ?>
             <div class="col-lg-4 col-12 mb-4 mb-lg-0">
               <div class="custom-block">
-                <a href="episode-novel.php?slug=<?= $episode['slug']; ?>">
+                <a href="episode-novel.php?novel_slug=<?= $novel['slug']; ?>&episode_slug=<?= $episode['slug']; ?>">
                   <div class="custom-block-info custom-block-overlay-info">
                     <!-- Judul episode -->
                     <h5 class="mb-1">
-                      <a href="episode-novel.php?slug=<?= $episode['slug']; ?>">
+                      <a href="episode-novel.php?novel_slug=<?= $novel['slug']; ?>&episode_slug=<?= $episode['slug']; ?>">
                         <?= $episode['judul']; ?>
                       </a>
                     </h5>
