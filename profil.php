@@ -1,4 +1,6 @@
 <?php
+require "session.php";
+include('koneksi.php');
 // $db = new Database();
 
 // $sql = 'UPDATE pengguna SET username = :username, email = :email, facebook_url = :facebook_url, instagram_url = :instagram_url, twitter_url = :twitter_url WHERE id = :id';
@@ -18,6 +20,11 @@
 // }
 
 
+
+if (isset($_POST['profil'])) {
+  echo 'gambar dikirim';
+}
+
 ?>
 
 <!doctype html>
@@ -35,6 +42,18 @@
 
   <link rel="stylesheet" href="css/select2.min.css">
 
+  <style>
+    .foto-profil {
+      cursor: pointer;
+      width: 150px;
+    }
+
+    .foto-profil:hover {
+      filter: brightness(1.2);
+    }
+  </style>
+
+
 </head>
 
 <body>
@@ -43,6 +62,28 @@
     <?php require 'layouts/navbar.php'; ?>
 
     <header class="site-header site-header-no-title"></header>
+    <div class="d-flex flex-column justify-content-center align-items-center mt-5">
+
+
+      <div class="dropdown pe-auto">
+        <img src="assets/images/profil/profil bawaan.svg" class="rounded-circle dropdown-toggle foto-profil" data-bs-toggle="dropdown" aria-expanded="false" alt="Profil" />
+        <form action="" method="post">
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item bi bi-person-square fw-bold" href="#"><span class="ms-2">Lihat Foto Profil</span></a></li>
+            <label for="profile-photo" class="dropdown-item bi bi-images fw-bold">
+              <span class="ms-1">Perbarui Foto Profil</span>
+              <input type="file" name="profil" id="profile-photo" class="custom-file-input d-none" accept="image/*">
+            </label>
+            <li><a class="dropdown-item bi bi-trash fw-bold" href="#"><span class="ms-2">Hapus Foto Profil</span></a></li>
+          </ul>
+        </form>
+      </div>
+
+      <h5 class="mb-2 mt-2"><strong><?php echo $_SESSION['user']; ?></strong></h5>
+      <p class="text-muted"></p>
+      <!-- <p class="text-muted"><?php echo $row["email"] ?></p> -->
+    </div>
+
 
     <section class="section-padding">
       <div class="container">
@@ -92,13 +133,38 @@
 
   <script src="js/ckeditor.js"></script>
 
-  <script>
-    ClassicEditor
-      .create(document.querySelector('#konten'))
-      .catch(error => {
-        console.error(error);
-      });
-  </script>
+  <!-- <script>
+  // JavaScript
+  document.getElementById("profile-photo").addEventListener("change", function(event) {
+    var confirmUpload = confirm("Apakah Anda yakin ingin mengubah foto profil?");
+
+    if (!confirmUpload) {
+      event.preventDefault(); // Mencegah aksi default dari input file
+    }
+  });
+</script> -->
+
+<!-- <script>
+  // JavaScript
+  document.getElementById("profile-photo").addEventListener("change", function(event) {
+    var confirmUpload = confirm("Apakah Anda yakin ingin mengubah foto profil?");
+
+    if (!confirmUpload) {
+      event.preventDefault(); // Mencegah aksi default dari input file
+    } else {
+      // Mengirim permintaan AJAX ke skrip PHP
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "database.php", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          alert(xhr.responseText); // Menampilkan pemberitahuan dari PHP
+        }
+      };
+      xhr.send("profil=true");
+    }
+  });
+</script> -->
 
 </body>
 
