@@ -22,8 +22,10 @@ $episodeSql = 'SELECT episode_novel.id,
 $episodeParams = [':novel_slug' => $novelSlug, ':episode_slug' => $episodeSlug];
 $episode = fetchOne($episodeSql, $episodeParams);
 
+$user = getLoginUser();
+
+// beli episode
 if (isset($_POST['beli'])) {
-  $user = getLoginUser();
   $episodeId = $_POST['id_episode'];
 
   try {
@@ -58,13 +60,56 @@ if (isset($_POST['beli'])) {
   }
 }
 
-$prevEpisode = fetchOne('SELECT slug, judul FROM episode_novel WHERE id < :id_episode ORDER BY id DESC LIMIT 1', [':id_episode' => $episode['id']]);
-
-$nextEpisode = fetchOne('SELECT slug, judul FROM episode_novel WHERE id > :id_episode ORDER BY id LIMIT 1', [':id_episode' => $episode['id']]);
-
+// cek episode
 if (!$episode) {
   redirect('404.html');
 }
+
+// cek episode terbeli
+if ($episode['harga_koin']) {
+  $boughtEpisodeSql = 'SELECT id
+                      FROM episode_novel_terbeli
+                      WHERE id_episode_novel = :id_episode_novel
+                        AND id_pengguna = :id_pengguna';
+  $isEpisodeBought = fetchOne($boughtEpisodeSql, [
+    ':id_episode_novel' => $episode['id'],
+    ':id_pengguna' => $user['id'],
+  ]);
+
+  if ($isEpisodeBought) {
+    redirect('episode.php?novel_slug='.$novelSlug.'&episode_slug='.$episodeSlug);
+  }
+}
+
+// cek apakah episode sudah dilike
+$likedEpisode = fetchOne('SELECT COUNT(id) AS jumlah FROM episode_novel_disukai WHERE id_episode_novel = :id_episode_novel AND id_pengguna = :id_pengguna', [
+  ':id_episode_novel' => $episode['id'],
+  ':id_pengguna' => $user['id'],
+]);
+
+// like episode
+if (isset($_POST['like'])) {
+  try {
+    if ($likedEpisode['jumlah']) {
+      query('DELETE FROM episode_novel_disukai WHERE id_episode_novel = :id_episode_novel AND id_pengguna = :id_pengguna', [
+        ':id_episode_novel' => $episode['id'],
+        ':id_pengguna' => $user['id'],
+      ]);
+    } else {
+      query('INSERT INTO episode_novel_disukai (id_episode_novel, id_pengguna) VALUES (:id_episode_novel, :id_pengguna)', [
+        ':id_episode_novel' => $episode['id'],
+        ':id_pengguna' => $user['id'],
+      ]);
+    }
+
+    redirect('episode.php?novel_slug='.$novelSlug.'&episode_slug='.$episodeSlug);    
+  } catch (PDOException $error) {
+    var_dump($error);
+  }
+}
+
+$prevEpisode = fetchOne('SELECT slug, judul FROM episode_novel WHERE id < :id_episode ORDER BY id DESC LIMIT 1', [':id_episode' => $episode['id']]);
+$nextEpisode = fetchOne('SELECT slug, judul FROM episode_novel WHERE id > :id_episode ORDER BY id LIMIT 1', [':id_episode' => $episode['id']]);
 
 ?>
 
@@ -145,11 +190,13 @@ if (!$episode) {
       </section>
     </main>
 
-    <a href="#" class="btn custom-btn position-fixed bottom-0 end-0 mb-4 me-4" style="z-index: 100;">
-      <div class="bi-heart">
-        <span>2.5k</span>
-      </div>
-    </a>
+    <form action="beli-episode.php?novel_slug=<?= $novelSlug ?>&episode_slug=<?= $episodeSlug ?>" method="post">
+      <button type="submit" name="like" class="btn custom-btn position-fixed bottom-0 end-0 mb-4 me-4" style="z-index: 100;">
+        <div class="bi-heart">
+          <span><?= $likedEpisode['jumlah']; ?></span>
+        </div>
+      </button>
+    </form>
 
     <form action="beli-episode.php?novel_slug=<?= $novelSlug; ?>&episode_slug=<?= $episodeSlug; ?>" id="submit-beli" method="post" hidden>
       <input type="hidden" name="beli" />

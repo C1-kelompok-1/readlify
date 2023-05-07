@@ -25,6 +25,15 @@ if (isset($_GET['slug'])) {
   $episodeParams = [':id_novel' => $novel['id']];
   $episodes = fetchAll($episodeSql, $episodeParams);
   $firstEpisode = $episodes[0];
+
+  $likeSql = 'SELECT COUNT(episode_novel_disukai.id) AS jumlah_like
+              FROM episode_novel_disukai
+              INNER JOIN episode_novel ON episode_novel.id = episode_novel_disukai.id_episode_novel
+              INNER JOIN novel ON novel.id = episode_novel.id_novel
+              WHERE novel.id = :id
+              GROUP BY novel.id';
+  $likes = fetchOne($likeSql, [':id' => $novel['id']]);
+  $episodeLikes = isset($likes['jumlah_like']) ? $likes['jumlah_like'] : 0;
 }
 
 function isEpisodeBought($episode) {
@@ -94,7 +103,7 @@ function isEpisodeBought($episode) {
                     <!-- Episode -->
                     <div class="ms-auto">
                       <div class="bi-heart badge d-inline-block me-3">
-                        <span>2.5k</span>
+                        <span><?= $episodeLikes; ?></span>
                       </div>
                       <small><span class="badge"><?= count($episodes); ?></span> Episode</small>
                     </div>

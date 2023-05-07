@@ -22,6 +22,22 @@ if (isset($_GET['genre']) && isset($_GET['id'])) {
   $novels = fetchAll($novelSql, $novelParams);
 }
 
+function getNovelLikes($novelId) {
+  $likeSql = 'SELECT COUNT(episode_novel_disukai.id) AS jumlah_like
+              FROM episode_novel_disukai
+              INNER JOIN episode_novel ON episode_novel.id = episode_novel_disukai.id_episode_novel
+              INNER JOIN novel ON novel.id = episode_novel.id_novel
+              WHERE novel.id = :id
+              GROUP BY novel.id';
+  $likes = fetchOne($likeSql, [':id' => $novelId]);
+  
+  if ($likes) {
+    return $likes['jumlah_like'];
+  }
+
+  return 0;
+}
+
 ?>
 
 <!doctype html>
@@ -92,7 +108,7 @@ if (isset($_GET['genre']) && isset($_GET['id'])) {
                       <!-- Suka -->
                       <div class="custom-block-bottom d-flex justify-content-between mt-3">
                         <div class="bi-heart me-1">
-                          <span>2.5k</span>
+                          <span><?= getNovelLikes($novel['id_novel']); ?></span>
                         </div>
                       </div>
                     </div>

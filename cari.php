@@ -6,13 +6,14 @@ redirectIfNotAuthenticated('login.php');
 
 if (isset($_GET['search'])) {
   $keyword = htmlspecialchars($_GET['search']);
-  $novelSql = 'SELECT novel.*, pengguna.username
+  $novelSql = 'SELECT novel.*, pengguna.username, COUNT(episode_novel_disukai.id) AS jumlah_like
               FROM novel
               INNER JOIN pengguna ON pengguna.id = novel.id_pengguna
-              WHERE judul LIKE :judul';
-  $novels = fetchAll($novelSql, [
-    ':judul' => "%$keyword%"
-  ]);
+              INNER JOIN episode_novel ON episode_novel.id_novel = novel.id
+              INNER JOIN episode_novel_disukai ON episode_novel_disukai.id_episode_novel = episode_novel.id
+              WHERE novel.judul LIKE :judul
+              GROUP BY novel.id';
+  $novels = fetchAll($novelSql, [':judul' => "%$keyword%"]);
 }
 
 ?>
@@ -89,7 +90,7 @@ if (isset($_GET['search'])) {
                       <!-- Suka -->
                       <div class="custom-block-bottom d-flex justify-content-between mt-3">
                         <div class="bi-heart me-1">
-                          <span>2.5k</span>
+                          <span><?= $novel['jumlah_like']; ?></span>
                         </div>
                       </div>
                     </div>
