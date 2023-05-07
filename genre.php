@@ -8,34 +8,29 @@ redirectIfNotAuthenticated('login.php');
 $genreOptions = fetchAll('SELECT id, nama FROM genre');
 $novels = [];
 
-$novelSql = 'SELECT novel.*, pengguna.username, genre_novel.*
+$novelSql = "SELECT
+                novel.id,
+                novel.judul,
+                novel.slug,
+                novel.photo_filename,
+                novel.deskripsi,
+                pengguna.username,
+                COUNT(episode_novel_disukai.id) AS jumlah_like
               FROM novel
               INNER JOIN pengguna ON pengguna.id = novel.id_pengguna
-              INNER JOIN genre_novel ON genre_novel.id_novel = novel.id
-              WHERE genre_novel.id_genre = :id_genre';
+              LEFT JOIN episode_novel ON episode_novel.id_novel = novel.id
+              LEFT JOIN episode_novel_disukai ON episode_novel_disukai.id_episode_novel = episode_novel.id
+              LEFT JOIN genre_novel ON genre_novel.id_novel = novel.id
+              LEFT JOIN genre ON genre.id = genre_novel.id_genre
+              WHERE genre.nama = :genre
+              GROUP BY novel.id;";
 
-if (isset($_GET['genre']) && isset($_GET['id'])) {
-  $novelParams = [':id_genre' => $_GET['id']];
+if (isset($_GET['genre'])) {
+  $novelParams = [':genre' => $_GET['genre']];
   $novels = fetchAll($novelSql, $novelParams);
 } else {
-  $novelParams = [':id_genre' => $genreOptions[0]['id']];
+  $novelParams = [':genre' => $genreOptions[0]['nama']];
   $novels = fetchAll($novelSql, $novelParams);
-}
-
-function getNovelLikes($novelId) {
-  $likeSql = 'SELECT COUNT(episode_novel_disukai.id) AS jumlah_like
-              FROM episode_novel_disukai
-              INNER JOIN episode_novel ON episode_novel.id = episode_novel_disukai.id_episode_novel
-              INNER JOIN novel ON novel.id = episode_novel.id_novel
-              WHERE novel.id = :id
-              GROUP BY novel.id';
-  $likes = fetchOne($likeSql, [':id' => $novelId]);
-  
-  if ($likes) {
-    return $likes['jumlah_like'];
-  }
-
-  return 0;
 }
 
 ?>
@@ -108,7 +103,7 @@ function getNovelLikes($novelId) {
                       <!-- Suka -->
                       <div class="custom-block-bottom d-flex justify-content-between mt-3">
                         <div class="bi-heart me-1">
-                          <span><?= getNovelLikes($novel['id_novel']); ?></span>
+                          <span><?= $novel['jumlah_like']; ?></span>
                         </div>
                       </div>
                     </div>
@@ -116,7 +111,7 @@ function getNovelLikes($novelId) {
                 </div>
               <?php endforeach; ?>
             <?php else: ?>
-              <strong class="text-center py-5">Mohon pilih salah satu genre</strong>
+              <strong class="text-center py-5">Novel tidak ditemukan</strong>
             <?php endif; ?>
           </div>
         </div>

@@ -100,12 +100,12 @@ if (isset($_POST['submit'])) {
       try {
         // edit novel
         $novelSql = 'UPDATE novel SET id_pengguna = :id_pengguna, judul = :judul, slug = :slug, deskripsi = :deskripsi, photo_filename = :photo_filename WHERE id = :id';
-        $slug = slugify($title);
+        $slug = slugify(htmlspecialchars($title));
         $novelParams = [
           ':id_pengguna' => $user['id'],
-          ':judul' => $title,
+          ':judul' => htmlspecialchars($title),
           ':slug' => $slug,
-          ':deskripsi' => $description,
+          ':deskripsi' => htmlspecialchars($description),
           ':photo_filename' => $thumbnail['size'] ? $filename : $novel['photo_filename'],
           ':id' => $novel['id']
         ];

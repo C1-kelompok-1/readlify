@@ -24,7 +24,7 @@ if (isset($_GET['slug'])) {
   $episodeSql = 'SELECT * FROM episode_novel WHERE id_novel = :id_novel';
   $episodeParams = [':id_novel' => $novel['id']];
   $episodes = fetchAll($episodeSql, $episodeParams);
-  $firstEpisode = $episodes[0];
+  $firstEpisode = count($episodes) ? $episodes[0] : null;
 
   $likeSql = 'SELECT COUNT(episode_novel_disukai.id) AS jumlah_like
               FROM episode_novel_disukai
@@ -115,7 +115,9 @@ function isEpisodeBought($episode) {
                   <!-- Sipnosis -->
                   <p><?= $novel['deskripsi']; ?></p>
 
-                  <a href="episode.php?novel_slug=<?= $novel['slug']; ?>&episode_slug=<?= $firstEpisode['slug']; ?>" class="btn custom-btn">Baca episode pertama</a>
+                  <?php if ($firstEpisode): ?>
+                    <a href="episode.php?novel_slug=<?= $novel['slug']; ?>&episode_slug=<?= $firstEpisode['slug']; ?>" class="btn custom-btn">Baca episode pertama</a>
+                  <?php endif; ?>
 
                   <div class="profile-block profile-detail-block d-flex flex-wrap align-items-center mt-4">
                     <!-- Nama penulis -->
@@ -158,16 +160,21 @@ function isEpisodeBought($episode) {
               </div>
             </div>
 
-            <?php foreach ($episodes as $index => $episode): ?>
-              <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-                <a href="<?= isEpisodeBought($episode) ? 'episode' : 'beli-episode'; ?>.php?novel_slug=<?= $novel['slug']; ?>&episode_slug=<?= $episode['slug']; ?>" class="d-block h-100">
-                  <div class="custom-block d-flex justify-content-center flex-column align-items-start h-100">
-                    <p><strong><?= $episode['judul']; ?></strong></p>
-                    <p class="badge mb-0">Episode <?= $index + 1; ?></p>
-                  </div>
-                </a>
-              </div>
-            <?php endforeach; ?>
+            <?php if (count($episodes)): ?>
+              <?php foreach ($episodes as $index => $episode): ?>
+                <div class="col-lg-4 col-12 mb-4 mb-lg-0">
+                  <a href="<?= isEpisodeBought($episode) ? 'episode' : 'beli-episode'; ?>.php?novel_slug=<?= $novel['slug']; ?>&episode_slug=<?= $episode['slug']; ?>" class="d-block h-100">
+                    <div class="custom-block d-flex justify-content-center flex-column align-items-start h-100">
+                      <p><strong><?= $episode['judul']; ?></strong></p>
+                      <p class="badge mb-0">Episode <?= $index + 1; ?></p>
+                    </div>
+                  </a>
+                </div>
+              <?php endforeach; ?>
+            <?php else: ?>
+              <strong class="text-center">Belum ada episode</strong>
+            <?php endif; ?>
+
           </div>
         </div>
       </section>

@@ -44,10 +44,10 @@ if (isset($_POST['submit'])) {
 
     try {
       $episodeSql = 'INSERT INTO episode_novel (id_novel, judul, slug, konten, harga_koin) VALUES (:id_novel, :judul, :slug, :konten, :harga_koin)';
-      $slug = slugify($title);
+      $slug = slugify(htmlspecialchars($title));
       $episodeParams = [
         ':id_novel' => $novel['id'],
-        ':judul' => $title,
+        ':judul' => htmlspecialchars($title),
         ':slug' => $slug,
         ':konten' => $content,
         ':harga_koin' => $coin ?: null

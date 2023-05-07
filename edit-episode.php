@@ -48,11 +48,11 @@ if (isset($_POST['submit'])) {
 
     try {
       $episodeSql = 'UPDATE episode_novel SET judul = :judul, slug = :slug, konten = :konten, harga_koin = :harga_koin WHERE id = :id';
-      $episodeSlug = slugify($title);
+      $slug = slugify(htmlspecialchars($title));
       $episodeParams = [
         ':id' => $episode['id'],
-        ':judul' => $title,
-        ':slug' => $episodeSlug,
+        ':judul' => htmlspecialchars($title),
+        ':slug' => $slug,
         ':konten' => $content,
         ':harga_koin' => $coin ?: null
       ];

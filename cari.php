@@ -6,13 +6,20 @@ redirectIfNotAuthenticated('login.php');
 
 if (isset($_GET['search'])) {
   $keyword = htmlspecialchars($_GET['search']);
-  $novelSql = 'SELECT novel.*, pengguna.username, COUNT(episode_novel_disukai.id) AS jumlah_like
+  $novelSql = "SELECT
+                novel.id,
+                novel.judul,
+                novel.slug,
+                novel.photo_filename,
+                novel.deskripsi,
+                pengguna.username,
+                COUNT(episode_novel_disukai.id) AS jumlah_like
               FROM novel
+              LEFT JOIN episode_novel ON episode_novel.id_novel = novel.id
+              LEFT JOIN episode_novel_disukai ON episode_novel_disukai.id_episode_novel = episode_novel.id
               INNER JOIN pengguna ON pengguna.id = novel.id_pengguna
-              INNER JOIN episode_novel ON episode_novel.id_novel = novel.id
-              INNER JOIN episode_novel_disukai ON episode_novel_disukai.id_episode_novel = episode_novel.id
               WHERE novel.judul LIKE :judul
-              GROUP BY novel.id';
+              GROUP BY novel.id;";
   $novels = fetchAll($novelSql, [':judul' => "%$keyword%"]);
 }
 
@@ -26,7 +33,7 @@ if (isset($_GET['search'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Readify</title>
+    <title>Cari novel "<?= $keyword; ?>"</title>
 
     <?php require 'layouts/favicon.php'; ?>
     <?php require 'layouts/styles.php'; ?>
@@ -98,7 +105,7 @@ if (isset($_GET['search'])) {
                 </div>
               <?php endforeach; ?>
             <?php else: ?>
-              <strong class="text-center py-5">Mohon pilih salah satu genre</strong>
+              <strong class="text-center py-5">Novel tidak ditemukan</strong>
             <?php endif; ?>
           </div>
         </div>

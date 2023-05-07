@@ -8,6 +8,19 @@ redirectIfNotAuthenticated('login.php');
 $user = getLoginUser();
 
 $novelSql = 'SELECT * FROM novel WHERE id_pengguna = :id_pengguna';
+$novelSql = 'SELECT
+                novel.id,
+                novel.judul,
+                novel.slug,
+                novel.photo_filename,
+                novel.deskripsi,
+                COUNT(episode_novel_disukai.id) AS jumlah_like
+              FROM novel
+              INNER JOIN pengguna ON pengguna.id = novel.id_pengguna
+              LEFT JOIN episode_novel ON episode_novel.id_novel = novel.id
+              LEFT JOIN episode_novel_disukai ON episode_novel_disukai.id_episode_novel = episode_novel.id
+              WHERE pengguna.id = :id_pengguna
+              GROUP BY novel.id;';
 $novelParams = [':id_pengguna' => $user['id']];
 $novels = fetchAll($novelSql, $novelParams);
 
@@ -66,7 +79,7 @@ $novels = fetchAll($novelSql, $novelParams);
                       <!-- Suka -->
                       <div class="custom-block-bottom d-flex justify-content-between mt-3">
                         <div class="bi-heart me-1">
-                          <span>2.5k</span>
+                          <span><?= $novel['jumlah_like']; ?></span>
                         </div>
                       </div>
                     </div>

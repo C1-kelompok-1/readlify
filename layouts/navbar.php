@@ -38,7 +38,7 @@ $user = getLoginUser();
 
         <?php if ($user['role'] == 'penulis'): ?>
           <li class="nav-item">
-            <a class="nav-link <?= getPageName() == 'novel-saya.php' ? 'active' : '' ?>" href="novel-saya.php">Cerita Saya</a>
+            <a class="nav-link <?= getPageName() == 'novel-saya.php' ? 'active' : '' ?>" href="novel-saya.php">Novel Saya</a>
           </li>
         <?php endif; ?>
 

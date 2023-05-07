@@ -90,12 +90,12 @@ if (isset($_POST['submit'])) {
         $user = getLoginUser();
 
         $novelSql = 'INSERT INTO novel (id_pengguna, judul, slug, deskripsi, photo_filename) VALUES (:id_pengguna, :judul, :slug, :deskripsi, :photo_filename)';
-        $slug = slugify($title);
+        $slug = slugify(htmlspecialchars($title));
         $novelParams = [
           ':id_pengguna' => $user['id'],
-          ':judul' => $title,
+          ':judul' => htmlspecialchars($title),
           ':slug' => $slug,
-          ':deskripsi' => $description,
+          ':deskripsi' => htmlspecialchars($description),
           ':photo_filename' => $filename,
         ];
         $novelId = query($novelSql, $novelParams);

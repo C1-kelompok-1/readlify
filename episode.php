@@ -41,8 +41,13 @@ if ($episode['harga_koin']) {
   }
 }
 
+// cek total like
+$likedEpisode = fetchOne('SELECT COUNT(id) AS jumlah FROM episode_novel_disukai WHERE id_episode_novel = :id_episode_novel', [
+  ':id_episode_novel' => $episode['id']
+]);
+
 // cek apakah episode sudah dilike
-$likedEpisode = fetchOne('SELECT COUNT(id) AS jumlah FROM episode_novel_disukai WHERE id_episode_novel = :id_episode_novel AND id_pengguna = :id_pengguna', [
+$hasLikedEpisode = fetchOne('SELECT COUNT(id) AS jumlah FROM episode_novel_disukai WHERE id_episode_novel = :id_episode_novel AND id_pengguna = :id_pengguna', [
   ':id_episode_novel' => $episode['id'],
   ':id_pengguna' => $user['id'],
 ]);
@@ -50,7 +55,7 @@ $likedEpisode = fetchOne('SELECT COUNT(id) AS jumlah FROM episode_novel_disukai 
 // like episode
 if (isset($_POST['like'])) {
   try {
-    if ($likedEpisode['jumlah']) {
+    if ($hasLikedEpisode['jumlah']) {
       query('DELETE FROM episode_novel_disukai WHERE id_episode_novel = :id_episode_novel AND id_pengguna = :id_pengguna', [
         ':id_episode_novel' => $episode['id'],
         ':id_pengguna' => $user['id'],
@@ -68,8 +73,35 @@ if (isset($_POST['like'])) {
   }
 }
 
-$prevEpisode = fetchOne('SELECT slug, judul FROM episode_novel WHERE id < :id_episode ORDER BY id DESC LIMIT 1', [':id_episode' => $episode['id']]);
-$nextEpisode = fetchOne('SELECT slug, judul FROM episode_novel WHERE id > :id_episode ORDER BY id LIMIT 1', [':id_episode' => $episode['id']]);
+$prevEpisodeSql = 'SELECT
+                    episode_novel.slug,
+                    episode_novel.judul
+                    FROM episode_novel
+                    INNER JOIN novel ON novel.id = episode_novel.id_novel
+                    WHERE
+                      novel.slug = :slug_novel AND
+                      episode_novel.id < :id_episode
+                    ORDER BY episode_novel.id DESC
+                    LIMIT 1';
+$prevEpisode = fetchOne($prevEpisodeSql, [
+  ':id_episode' => $episode['id'],
+  ':slug_novel' => $novelSlug,
+]);
+
+$nextEpisodeSql = 'SELECT
+                    episode_novel.slug,
+                    episode_novel.judul
+                    FROM episode_novel
+                    INNER JOIN novel ON novel.id = episode_novel.id_novel
+                    WHERE
+                      novel.slug = :slug_novel AND
+                      episode_novel.id > :id_episode
+                    ORDER BY episode_novel.id
+                    LIMIT 1';
+$nextEpisode = fetchOne($nextEpisodeSql, [
+  ':id_episode' => $episode['id'],
+  ':slug_novel' => $novelSlug,
+]);
 
 ?>
 
