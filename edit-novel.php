@@ -4,6 +4,7 @@ require 'helpers/input.php';
 require 'helpers/string.php';
 require 'helpers/auth.php';
 require 'helpers/alert.php';
+require 'helpers/file.php';
 
 redirectIfNotAuthenticated('login.php');
 
@@ -72,27 +73,7 @@ if (isset($_POST['submit'])) {
       setOldInputs();
     } else {
       if ($thumbnail['size']) {
-        // simpan dan ubah ukuran thumbnail
-        $tmpPath = $thumbnail['tmp_name'];
-          
-        if ($thumbnailExt == 'jpg') {
-          $image = imagecreatefromjpeg($tmpPath);
-        }
-  
-        if ($thumbnailExt == 'png') {
-          $image = imagecreatefrompng($tmpPath);
-        }
-  
-        $imgResized = imagescale($image , 500, 400);
-        $filename = generateRandomString().'.'.$thumbnailExt;
-  
-        if ($thumbnailExt == 'jpg') {
-          imagejpeg($imgResized, 'photos/'.$filename);
-        }
-  
-        if ($thumbnailExt == 'png') {
-          imagepng($imgResized, 'photos/'.$filename);
-        }
+        $filename = saveAndResizeImage($thumbnail, 290, 210);
       }
   
       beginTransaction();
@@ -211,7 +192,7 @@ if (isset($_POST['submit'])) {
                     <?= getInputError('genres'); ?>
                   </div>
                   <div class="form-group mt-3">
-                    <button type="submit" name="submit" class="btn custom-btn">Buat novel</button>
+                    <button type="submit" name="submit" class="btn custom-btn">Edit novel</button>
                   </div>
                 </form>
               </div>

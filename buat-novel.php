@@ -4,6 +4,7 @@ require 'helpers/input.php';
 require 'helpers/string.php';
 require 'helpers/auth.php';
 require 'helpers/alert.php';
+require 'helpers/file.php';
 
 redirectIfNotAuthenticated('login.php');
 
@@ -61,27 +62,7 @@ if (isset($_POST['submit'])) {
       setAlert('danger', 'Judul novel sudah digunakan');
       setOldInputs();
     } else {
-      // simpan dan ubah ukuran thumbnail
-      $tmpPath = $thumbnail['tmp_name'];
-        
-      if ($thumbnailExt == 'jpg') {
-        $image = imagecreatefromjpeg($tmpPath);
-      }
-
-      if ($thumbnailExt == 'png') {
-        $image = imagecreatefrompng($tmpPath);
-      }
-
-      $imgResized = imagescale($image , 290, 210);
-      $filename = generateRandomString().'.'.$thumbnailExt;
-
-      if ($thumbnailExt == 'jpg') {
-        imagejpeg($imgResized, 'photos/'.$filename);
-      }
-
-      if ($thumbnailExt == 'png') {
-        imagepng($imgResized, 'photos/'.$filename);
-      }
+      $filename = saveAndResizeImage($thumbnail, 290, 210);
 
       beginTransaction();
 

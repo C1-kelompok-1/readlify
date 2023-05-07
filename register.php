@@ -26,7 +26,7 @@ function tambahUser($conn, $email, $username, $password)
     return false;
   } else {
     // Jika belum ada, tambahkan pengguna ke database
-    $sql = "INSERT INTO pengguna (role, username, password, email) VALUES ('pembaca', '$username', '$password', '$email')";
+    $sql = "INSERT INTO pengguna (role, username, password, email, avatar) VALUES ('pembaca', '$username', '$password', '$email', 'default.svg')";
     $query = mysqli_query($conn, $sql);
     return $query;
   }
