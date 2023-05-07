@@ -142,24 +142,15 @@ if (!$novel) {
           </div>
   
           <?php foreach ($episodes as $index => $episode): ?>
-            <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-              <div class="custom-block">
-                <a href="episode-novel.php?novel_slug=<?= $novel['slug']; ?>&episode_slug=<?= $episode['slug']; ?>">
-                  <div class="custom-block-info custom-block-overlay-info">
-                    <!-- Judul episode -->
-                    <h5 class="mb-1">
-                      <a href="episode-novel.php?novel_slug=<?= $novel['slug']; ?>&episode_slug=<?= $episode['slug']; ?>">
-                        <?= $episode['judul']; ?>
-                      </a>
-                    </h5>
-  
-                    <!-- Nomor episode -->
+              <div class="col-lg-4 col-12 mb-4 mb-lg-0">
+                <a href="episode-novel.php?novel_slug=<?= $novel['slug']; ?>&episode_slug=<?= $episode['slug']; ?>" class="d-block h-100">
+                  <div class="custom-block d-flex justify-content-center flex-column align-items-start h-100">
+                    <p><strong><?= $episode['judul']; ?></strong></p>
                     <p class="badge mb-0">Episode <?= $index + 1; ?></p>
                   </div>
                 </a>
               </div>
-            </div>
-          <?php endforeach; ?>
+            <?php endforeach; ?>
         </div>
       </div>
     </section>
@@ -171,9 +162,9 @@ if (!$novel) {
   </form>
 
   <?php require 'layouts/footer.php'; ?>
-
-  <script src="js/sweetalert2.all.min.js"></script>
   <?php require 'layouts/scripts.php'; ?>
+  <script src="js/sweetalert2.all.min.js"></script>
+
   <script>
     $('#hapus').click(function () {
       Swal.fire({

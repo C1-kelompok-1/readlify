@@ -36,7 +36,7 @@ redirectIfNotAuthenticated('login.php');
 						</div>
 
 						<div class="mb-5">
-							<form action="cari.php" method="get" class="custom-form search-form flex-fill me-3" role="search">
+							<form action="cari.php" method="get" class="custom-form search-form flex-fill me-3">
 								<div class="input-group input-group-lg">
 									<input name="search" type="search" class="form-control" id="search" placeholder="Cari Novel"
 										aria-label="Search">

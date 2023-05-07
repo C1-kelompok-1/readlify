@@ -15,8 +15,6 @@ if (!$episode) {
   redirect('404.html');
 }
 
-$novel = fetchOne('SELECT slug FROM novel WHERE id = :id_novel', [':id_novel' => $episode['id_novel']]);
-
 // hapus novel
 if (isset($_POST['hapus'])) {
   $episodeId = $_POST['id_episode'];
@@ -31,7 +29,7 @@ if (isset($_POST['hapus'])) {
     commit();
 
     setAlert('success', 'Episode berhasil dihapus');
-    redirect('detail-novel-saya.php?slug='.$novel['slug']);
+    redirect('detail-novel-saya.php?slug='.$novelSlug);
   } catch (PDOException $error) {
     rollBack();
     setAlert('danger', 'Gagal menghapus episode');
@@ -68,7 +66,7 @@ if (isset($_POST['hapus'])) {
               <?= getAlert(); ?>
             </div>
             <div class="col-12 d-flex justify-content-between mb-3">
-              <a href="detail-novel-saya.php?slug=<?= $novel['slug']; ?>" class="btn custom-btn">
+              <a href="detail-novel-saya.php?slug=<?= $novelSlug; ?>" class="btn custom-btn">
                 <i class="bi-arrow-left"></i>
                 Kembali
               </a>

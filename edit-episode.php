@@ -61,7 +61,7 @@ if (isset($_POST['submit'])) {
       commit();
 
       setAlert('success', 'Episode berhasil diedit');
-      redirect('episode-novel.php?slug='.$episodeSlug);
+      redirect('episode-novel.php?novel_slug='.$novelSlug.'&episode_slug='.$episodeSlug);
     } catch (PDOException $error) {
       rollBack();
       var_dump($error);
@@ -112,7 +112,7 @@ if (isset($_POST['submit'])) {
                 <div class="custom-block-info">
                   <h5 class="mb-4">Edit episode</h5>
 
-                  <form action="edit-episode.php?slug=<?= $episodeSlug; ?>" method="POST" class="custom-form me-3">
+                  <form action="edit-episode.php?novel_slug=<?= $novelSlug; ?>&episode_slug=<?= $episodeSlug; ?>" method="POST" class="custom-form me-3">
                     <div class="form-group">
                       <input name="title" type="text" class="form-control" id="title" placeholder="Judul episode" value="<?= getOldInput('title', $episode['judul']); ?>">
                       <?= getInputError('title'); ?>
@@ -135,7 +135,7 @@ if (isset($_POST['submit'])) {
                       <?= getInputError('content'); ?>
                     </div>
                     <div class="form-group mt-3">
-                      <button type="submit" name="submit" class="btn custom-btn">Buat episode</button>
+                      <button type="submit" name="submit" class="btn custom-btn">Edit episode</button>
                     </div>
                   </form>
                 </div>

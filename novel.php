@@ -1,37 +1,83 @@
+<?php
+
+require 'database.php';
+require 'helpers/auth.php';
+
+redirectIfNotAuthenticated('login.php');
+
+if (isset($_GET['slug'])) {
+  $novelSql = 'SELECT novel.*,
+                pengguna.username,
+                pengguna.facebook_url,
+                pengguna.instagram_url,
+                pengguna.twitter_url
+              FROM novel
+              INNER JOIN pengguna ON pengguna.id = novel.id_pengguna
+              WHERE slug = :slug';
+  $novelParams = [':slug' => $_GET['slug']];
+  $novel = fetchOne($novelSql, $novelParams);
+
+  $genreSql = 'SELECT nama FROM genre WHERE id IN (SELECT id_genre FROM genre_novel WHERE id_novel = :id_novel)';
+  $genreParams = [':id_novel' => $novel['id']];
+  $genres = fetchAll($genreSql, $genreParams);
+
+  $episodeSql = 'SELECT * FROM episode_novel WHERE id_novel = :id_novel';
+  $episodeParams = [':id_novel' => $novel['id']];
+  $episodes = fetchAll($episodeSql, $episodeParams);
+  $firstEpisode = $episodes[0];
+}
+
+function isEpisodeBought($episode) {
+  $user = getLoginUser();
+  if ($episode['harga_koin']) {
+    $boughtEpisodeSql = 'SELECT id
+                        FROM episode_novel_terbeli
+                        WHERE id_episode_novel = :id_episode_novel
+                          AND id_pengguna = :id_pengguna';
+    return fetchOne($boughtEpisodeSql, [
+      ':id_episode_novel' => $episode['id'],
+      ':id_pengguna' => $user['id'],
+    ]);
+  }
+
+  return true;
+}
+
+?>
+
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <title><?= $novel['judul']; ?></title>
 
-  <title>Readify</title>
+    <?php require 'layouts/favicon.php'; ?>
+    <?php require 'layouts/styles.php'; ?>
+  </head>
 
-  <?php require 'layouts/styles.php'; ?>
+  <body>
 
-</head>
+    <main>
+      <?php require 'layouts/navbar.php'; ?>
 
-<body>
+      <header class="site-header site-header-no-title d-flex flex-column justify-content-center align-items-center">
+      </header>
 
-  <main>
-    <?php require 'layouts/navbar.php'; ?>
-  
-    <header class="site-header site-header-no-title d-flex flex-column justify-content-center align-items-center">
-    </header>
+      <section class="latest-podcast-section section-padding pb-0" id="section_2">
+        <div class="container">
+          <div class="row justify-content-center">
 
-    <section class="latest-podcast-section section-padding pb-0" id="section_2">
-      <div class="container">
-        <div class="row justify-content-center">
-
-          <div class="col-lg-10 col-12"></div>
+            <div class="col-lg-10 col-12"></div>
             <div class="row">
               <div class="col-lg-3 col-12">
-                <div class="custom-block-icon-wrap">
-                  <div class="custom-block-info custom-block-image-detail-page">
-                    <img src="https://cdn.gramedia.com/uploads/items/9786239726218.jpg" class="custom-block-image img-fluid" alt="">
-                  </div>
+                <div class="custom-block-image-wrap">
+                  <a href="detail-novel-saya.php?slug=<?= $novel['slug']; ?>">
+                    <img src="<?= 'photos/'.$novel['photo_filename']; ?>" class="custom-block-image img-fluid" alt="<?= $novel['judul']; ?>">
+                  </a>
                 </div>
               </div>
 
@@ -39,44 +85,47 @@
                 <div class="custom-block-info">
                   <div class="custom-block-top d-flex mb-3">
                     <!-- Genre -->
-                    <div class="badge badge-info me-2">Aksi</div>
-                    <div class="badge badge-info">Drama</div>
+                    <?php foreach ($genres as $index => $genre): ?>
+                      <div class="badge badge-info <?= $index < count($genres) ? 'me-2' : ''; ?>">
+                        <?= $genre['nama']; ?>
+                      </div>
+                    <?php endforeach; ?>
 
                     <!-- Episode -->
                     <div class="ms-auto">
                       <div class="bi-heart badge d-inline-block me-3">
                         <span>2.5k</span>
                       </div>
-                      <small><span class="badge">3</span> Episode</small>
+                      <small><span class="badge"><?= count($episodes); ?></span> Episode</small>
                     </div>
                   </div>
 
                   <!-- Judul -->
-                  <h2 class="mb-2">Bedebah Diujung Tanduk</h2>
+                  <h2 class="mb-2"><?= $novel['judul']; ?></h2>
 
                   <!-- Sipnosis -->
-                  <p>Di Negeri di Ujung Tanduk, pencuri, perampok, berkeliaran menjadi penegak hukum. Di depan, di belakang, mereka tidak malu-malu lagi.  Tapi setidaknya, Kawan, dalam situasi apapun, petarung sejati akan terus memilih kehormatan hidupnya. Bahkan ketika nasib di ujung tanduk. Dia akan terus bertarung habis-habisan, bersama sahabat sejati. Karena esok, matahari akan terbit sekali lagi. Bersama harapan.</p>
+                  <p><?= $novel['deskripsi']; ?></p>
 
-                  <a href="#" class="btn custom-btn">Baca episode pertama</a>
+                  <a href="episode.php?novel_slug=<?= $novel['slug']; ?>&episode_slug=<?= $firstEpisode['slug']; ?>" class="btn custom-btn">Baca episode pertama</a>
 
                   <div class="profile-block profile-detail-block d-flex flex-wrap align-items-center mt-4">
                     <!-- Nama penulis -->
                     <div class="d-flex mb-3 mb-lg-0 mb-md-0">
-                      <strong>Tere Liye</strong>
+                      <strong><?= $novel['username']; ?></strong>
                     </div>
 
                     <!-- Sosial media penulis -->
                     <ul class="social-icon ms-lg-auto ms-md-auto">
                       <li class="social-icon-item">
-                        <a href="#" class="social-icon-link bi-instagram"></a>
+                        <a href="<?= $novel['facebook_url']; ?>" class="social-icon-link bi-facebook"></a>
                       </li>
 
                       <li class="social-icon-item">
-                        <a href="#" class="social-icon-link bi-twitter"></a>
+                        <a href="<?= $novel['twitter_url']; ?>" class="social-icon-link bi-twitter"></a>
                       </li>
 
                       <li class="social-icon-item">
-                        <a href="#" class="social-icon-link bi-linkedin"></a>
+                        <a href="<?= $novel['instagram_url']; ?>" class="social-icon-link bi-instagram"></a>
                       </li>
                     </ul>
                   </div>
@@ -86,83 +135,36 @@
           </div>
 
         </div>
-      </div>
-    </section>
-
-    <!-- Episode -->
-    <section class="related-podcast-section section-padding">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-12 col-12">
-            <div class="section-title-wrap mb-5">
-              <h4 class="section-title">Episode</h4>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-            <div class="custom-block">
-              <a href="episode.php">
-                <div class="custom-block-info custom-block-overlay-info">
-                  <!-- Judul episode -->
-                  <h5 class="mb-1">
-                    <a href="episode.php">
-                      Duel
-                    </a>
-                  </h5>
-  
-                  <!-- Nomor episode -->
-                  <p class="badge mb-0">Episode 1</p>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-            <div class="custom-block">
-              <a href="beli-episode.php">
-                <div class="custom-block-info custom-block-overlay-info">
-                  <!-- Judul episode -->
-                  <h5 class="mb-1">
-                    <a href="beli-episode.php">
-                      Serangan Mematikan
-                    </a>
-                  </h5>
-
-                  <!-- Nomor episode -->
-                  <p class="badge mb-0">Episode 2</p>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-            <div class="custom-block">
-              <a href="episode.php">
-                <div class="custom-block-info custom-block-overlay-info">
-                  <!-- Judul episode -->
-                  <h5 class="mb-1">
-                    <a href="episode.php">
-                      Apa yang sedang kau lakukan, Thomas?
-                    </a>
-                  </h5>
-
-                  <!-- Nomor episode -->
-                  <p class="badge mb-0">Episode 3</p>
-                </div>
-              </a>
-            </div>
-          </div>
-
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <?php require 'layouts/footer.php'; ?>
+      <!-- Episode -->
+      <section class="related-podcast-section section-padding">
+        <div class="container">
+          <div class="row">
 
-  <?php require 'layouts/scripts.php'; ?>
+            <div class="col-lg-12 col-12">
+              <div class="section-title-wrap mb-5">
+                <h4 class="section-title">Episode</h4>
+              </div>
+            </div>
 
-</body>
+            <?php foreach ($episodes as $index => $episode): ?>
+              <div class="col-lg-4 col-12 mb-4 mb-lg-0">
+                <a href="<?= isEpisodeBought($episode) ? 'episode' : 'beli-episode'; ?>.php?novel_slug=<?= $novel['slug']; ?>&episode_slug=<?= $episode['slug']; ?>" class="d-block h-100">
+                  <div class="custom-block d-flex justify-content-center flex-column align-items-start h-100">
+                    <p><strong><?= $episode['judul']; ?></strong></p>
+                    <p class="badge mb-0">Episode <?= $index + 1; ?></p>
+                  </div>
+                </a>
+              </div>
+            <?php endforeach; ?>
+          </div>
+        </div>
+      </section>
+    </main>
 
+    <?php require 'layouts/footer.php'; ?>
+    <?php require 'layouts/scripts.php'; ?>
+  </body>
 </html>
