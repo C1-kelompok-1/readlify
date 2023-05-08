@@ -15,7 +15,7 @@ $result = mysqli_query($conn, $query);
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
-  <title>Dashboard</title>
+  <title>Tambah Gender</title>
   <link href="assets/css/pace.min.css" rel="stylesheet"/>
   <script src="assets/js/pace.min.js"></script>
   <!--favicon-->
@@ -137,4 +137,45 @@ $result = mysqli_query($conn, $query);
 
     </table>
  </div>  
+</html>
+
+<?php
+require "koneksi.php";
+
+if (isset($_GET["tambah"])){
+    $id = $_GET["id"];
+    $nama = $_GET["nama"];
+
+    $query = "INSERT INTO genre (id, nama) VALUES ('$id', '$nama')";
+    $result = mysqli_query($conn,$query);
+
+    if (!$result) {
+        die('Error: ' . mysqli_error($conn));
+    } else {
+        echo "<script>
+            alert ('Data berhasil ditambahkan');
+            window.location.href = 'genre.php';
+            </script>";
+    }
+}
+?>
+
+<html>
+    <body>
+    <div class="card mt-3">
+        <h1>Tambah Genre</h1>
+        <br>
+        <form action="" method="get">
+            Id :
+            <input type="text" name="id">
+            <br>
+            <br>
+            Nama :
+            <input type="text" name="nama">
+            <br>
+            <br>
+            <button type="submit" name="tambah">TAMBAH</button>
+        </form>
+</div>
+    </body>
 </html>

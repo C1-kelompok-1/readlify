@@ -2,7 +2,7 @@
 
 require "koneksi.php";
 
-$query = "SELECT * FROM genre";
+$query = "SELECT * FROM paket_koin";
 $result = mysqli_query($conn, $query);
 
 ?>
@@ -15,7 +15,7 @@ $result = mysqli_query($conn, $query);
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
-  <title>Dashboard</title>
+  <title>Update koin</title>
   <link href="assets/css/pace.min.css" rel="stylesheet"/>
   <script src="assets/js/pace.min.js"></script>
   <!--favicon-->
@@ -137,4 +137,79 @@ $result = mysqli_query($conn, $query);
 
     </table>
  </div>  
+</html>
+
+<?php
+require "koneksi.php";
+
+if (!isset($_GET["id"])) {
+  header("location: koin.php");
+  exit;
+}
+
+$id = $_GET["id"];
+$query = "SELECT * FROM paket_koin WHERE id = '$id'";
+$result = mysqli_query($conn, $query);
+
+if (mysqli_num_rows($result) != 1) {
+  header("location: koin.php");
+  exit;
+}
+
+function ubah($data) {
+  global $conn;
+
+  $id = $_POST["id"];
+  $jumlah = $_POST["jumlah"];
+  $harga = $_POST["harga"];
+  $jumlah_tambahan = $_POST["jumlah_tambahan"];
+
+  $query = "UPDATE paket_koin SET
+    harga = '$harga'
+    WHERE id = '$id'";
+  $result = mysqli_query($conn, $query);
+  return mysqli_affected_rows($conn);
+}
+
+if (isset($_POST["update"])) {
+  if (ubah($_POST) > 0) {
+    echo "<script>
+        alert('Berhasil update data');
+        document.location.href = 'koin.php';
+        </script>";
+  } else {
+    echo "<script>
+        alert('Gagal update data');
+        document.location.href = 'koin.php';
+        </script>";
+  }
+}
+?>
+
+<html>
+
+<body>
+<div class="card mt-3">
+  <h1>Update</h1>
+  <form action="" method="post">
+    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+      <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
+      Jumlah:
+      <input type="text" name="jumlah" value="<?php echo $row['jumlah'] ?>">
+      <br>
+      <br>
+      Harga:
+      <input type="text" name="harga" value="<?php echo $row['harga'] ?>">
+      <br>
+      <br>
+      Jumlah Tambahan:
+      <input type="text" name="jumlah_tambahan" value="<?php echo $row['jumlah_tambahan'] ?>">
+      <br>
+      <br>
+      <button type="submit" name="update">UPDATE</button>
+    <?php } ?>
+  </form>
+    </div>
+</body>
+
 </html>

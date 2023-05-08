@@ -2,7 +2,7 @@
 
 require "koneksi.php";
 
-$query = "SELECT * FROM genre";
+$query = "SELECT * FROM paket_koin";
 $result = mysqli_query($conn, $query);
 
 ?>
@@ -15,7 +15,7 @@ $result = mysqli_query($conn, $query);
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
-  <title>Dashboard</title>
+  <title>Tambah Koin</title>
   <link href="assets/css/pace.min.css" rel="stylesheet"/>
   <script src="assets/js/pace.min.js"></script>
   <!--favicon-->
@@ -137,4 +137,55 @@ $result = mysqli_query($conn, $query);
 
     </table>
  </div>  
+</html>
+
+<?php
+require "koneksi.php";
+
+if (isset($_GET["tambah"])){
+    $id = $_GET["id"];
+    $jumlah = $_GET["jumlah"];
+    $harga = $_GET["harga"];
+    $jumlah_tambahan = $_GET["jumlah_tambahan"];
+
+    $query = "INSERT INTO paket_koin (id, jumlah, harga, jumlah_tambahan) VALUES ('$id', '$jumlah','$harga', '$jumlah_tambahan')";
+    $result = mysqli_query($conn,$query);
+
+    if (!$result) {
+        die('Error: ' . mysqli_error($conn));
+    } else {
+        echo "<script>
+            alert ('Data berhasil ditambahkan');
+            window.location.href = 'koin.php';
+            </script>";
+    }
+}
+?>
+
+<html>
+    <body>
+    <div class="card mt-3">
+        <h1>Tambah Paket Koin</h1>
+        <br>
+        <form action="" method="get">
+            Id :
+            <input type="text" name="id">
+            <br>
+            <br>
+            Jumlah :
+            <input type="text" name="jumlah">
+            <br>
+            <br>
+            Harga :
+            <input type="text" name="harga">
+            <br>
+            <br>
+            Jumlah Tambahan :
+            <input type="text" name="jumlah_tambahan">
+            <br>
+            <br>
+            <button type="submit" name="tambah">TAMBAH</button>
+        </form>
+</div>
+    </body>
 </html>

@@ -2,7 +2,7 @@
 
 require "koneksi.php";
 
-$query = "SELECT * FROM genre";
+$query = "SELECT * FROM novel";
 $result = mysqli_query($conn, $query);
 
 ?>
@@ -15,7 +15,7 @@ $result = mysqli_query($conn, $query);
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
-  <title>Dashboard</title>
+  <title>Daftar Novel</title>
   <link href="assets/css/pace.min.css" rel="stylesheet"/>
   <script src="assets/js/pace.min.js"></script>
   <!--favicon-->
@@ -103,7 +103,7 @@ $result = mysqli_query($conn, $query);
     </li>
 
   <li class="nav-item">
-      <marquee> <h4> HI ADMIN READLIFY </h4> </marquee>
+      <marquee> <h4> HI ADMIN READIFY </h4> </marquee>
     </li>
     </ul>
 
@@ -137,4 +137,33 @@ $result = mysqli_query($conn, $query);
 
     </table>
  </div>  
+ <div class="card mt-3">
+    <h1> Daftar Novel </h1>
+    <table border="1" cellpadding="10" cellspacing="0">
+
+        <tr>
+            <th>Id</th>
+            <th>Id Pengguna</th>
+            <th>Judul</th>
+            <th>Slug</th>
+            <th>Deskripsi</th>
+            <th>Photo Filename</th>
+        </tr>
+        <?php 
+
+        while( $row = mysqli_fetch_assoc($result)) {?>
+        
+        <tr>
+
+            <td><?php echo $row["id"] ?></td>
+            <td><?php echo $row["id_pengguna"] ?></td>
+            <td><?php echo $row["judul"] ?></td>
+            <td><?php echo $row["slug"] ?></td>
+            <td><?php echo $row["deskripsi"] ?></td>
+            <td><?php echo $row["photo_filename"] ?></td>
+        </tr>
+        <?php$i++?>
+        <?php } ?>
+    </table>
+ </div> 
 </html>

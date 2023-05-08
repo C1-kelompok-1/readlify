@@ -2,7 +2,7 @@
 
 require "koneksi.php";
 
-$query = "SELECT * FROM genre";
+$query = "SELECT * FROM paket_koin";
 $result = mysqli_query($conn, $query);
 
 ?>
@@ -15,7 +15,7 @@ $result = mysqli_query($conn, $query);
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
-  <title>Dashboard</title>
+  <title>Koin</title>
   <link href="assets/css/pace.min.css" rel="stylesheet"/>
   <script src="assets/js/pace.min.js"></script>
   <!--favicon-->
@@ -101,17 +101,27 @@ $result = mysqli_query($conn, $query);
        <i class="icon-menu menu-icon"></i>
      </a>
     </li>
-
-  <li class="nav-item">
+    <li class="nav-item">
       <marquee> <h4> HI ADMIN READLIFY </h4> </marquee>
     </li>
     </ul>
+  </ul>
+     
 
-    <li class="nav-item">
-      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-        <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar"></span>
-      </a>
-      
+      <ul class="dropdown-menu dropdown-menu-right">
+       <li class="dropdown-item user-details">
+        <a href="javaScript:void();">
+           <div class="media">
+             <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
+            <div class="media-body">
+            <h6 class="mt-2 user-title">Sarajhon Mccoy</h6>
+            <p class="user-subtitle">mccoy@example.com</p>
+            </div>
+           </div>
+          </a>
+        </li>
+       
+      </ul>
     </li>
   </ul>
 </nav>
@@ -135,6 +145,32 @@ $result = mysqli_query($conn, $query);
   <div class="content-wrapper">
     <div class="container-fluid">
 
+	<div class="card mt-3">
+    <h1> Paket koin </h1>
+    <a href="tambah_koin.php"> Tambah</a>
+    <table border="1" cellpadding="10" cellspacing="0">
+
+        <tr>
+            <th>id</th>
+            <th>jumlah</th>
+            <th>harga</th>
+            <th>jumlah_tambahan</th>
+        </tr>
+        <?php 
+
+        while( $row = mysqli_fetch_assoc($result)) {?>
+        
+        <tr>
+
+            <td><?php echo $row["id"] ?></td>
+            <td><?php echo $row["jumlah"] ?></td>
+            <td><?php echo $row["harga"] ?></td>
+            <td><?php echo $row["jumlah_tambahan"] ?></td>
+            <td><a href="hapus_koin.php?id=<?php echo$row['id']?>">hapus</a>
+            <a href="update_koin.php?id=<?php echo$row['id']?>">update</a></td>
+        </tr>
+        <?php$i++?>
+        <?php } ?>
     </table>
  </div>  
 </html>
