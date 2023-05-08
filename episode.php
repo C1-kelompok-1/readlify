@@ -1,123 +1,198 @@
+<?php
+
+require 'database.php';
+require 'helpers/auth.php';
+require 'helpers/alert.php';
+
+redirectIfNotAuthenticated('login.php');
+
+$user = getLoginUser();
+$novelSlug = $_GET['novel_slug'];
+$episodeSlug = $_GET['episode_slug'];
+
+$episodeSql = 'SELECT episode_novel.*,
+              novel.judul AS novel_judul,
+              pengguna.username
+              FROM episode_novel
+              INNER JOIN novel ON episode_novel.id_novel = novel.id
+              INNER JOIN pengguna ON pengguna.id = novel.id_pengguna
+              WHERE novel.slug = :novel_slug AND episode_novel.slug = :episode_slug';
+$episodeParams = [':novel_slug' => $novelSlug, ':episode_slug' => $episodeSlug];
+$episode = fetchOne($episodeSql, $episodeParams);
+
+// cek episode
+if (!$episode) {
+  redirect('404.html');
+}
+
+// cek episode terbeli
+if ($episode['harga_koin']) {
+  $boughtEpisodeSql = 'SELECT id
+                      FROM episode_novel_terbeli
+                      WHERE id_episode_novel = :id_episode_novel
+                        AND id_pengguna = :id_pengguna';
+  $isEpisodeBought = fetchOne($boughtEpisodeSql, [
+    ':id_episode_novel' => $episode['id'],
+    ':id_pengguna' => $user['id'],
+  ]);
+
+  if (!$isEpisodeBought) {
+    redirect('beli-episode.php?novel_slug='.$novelSlug.'&episode_slug='.$episodeSlug);
+  }
+}
+
+// cek total like
+$likedEpisode = fetchOne('SELECT COUNT(id) AS jumlah FROM episode_novel_disukai WHERE id_episode_novel = :id_episode_novel', [
+  ':id_episode_novel' => $episode['id']
+]);
+
+// cek apakah episode sudah dilike
+$hasLikedEpisode = fetchOne('SELECT COUNT(id) AS jumlah FROM episode_novel_disukai WHERE id_episode_novel = :id_episode_novel AND id_pengguna = :id_pengguna', [
+  ':id_episode_novel' => $episode['id'],
+  ':id_pengguna' => $user['id'],
+]);
+
+// like episode
+if (isset($_POST['like'])) {
+  try {
+    if ($hasLikedEpisode['jumlah']) {
+      query('DELETE FROM episode_novel_disukai WHERE id_episode_novel = :id_episode_novel AND id_pengguna = :id_pengguna', [
+        ':id_episode_novel' => $episode['id'],
+        ':id_pengguna' => $user['id'],
+      ]);
+    } else {
+      query('INSERT INTO episode_novel_disukai (id_episode_novel, id_pengguna) VALUES (:id_episode_novel, :id_pengguna)', [
+        ':id_episode_novel' => $episode['id'],
+        ':id_pengguna' => $user['id'],
+      ]);
+    }
+
+    redirect('episode.php?novel_slug='.$novelSlug.'&episode_slug='.$episodeSlug);    
+  } catch (PDOException $error) {
+    var_dump($error);
+  }
+}
+
+$prevEpisodeSql = 'SELECT
+                    episode_novel.slug,
+                    episode_novel.judul
+                    FROM episode_novel
+                    INNER JOIN novel ON novel.id = episode_novel.id_novel
+                    WHERE
+                      novel.slug = :slug_novel AND
+                      episode_novel.id < :id_episode
+                    ORDER BY episode_novel.id DESC
+                    LIMIT 1';
+$prevEpisode = fetchOne($prevEpisodeSql, [
+  ':id_episode' => $episode['id'],
+  ':slug_novel' => $novelSlug,
+]);
+
+$nextEpisodeSql = 'SELECT
+                    episode_novel.slug,
+                    episode_novel.judul
+                    FROM episode_novel
+                    INNER JOIN novel ON novel.id = episode_novel.id_novel
+                    WHERE
+                      novel.slug = :slug_novel AND
+                      episode_novel.id > :id_episode
+                    ORDER BY episode_novel.id
+                    LIMIT 1';
+$nextEpisode = fetchOne($nextEpisodeSql, [
+  ':id_episode' => $episode['id'],
+  ':slug_novel' => $novelSlug,
+]);
+
+?>
+
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <title><?= $episode['judul']; ?></title>
 
-  <title>Readify</title>
+    <?php require 'layouts/favicon.php'; ?>
+    <?php require 'layouts/styles.php'; ?>
+  </head>
 
-  <?php require 'layouts/styles.php'; ?>
+  <body>
+    <main>
+      <?php require 'layouts/navbar.php'; ?>
 
-</head>
+      <header class="site-header site-header-no-title d-flex flex-column justify-content-center align-items-center">
+      </header>
 
-<body>
-
-  <main>
-    <?php require 'layouts/navbar.php'; ?>
-  
-    <header class="site-header site-header-no-title d-flex flex-column justify-content-center align-items-center">
-    </header>
-
-    <section class="latest-podcast-section section-padding pb-0" id="section_2">
-      <div class="container">
-        <div class="row justify-content-center">
-
-          <div class="col-12">
-            <div class="row">
-              <div class="col-12 mb-5">
-              <div class="profile-block profile-detail-block d-flex flex-wrap align-items-center mt-4">
-                  <!-- Judul novel -->
-                  <div class="d-flex mb-3 mb-lg-0 mb-md-0">
-                    <a href="detail-page.php">
-                      <strong>Bedebah Diujung Tanduk</strong>
-                    </a>
+      <section class="latest-podcast-section section-padding pb-0" id="section_2">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-12 d-flex justify-content-end">
+                <a href="novel.php?slug=<?= $novelSlug; ?>" class="btn custom-btn ">
+                  <i class="bi-arrow-left"></i>
+                  Kembali
+                </a>
+                </div>
+                <div class="col-12 mb-5">
+                  <div class="mt-3">
+                    <?= getAlert(); ?>
                   </div>
 
-                  <!-- Nama penulis -->
-                  <div class="social-icon ms-lg-auto ms-md-auto">
-                    oleh <strong>Tere Liye</strong>
+                  <div class="profile-block profile-detail-block d-flex flex-wrap align-items-center mt-4">
+                    <!-- Judul novel -->
+                    <div class="d-flex mb-3 mb-lg-0 mb-md-0">
+                      <a href="novel.php?slug=<?= $novelSlug; ?>">
+                        <strong><?= $episode['novel_judul']; ?></strong>
+                      </a>
+                    </div>
+
+                    <!-- Nama penulis -->
+                    <div class="social-icon ms-lg-auto ms-md-auto">
+                      oleh <strong><?= $episode['username']; ?></strong>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-12">
-                <div class="custom-block-info">
-                  <!-- Judul -->
-                  <h2 class="text-center mb-5">Serangan Mematikan</h2>
+                <div class="col-12">
+                  <div class="custom-block-info">
+                    <!-- Judul -->
+                    <h2 class="text-center mb-5"><?= $episode['judul']; ?></h2>
 
-                  <!-- Konten -->
-                  <div class="mb-5">
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus praesentium nisi asperiores aut voluptate deleniti, eum et earum sunt quis id ut inventore quia incidunt voluptatem dolores omnis! In iure perspiciatis possimus nemo nam, atque sequi ipsa error ullam eum fugit recusandae labore quod reprehenderit distinctio debitis. Earum corporis repudiandae, autem possimus eos nihil dicta esse, culpa ea reiciendis iusto nam, nisi provident magnam odit dolorem fuga magni eius quam dolor numquam animi. Inventore, recusandae molestias voluptatum iste pariatur quas, similique doloribus maiores eum adipisci deleniti soluta. Ipsam iste ea porro fugit quod maiores atque explicabo, numquam repellendus esse quidem!</p>
+                    <!-- Konten -->
+                    <div class="mb-5 episode-content">
+                      <?= $episode['konten']; ?>
+                    </div>
 
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus praesentium nisi asperiores aut voluptate deleniti, eum et earum sunt quis id ut inventore quia incidunt voluptatem dolores omnis! In iure perspiciatis possimus nemo nam, atque sequi ipsa error ullam eum fugit recusandae labore quod reprehenderit distinctio debitis. Earum corporis repudiandae, autem possimus eos nihil dicta esse, culpa ea reiciendis iusto nam, nisi provident magnam odit dolorem fuga magni eius quam dolor numquam animi. Inventore, recusandae molestias voluptatum iste pariatur quas, similique doloribus maiores eum adipisci deleniti soluta. Ipsam iste ea porro fugit quod maiores atque explicabo, numquam repellendus esse quidem!</p>
-
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus praesentium nisi asperiores aut voluptate deleniti, eum et earum sunt quis id ut inventore quia incidunt voluptatem dolores omnis! In iure perspiciatis possimus nemo nam, atque sequi ipsa error ullam eum fugit recusandae labore quod reprehenderit distinctio debitis. Earum corporis repudiandae, autem possimus eos nihil dicta esse, culpa ea reiciendis iusto nam, nisi provident magnam odit dolorem fuga magni eius quam dolor numquam animi. Inventore, recusandae molestias voluptatum iste pariatur quas, similique doloribus maiores eum adipisci deleniti soluta. Ipsam iste ea porro fugit quod maiores atque explicabo, numquam repellendus esse quidem!</p>
-                  </div>
-
-                  <div class="d-flex justify-content-between">
-                    <a href="#" class="btn custom-btn">Sebelumnya: Duel</a>
-                    <a href="#" class="btn custom-btn">Selanjutnya: Apa yang sedang kau lakukan, Thomas?</a>
+                    <div class="d-flex justify-content-between">
+                      <?php if (isset($prevEpisode)): ?>
+                        <a href="episode.php?novel_slug=<?= $novelSlug ?>&episode_slug=<?= $prevEpisode['slug']; ?>" class="btn custom-btn me-auto">Sebelumnya: <?= strlen($prevEpisode['judul']) > 10 ? substr($prevEpisode['judul'], 0, 10).'...' : $prevEpisode['judul']; ?></a>
+                      <?php endif; ?>
+                      <?php if (isset($nextEpisode)): ?>
+                        <a href="episode.php?novel_slug=<?= $novelSlug ?>&episode_slug=<?= $nextEpisode['slug']; ?>" class="btn custom-btn ms-auto">Selanjutnya: <?= strlen($nextEpisode['judul']) > 10 ? substr($nextEpisode['judul'], 0, 10).'...' : $nextEpisode['judul']; ?></a>
+                      <?php endif; ?>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-        </div>
-      </div>
-    </section>
-
-    <!-- Episode -->
-    <section class="related-podcast-section section-padding">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-12 col-12">
-            <div class="section-title-wrap mb-5">
-              <h4 class="section-title">Episode</h4>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-            <a href="detail-page.php" class="d-block h-100">
-              <div class="custom-block d-flex justify-content-center flex-column align-items-start h-100">
-                <p><strong>Duel</strong></p>
-                <p class="badge mb-0">Episode 1</p>
-              </div>
-            </a>
-          </div>
-          <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-            <a href="detail-page.php" class="d-block h-100">
-              <div class="custom-block d-flex justify-content-center flex-column align-items-start h-100">
-                <p><strong>Serangan Mematikan</strong></p>
-                <p class="badge mb-0">Episode 2</p>
-              </div>
-            </a>
-          </div>
-          <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-            <a href="detail-page.php" class="d-block h-100">
-              <div class="custom-block d-flex justify-content-center flex-column align-items-start h-100">
-                <p><strong>Thomas, apa yang sedang kau lakukan?</strong></p>
-                <p class="badge mb-0">Episode 3</p>
-              </div>
-            </a>
           </div>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
+    </main>
 
-  <a href="#" class="btn custom-btn position-fixed bottom-0 end-0 mb-4 me-4" style="z-index: 100;">
-    <div class="bi-heart">
-      <span>2.5k</span>
-    </div>
-  </a>
+    <form action="episode.php?novel_slug=<?= $novelSlug ?>&episode_slug=<?= $episodeSlug ?>" method="post">
+      <button type="submit" name="like" class="btn custom-btn position-fixed bottom-0 end-0 mb-4 me-4" style="z-index: 100;">
+        <div class="bi-heart<?= $hasLikedEpisode['jumlah'] ? '-fill' : ''; ?>">
+          <span><?= $likedEpisode['jumlah']; ?></span>
+        </div>
+      </button>
+    </form>
 
-  <?php require 'layouts/footer.php'; ?>
-  <?php require 'layouts/scripts.php'; ?>
-
-</body>
-
+    <?php require 'layouts/footer.php'; ?>
+    <?php require 'layouts/scripts.php'; ?>
+  </body>
 </html>

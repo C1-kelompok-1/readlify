@@ -1,14 +1,12 @@
 <?php
 
-require 'database.php';
 require 'helpers/auth.php';
 
 redirectIfNotAuthenticated('login.php');
 
-$genreOptions = fetchAll('SELECT id, nama FROM genre');
-$novels = [];
-
-$novelSql = "SELECT
+if (isset($_GET['search'])) {
+  $keyword = htmlspecialchars($_GET['search']);
+  $novelSql = "SELECT
                 novel.id,
                 novel.judul,
                 novel.slug,
@@ -17,20 +15,12 @@ $novelSql = "SELECT
                 pengguna.username,
                 COUNT(episode_novel_disukai.id) AS jumlah_like
               FROM novel
-              INNER JOIN pengguna ON pengguna.id = novel.id_pengguna
               LEFT JOIN episode_novel ON episode_novel.id_novel = novel.id
               LEFT JOIN episode_novel_disukai ON episode_novel_disukai.id_episode_novel = episode_novel.id
-              LEFT JOIN genre_novel ON genre_novel.id_novel = novel.id
-              LEFT JOIN genre ON genre.id = genre_novel.id_genre
-              WHERE genre.nama = :genre
+              INNER JOIN pengguna ON pengguna.id = novel.id_pengguna
+              WHERE novel.judul LIKE :judul
               GROUP BY novel.id;";
-
-if (isset($_GET['genre'])) {
-  $novelParams = [':genre' => $_GET['genre']];
-  $novels = fetchAll($novelSql, $novelParams);
-} else {
-  $novelParams = [':genre' => $genreOptions[0]['nama']];
-  $novels = fetchAll($novelSql, $novelParams);
+  $novels = fetchAll($novelSql, [':judul' => "%$keyword%"]);
 }
 
 ?>
@@ -43,12 +33,11 @@ if (isset($_GET['genre'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Readify | Genre</title>
+    <title>Cari novel "<?= $keyword; ?>"</title>
 
     <?php require 'layouts/favicon.php'; ?>
     <?php require 'layouts/styles.php'; ?>
   </head>
-
   <body>
     <main>
       <?php require 'layouts/navbar.php'; ?>
@@ -57,7 +46,7 @@ if (isset($_GET['genre'])) {
         <div class="container">
           <div class="row">
             <div class="col-lg-12 col-12 text-center">
-              <h2 class="mb-0">Pilih genre kesukaanmu</h2>
+              <h2>Cari novel "<?= $keyword; ?>"</h2>
             </div>
           </div>
         </div>
@@ -66,12 +55,17 @@ if (isset($_GET['genre'])) {
       <section class="section-padding">
         <div class="container">
           <div class="row">
-            <div class="col-lg-12 col-12">
-              <div class="mb-5">
-                <?php foreach ($genreOptions as $genre): ?>
-                  <a href="genre.php?genre=<?= $genre['nama']; ?>&id=<?= $genre['id']; ?>" class="btn custom-btn me-3 mb-3 <?= $genre['id'] == (isset($_GET['id']) ? $_GET['id'] : $genreOptions[0]['id']) ? 'active' : ''; ?>"><?= $genre['nama']; ?></a>
-                <?php endforeach; ?>
-              </div>
+            <div class="col-12 mb-5">
+              <form action="cari.php" method="get" class="custom-form search-form bordered-search-form flex-fill me-3"
+                role="search">
+                <div class="input-group input-group-lg">
+                  <input name="search" type="search" class="form-control" id="search" placeholder="Cari Novel" value="<?= $keyword; ?>">
+
+                  <button type="submit" class="form-control" id="submit">
+                    <i class="bi-search"></i>
+                  </button>
+                </div>
+              </form>
             </div>
             <?php if (count($novels) > 0): ?>
               <?php foreach ($novels as $novel): ?>
@@ -119,6 +113,8 @@ if (isset($_GET['genre'])) {
     </main>
 
     <?php require 'layouts/footer.php'; ?>
+
     <?php require 'layouts/scripts.php'; ?>
+
   </body>
 </html>
