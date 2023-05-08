@@ -186,7 +186,7 @@ $nextEpisode = fetchOne($nextEpisodeSql, [
 
     <form action="episode.php?novel_slug=<?= $novelSlug ?>&episode_slug=<?= $episodeSlug ?>" method="post">
       <button type="submit" name="like" class="btn custom-btn position-fixed bottom-0 end-0 mb-4 me-4" style="z-index: 100;">
-        <div class="bi-heart">
+        <div class="bi-heart<?= $hasLikedEpisode['jumlah'] ? '-fill' : ''; ?>">
           <span><?= $likedEpisode['jumlah']; ?></span>
         </div>
       </button>
