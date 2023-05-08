@@ -6,7 +6,7 @@ require "helpers/input.php";
 require "helpers/auth.php";
 
 redirectIfAuthenticated('index.php');
-
+///tesss
 if (isset($_POST['login'])) {
   // Get input values
   $username = $_POST['username'];
@@ -26,7 +26,7 @@ if (isset($_POST['login'])) {
     $userSql = "SELECT * FROM pengguna WHERE username = :username OR email = :email";
     $userParams = ['username' => $username, 'email' => $username];
     $user = fetchOne($userSql, $userParams);
-    
+
     if ($user) {
       if (password_verify($password, $user['password'])) {
         $_SESSION['user'] = $user;
@@ -45,7 +45,7 @@ if (isset($_POST['login'])) {
         redirect('index.php');
       }
     }
-    
+
     setAlert('danger', 'Akun tidak ditemukan.');
   } else {
     setOldInputs();
