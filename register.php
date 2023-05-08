@@ -15,19 +15,23 @@ function getInputValue($name)
   }
 }
 // Fungsi untuk menambahkan user ke database
-function tambahUser($conn, $email, $username, $password)
+function tambahUser($email, $username, $password)
 {
   // Cek apakah email atau username sudah ada di database
-  $query = "SELECT * FROM pengguna WHERE email = '$email' OR username = '$username'";
-  $result = mysqli_query($conn, $query);
+  $query = "SELECT * FROM pengguna WHERE email = :email OR username = :username";
+  $result = fetchOne($query, [':email' => $email, ':username' => $username]);
 
-  if (mysqli_num_rows($result) > 0) {
+  if ($result) {
     // Jika sudah ada, kembalikan false
     return false;
   } else {
     // Jika belum ada, tambahkan pengguna ke database
-    $sql = "INSERT INTO pengguna (role, username, password, email, avatar) VALUES ('pembaca', '$username', '$password', '$email', 'default.svg')";
-    $query = mysqli_query($conn, $sql);
+    $sql = "INSERT INTO pengguna (role, username, password, email, avatar) VALUES ('pembaca', :username, :password, :email, 'default.svg')";
+    $query = query($sql, [
+      ':username' => $username,
+      ':password' => $password,
+      ':email' => $email
+    ]);
     return $query;
   }
 }
@@ -79,7 +83,7 @@ if (isset($_POST["daftar"])) {
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     // Tambahkan user ke database
-    $result = tambahUser($conn, $email, $username, $password);
+    $result = tambahUser($email, $username, $password);
     if ($result) {
       setAlert('success', 'Akun berhasil terdaftar, silakan login.');
       redirect('login.php');
