@@ -1,3 +1,12 @@
+<?php
+
+require "koneksi.php";
+
+$query = "SELECT * FROM novel";
+$result = mysqli_query($conn, $query);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +16,6 @@
   <meta name="description" content=""/>
   <meta name="author" content=""/>
   <title>Daftar Novel</title>
-  <!-- loader-->
   <link href="assets/css/pace.min.css" rel="stylesheet"/>
   <script src="assets/js/pace.min.js"></script>
   <!--favicon-->
@@ -63,12 +71,6 @@
       </li>
 
       <li>
-        <a href="detail_nvl.php">
-          <i class="zmdi zmdi-info-outline"></i> <span>Detail Novel</span>
-        </a>
-      </li>
-
-      <li>
         <a href="genre.php">
           <i class="zmdi zmdi-book-image"></i> <span>Genre</span>
         </a>
@@ -99,63 +101,69 @@
        <i class="icon-menu menu-icon"></i>
      </a>
     </li>
-    <li class="nav-item">
-      <form class="search-bar">
-        <input type="text" class="form-control" placeholder="Enter keywords">
-         <a href="javascript:void();"><i class="icon-magnifier"></i></a>
-      </form>
+
+  <li class="nav-item">
+      <marquee> <h4> HI ADMIN READIFY </h4> </marquee>
     </li>
-  </ul>
-     
-  <ul class="navbar-nav align-items-center right-nav-link">
-    <li class="nav-item dropdown-lg">
-      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
-      <i class="fa fa-envelope-open-o"></i></a>
-    </li>
-    <li class="nav-item dropdown-lg">
-      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
-      <i class="fa fa-bell-o"></i></a>
-    </li>
-    <li class="nav-item language">
-      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();"><i class="fa fa-flag"></i></a>
-      <ul class="dropdown-menu dropdown-menu-right">
-          <li class="dropdown-item"> <i class="flag-icon flag-icon-gb mr-2"></i> English</li>
-          <li class="dropdown-item"> <i class="flag-icon flag-icon-fr mr-2"></i> French</li>
-          <li class="dropdown-item"> <i class="flag-icon flag-icon-cn mr-2"></i> Chinese</li>
-          <li class="dropdown-item"> <i class="flag-icon flag-icon-de mr-2"></i> German</li>
-        </ul>
-    </li>
+    </ul>
+
     <li class="nav-item">
       <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
         <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar"></span>
       </a>
-      <ul class="dropdown-menu dropdown-menu-right">
-       <li class="dropdown-item user-details">
-        <a href="javaScript:void();">
-           <div class="media">
-             <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
-            <div class="media-body">
-            <h6 class="mt-2 user-title">Sarajhon Mccoy</h6>
-            <p class="user-subtitle">mccoy@example.com</p>
-            </div>
-           </div>
-          </a>
-        </li>
-        <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-envelope mr-2"></i> Inbox</li>
-        <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-wallet mr-2"></i> Account</li>
-        <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
-        <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li>
-      </ul>
+      
     </li>
   </ul>
 </nav>
 </header>
 <!--End topbar header-->
 
+  <!-- Bootstrap core JavaScript-->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+	
+ <!-- simplebar js -->
+ <script src="assets/plugins/simplebar/js/simplebar.js"></script>
+  <!-- sidebar-menu js -->
+  <script src="assets/js/sidebar-menu.js"></script>
+  <!-- loader scripts -->
+  <script src="assets/js/jquery.loading-indicator.js"></script>
+  <!-- Custom scripts -->
+  <script src="assets/js/app-script.js"></script>
 
-</body>
+  <div class="content-wrapper">
+    <div class="container-fluid">
+
+    </table>
+ </div>  
+ <div class="card mt-3">
+    <h1> Daftar Novel </h1>
+    <table border="1" cellpadding="10" cellspacing="0">
+
+        <tr>
+            <th>Id</th>
+            <th>Id Pengguna</th>
+            <th>Judul</th>
+            <th>Slug</th>
+            <th>Deskripsi</th>
+            <th>Photo Filename</th>
+        </tr>
+        <?php 
+
+        while( $row = mysqli_fetch_assoc($result)) {?>
+        
+        <tr>
+
+            <td><?php echo $row["id"] ?></td>
+            <td><?php echo $row["id_pengguna"] ?></td>
+            <td><?php echo $row["judul"] ?></td>
+            <td><?php echo $row["slug"] ?></td>
+            <td><?php echo $row["deskripsi"] ?></td>
+            <td><?php echo $row["photo_filename"] ?></td>
+        </tr>
+        <?php$i++?>
+        <?php } ?>
+    </table>
+ </div> 
 </html>

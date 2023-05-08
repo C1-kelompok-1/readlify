@@ -2,7 +2,7 @@
 
 require "koneksi.php";
 
-$query = "SELECT * FROM pengguna";
+$query = "SELECT * FROM paket_koin";
 $result = mysqli_query($conn, $query);
 
 ?>
@@ -15,7 +15,7 @@ $result = mysqli_query($conn, $query);
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
-  <title>Daftar Pengguna</title>
+  <title>Tambah Koin</title>
   <link href="assets/css/pace.min.css" rel="stylesheet"/>
   <script src="assets/js/pace.min.js"></script>
   <!--favicon-->
@@ -137,37 +137,55 @@ $result = mysqli_query($conn, $query);
 
     </table>
  </div>  
- <div class="card mt-3">
-    <h1> Daftar Pengguna </h1>
-    <table border="1" cellpadding="10" cellspacing="0">
+</html>
 
-        <tr>
-            <th>Id</th>
-            <th>Role</th>
-            <th>Username</th>
-            <th>E-mail</th>
-            <th>Facebook Url</th>
-            <th>Instagram Url</th>
-            <th>Twitter Url</th>
-            <th>Koin</th>
-        </tr>
-        <?php 
+<?php
+require "koneksi.php";
 
-        while( $row = mysqli_fetch_assoc($result)) {?>
-        
-        <tr>
+if (isset($_GET["tambah"])){
+    $id = $_GET["id"];
+    $jumlah = $_GET["jumlah"];
+    $harga = $_GET["harga"];
+    $jumlah_tambahan = $_GET["jumlah_tambahan"];
 
-            <td><?php echo $row["id"] ?></td>
-            <td><?php echo $row["role"] ?></td>
-            <td><?php echo $row["username"] ?></td>
-            <td><?php echo $row["email"] ?></td>
-            <td><?php echo $row["facebook_url"] ?></td>
-            <td><?php echo $row["instagram_url"] ?></td>
-            <td><?php echo $row["twitter_url"] ?></td>
-            <td><?php echo $row["koin"] ?></td>
-        </tr>
-        <?php$i++?>
-        <?php } ?>
-    </table>
- </div> 
+    $query = "INSERT INTO paket_koin (id, jumlah, harga, jumlah_tambahan) VALUES ('$id', '$jumlah','$harga', '$jumlah_tambahan')";
+    $result = mysqli_query($conn,$query);
+
+    if (!$result) {
+        die('Error: ' . mysqli_error($conn));
+    } else {
+        echo "<script>
+            alert ('Data berhasil ditambahkan');
+            window.location.href = 'koin.php';
+            </script>";
+    }
+}
+?>
+
+<html>
+    <body>
+    <div class="card mt-3">
+        <h1>Tambah Paket Koin</h1>
+        <br>
+        <form action="" method="get">
+            Id :
+            <input type="text" name="id">
+            <br>
+            <br>
+            Jumlah :
+            <input type="text" name="jumlah">
+            <br>
+            <br>
+            Harga :
+            <input type="text" name="harga">
+            <br>
+            <br>
+            Jumlah Tambahan :
+            <input type="text" name="jumlah_tambahan">
+            <br>
+            <br>
+            <button type="submit" name="tambah">TAMBAH</button>
+        </form>
+</div>
+    </body>
 </html>
