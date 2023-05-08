@@ -1,3 +1,4 @@
+
 <?php
 
 require "koneksi.php";
@@ -15,7 +16,7 @@ $result = mysqli_query($conn, $query);
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
-  <title>Dashboard</title>
+  <title>Update Genre</title>
   <link href="assets/css/pace.min.css" rel="stylesheet"/>
   <script src="assets/js/pace.min.js"></script>
   <!--favicon-->
@@ -137,4 +138,69 @@ $result = mysqli_query($conn, $query);
 
     </table>
  </div>  
+</html>
+
+<?php
+require "koneksi.php";
+
+if (!isset($_GET["id"])) {
+  header("location: genre.php");
+  exit;
+}
+
+$id = $_GET["id"];
+$query = "SELECT * FROM genre WHERE id = '$id'";
+$result = mysqli_query($conn, $query);
+
+if (mysqli_num_rows($result) != 1) {
+  header("location: genre.php");
+  exit;
+}
+
+function ubah($data) {
+  global $conn;
+
+  $id = $_POST["id"];
+  $nama = $_POST["nama"];
+
+  $query = "UPDATE genre SET
+    nama = '$nama'
+    WHERE id = '$id'";
+  $result = mysqli_query($conn, $query);
+  return mysqli_affected_rows($conn);
+}
+
+if (isset($_POST["update"])) {
+  if (ubah($_POST) > 0) {
+    echo "<script>
+        alert('Berhasil update data');
+        document.location.href = 'genre.php';
+        </script>";
+  } else {
+    echo "<script>
+        alert('Gagal update data');
+        document.location.href = 'genre.php';
+        </script>";
+  }
+}
+?>
+
+<html>
+
+<body>
+<div class="card mt-3">
+  <h1>Update</h1>
+  <form action="" method="post">
+    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+      <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
+      Nama:
+      <input type="text" name="nama" value="<?php echo $row['nama'] ?>">
+      <br>
+      <br>
+      <button type="submit" name="update">UPDATE</button>
+    <?php } ?>
+  </form>
+    </div>
+</body>
+
 </html>
