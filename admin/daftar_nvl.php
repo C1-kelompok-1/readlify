@@ -142,8 +142,6 @@ $result = mysqli_query($conn, $query);
     <table border="1" cellpadding="10" cellspacing="0">
 
         <tr>
-            <th>Id</th>
-            <th>Id Pengguna</th>
             <th>Judul</th>
             <th>Slug</th>
             <th>Deskripsi</th>
@@ -155,14 +153,13 @@ $result = mysqli_query($conn, $query);
         
         <tr>
 
-            <td><?php echo $row["id"] ?></td>
-            <td><?php echo $row["id_pengguna"] ?></td>
             <td><?php echo $row["judul"] ?></td>
             <td><?php echo $row["slug"] ?></td>
             <td><?php echo $row["deskripsi"] ?></td>
-            <td><?php echo $row["photo_filename"] ?></td>
+            <td>
+              <img src="../photos/<?php echo $row["photo_filename"] ?>" alt="">
+            </td>
         </tr>
-        <?php$i++?>
         <?php } ?>
     </table>
  </div> 

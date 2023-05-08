@@ -143,10 +143,9 @@ $result = mysqli_query($conn, $query);
 require "koneksi.php";
 
 if (isset($_GET["tambah"])){
-    $id = $_GET["id"];
     $nama = $_GET["nama"];
 
-    $query = "INSERT INTO genre (id, nama) VALUES ('$id', '$nama')";
+    $query = "INSERT INTO genre (id, nama) VALUES (null, '$nama')";
     $result = mysqli_query($conn,$query);
 
     if (!$result) {
@@ -166,10 +165,6 @@ if (isset($_GET["tambah"])){
         <h1>Tambah Genre</h1>
         <br>
         <form action="" method="get">
-            Id :
-            <input type="text" name="id">
-            <br>
-            <br>
             Nama :
             <input type="text" name="nama">
             <br>
