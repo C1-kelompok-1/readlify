@@ -100,8 +100,6 @@ if (isset($_POST['login'])) {
       </div>
     </div>
   </div>
-
-  <?php require 'layouts/auth/scripts.php' ?>
 </body>
 
 </html>

@@ -50,8 +50,9 @@ $user = getLoginUser();
       <div class="ms-4">
         <?php if ($user) { ?>
           <div class="dropdown">
-            <a href="login.php" class="dropdown-toggle text-white fw-bold fs-5" data-bs-toggle="dropdown" aria-expanded="false">
+            <a href="login.php" class="text-white" data-bs-toggle="dropdown" aria-expanded="false">
               <?= $user['username']; ?>
+              <img src="photos/<?= $user['avatar']; ?>" class="rounded-circle ms-2" style="width: 30px; height: 30px;" alt="<?= $user['username']; ?>">
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="profil.php">Profil</a></li>

@@ -7,7 +7,7 @@ if (!function_exists('saveAndResizeImage')) {
     $tmpPath = $image['tmp_name'];
     $imageExt = pathinfo($image['name'], PATHINFO_EXTENSION);
           
-    if ($imageExt == 'jpg') {
+    if ($imageExt == 'jpg' || $imageExt == 'jpeg') {
       $image = imagecreatefromjpeg($tmpPath);
     }
   
@@ -18,7 +18,7 @@ if (!function_exists('saveAndResizeImage')) {
     $imgResized = imagescale($image , $width, $height);
     $filename = generateRandomString().'.'.$imageExt;
   
-    if ($imageExt == 'jpg') {
+    if ($imageExt == 'jpg' || $imageExt == 'jpeg') {
       imagejpeg($imgResized, 'photos/'.$filename);
     }
   

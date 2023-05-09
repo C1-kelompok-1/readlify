@@ -75,7 +75,7 @@ if (isset($_POST['like'])) {
 
 $prevEpisodeSql = 'SELECT
                     episode_novel.slug,
-                    episode_novel.judul
+                    IF(LENGTH(episode_novel.judul) > 10, CONCAT(TRIM(SUBSTRING(episode_novel.judul, 1, 10)), "..."), episode_novel.judul) AS judul
                     FROM episode_novel
                     INNER JOIN novel ON novel.id = episode_novel.id_novel
                     WHERE
@@ -90,7 +90,7 @@ $prevEpisode = fetchOne($prevEpisodeSql, [
 
 $nextEpisodeSql = 'SELECT
                     episode_novel.slug,
-                    episode_novel.judul
+                    IF(LENGTH(episode_novel.judul) > 10, CONCAT(TRIM(SUBSTRING(episode_novel.judul, 1, 10)), "..."), episode_novel.judul) AS judul
                     FROM episode_novel
                     INNER JOIN novel ON novel.id = episode_novel.id_novel
                     WHERE
@@ -168,10 +168,10 @@ $nextEpisode = fetchOne($nextEpisodeSql, [
 
                     <div class="d-flex justify-content-between">
                       <?php if (isset($prevEpisode)): ?>
-                        <a href="episode.php?novel_slug=<?= $novelSlug ?>&episode_slug=<?= $prevEpisode['slug']; ?>" class="btn custom-btn me-auto">Sebelumnya: <?= strlen($prevEpisode['judul']) > 10 ? substr($prevEpisode['judul'], 0, 10).'...' : $prevEpisode['judul']; ?></a>
+                        <a href="episode.php?novel_slug=<?= $novelSlug ?>&episode_slug=<?= $prevEpisode['slug']; ?>" class="btn custom-btn me-auto">Sebelumnya: <?= $prevEpisode['judul']; ?></a>
                       <?php endif; ?>
                       <?php if (isset($nextEpisode)): ?>
-                        <a href="episode.php?novel_slug=<?= $novelSlug ?>&episode_slug=<?= $nextEpisode['slug']; ?>" class="btn custom-btn ms-auto">Selanjutnya: <?= strlen($nextEpisode['judul']) > 10 ? substr($nextEpisode['judul'], 0, 10).'...' : $nextEpisode['judul']; ?></a>
+                        <a href="episode.php?novel_slug=<?= $novelSlug ?>&episode_slug=<?= $nextEpisode['slug']; ?>" class="btn custom-btn ms-auto">Selanjutnya: <?= $nextEpisode['judul']; ?></a>
                       <?php endif; ?>
                     </div>
                   </div>

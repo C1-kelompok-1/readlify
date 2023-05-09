@@ -6,20 +6,21 @@ redirectIfNotAuthenticated('login.php');
 
 if (isset($_GET['search'])) {
   $keyword = htmlspecialchars($_GET['search']);
-  $novelSql = "SELECT
+  $novelSql = 'SELECT
                 novel.id,
-                novel.judul,
+                IF(LENGTH(novel.judul) > 30, CONCAT(TRIM(SUBSTRING(novel.judul, 1, 30)), "..."), novel.judul) AS judul,
                 novel.slug,
                 novel.photo_filename,
-                novel.deskripsi,
+                IF(LENGTH(novel.deskripsi) > 100, CONCAT(TRIM(SUBSTRING(novel.deskripsi, 1, 100)), "..."), novel.deskripsi) AS deskripsi,
                 pengguna.username,
+                pengguna.avatar,
                 COUNT(episode_novel_disukai.id) AS jumlah_like
               FROM novel
               LEFT JOIN episode_novel ON episode_novel.id_novel = novel.id
               LEFT JOIN episode_novel_disukai ON episode_novel_disukai.id_episode_novel = episode_novel.id
               INNER JOIN pengguna ON pengguna.id = novel.id_pengguna
               WHERE novel.judul LIKE :judul
-              GROUP BY novel.id;";
+              GROUP BY novel.id;';
   $novels = fetchAll($novelSql, [':judul' => "%$keyword%"]);
 }
 
@@ -69,7 +70,7 @@ if (isset($_GET['search'])) {
             </div>
             <?php if (count($novels) > 0): ?>
               <?php foreach ($novels as $novel): ?>
-                <div class="col-lg-4 col-12 mb-4 mb-lg-0">
+                <div class="col-lg-4 col-12 d-flex align-items-stretch mb-4 mb-4">
                   <div class="custom-block custom-block-full">
                     <div class="custom-block-image-wrap">
                       <a href="novel.php?slug=<?= $novel['slug']; ?>">
@@ -87,8 +88,9 @@ if (isset($_GET['search'])) {
                       </h5>
   
                       <!-- Nama penulis -->
-                      <div class="profile-block d-flex">
-                        <p><?= $novel['username']; ?></p>
+                      <div class="profile-block d-flex align-items-center my-3">
+                        <img src="photos/<?= $novel['avatar']; ?>" class="rounded-circle me-2" style="width: 40px; height: 40px;" alt="<?= $novel['username']; ?>">
+                        <strong><?= $novel['username']; ?></strong>
                       </div>
   
                       <!-- Sipnosis -->

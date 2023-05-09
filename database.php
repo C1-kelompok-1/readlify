@@ -8,7 +8,7 @@ $password = '';
 try {
   $conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
 } catch (PDOException $error) {
-  die("Koneksi ke database gagal: " . $conn->errorInfo());
+  die("Koneksi ke database gagal: " . $error);
 }
 
 if (!function_exists('fetchAll')) {

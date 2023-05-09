@@ -151,7 +151,6 @@ $result = mysqli_query($conn, $query);
     <table border="1" cellpadding="10" cellspacing="0">
 
         <tr>
-            <th>id</th>
             <th>jumlah</th>
             <th>harga</th>
             <th>jumlah_tambahan</th>
@@ -162,11 +161,10 @@ $result = mysqli_query($conn, $query);
         
         <tr>
 
-            <td><?php echo $row["id"] ?></td>
             <td><?php echo $row["jumlah"] ?></td>
             <td><?php echo $row["harga"] ?></td>
             <td><?php echo $row["jumlah_tambahan"] ?></td>
-            <td><a href="hapus_koin.php?id=<?php echo$row['id']?>">hapus</a>
+            <td><a href="hapus_koin.php?id=<?php echo$row['id']?>">hapus</a> |
             <a href="update_koin.php?id=<?php echo$row['id']?>">update</a></td>
         </tr>
         <?php$i++?>
