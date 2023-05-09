@@ -16,6 +16,7 @@ $novelSql = 'SELECT
                 novel.photo_filename,
                 IF(LENGTH(novel.deskripsi) > 100, CONCAT(TRIM(SUBSTRING(novel.deskripsi, 1, 100)), "..."), novel.deskripsi) AS deskripsi,
                 pengguna.username,
+                pengguna.avatar,
                 COUNT(episode_novel_disukai.id) AS jumlah_like
               FROM novel
               INNER JOIN pengguna ON pengguna.id = novel.id_pengguna
@@ -76,7 +77,7 @@ if (isset($_GET['genre'])) {
             </div>
             <?php if (count($novels) > 0): ?>
               <?php foreach ($novels as $novel): ?>
-                <div class="col-lg-4 col-12 d-flex align-items-stretch mb-4 mb-lg-0">
+                <div class="col-lg-4 col-12 d-flex align-items-stretch mb-4">
                   <div class="custom-block custom-block-full">
                     <div class="custom-block-image-wrap">
                       <a href="novel.php?slug=<?= $novel['slug']; ?>">
@@ -94,8 +95,9 @@ if (isset($_GET['genre'])) {
                       </h5>
   
                       <!-- Nama penulis -->
-                      <div class="profile-block d-flex">
-                        <strong class="mb-2"><?= $novel['username']; ?></strong>
+                      <div class="profile-block d-flex align-items-center my-3">
+                        <img src="photos/<?= $novel['avatar']; ?>" class="rounded-circle me-2" style="width: 40px; height: 40px;" alt="<?= $novel['username']; ?>">
+                        <strong><?= $novel['username']; ?></strong>
                       </div>
   
                       <!-- Sipnosis -->

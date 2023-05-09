@@ -152,8 +152,6 @@ if (isset($_POST["daftar"])) {
       </div>
     </div>
   </div>
-
-  <?php require 'layouts/auth/scripts.php' ?>
 </body>
 
 </html>
