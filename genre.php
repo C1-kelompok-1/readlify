@@ -69,7 +69,7 @@ if (isset($_GET['genre'])) {
             <div class="col-lg-12 col-12">
               <div class="mb-5">
                 <?php foreach ($genreOptions as $genre): ?>
-                  <a href="genre.php?genre=<?= $genre['nama']; ?>&id=<?= $genre['id']; ?>" class="btn custom-btn me-3 mb-3 <?= $genre['id'] == (isset($_GET['id']) ? $_GET['id'] : $genreOptions[0]['id']) ? 'active' : ''; ?>"><?= $genre['nama']; ?></a>
+                  <a href="genre.php?genre=<?= $genre['nama']; ?>" class="btn custom-btn me-3 mb-3 <?= $genre['nama'] == (isset($_GET['genre']) ? $_GET['genre'] : $genreOptions[0]['genre']) ? 'active' : ''; ?>"><?= $genre['nama']; ?></a>
                 <?php endforeach; ?>
               </div>
             </div>
