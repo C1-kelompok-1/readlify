@@ -61,10 +61,9 @@ if (isset($_POST['submit'])) {
       commit();
 
       setAlert('success', 'Episode berhasil diedit');
-      redirect('episode-novel.php?novel_slug='.$novelSlug.'&episode_slug='.$episodeSlug);
+      redirect('episode-novel.php?novel_slug='.$novelSlug.'&episode_slug='.$slug);
     } catch (PDOException $error) {
       rollBack();
-      var_dump($error);
       setAlert('danger', 'Gagal mengedit episode');
     }
   } else {

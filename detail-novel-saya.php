@@ -151,10 +151,10 @@ $episodeLikes = isset($likes['jumlah_like']) ? $likes['jumlah_like'] : 0;
           </div>
   
           <?php foreach ($episodes as $index => $episode): ?>
-              <div class="col-lg-4 col-12 mb-4 mb-lg-0">
+              <div class="col-lg-4 col-12 mb-4">
                 <a href="episode-novel.php?novel_slug=<?= $novel['slug']; ?>&episode_slug=<?= $episode['slug']; ?>" class="d-block h-100">
                   <div class="custom-block d-flex justify-content-center flex-column align-items-start h-100">
-                    <p><strong><?= $episode['judul']; ?></strong></p>
+                    <p class="text-break"><strong><?= $episode['judul']; ?></strong></p>
                     <p class="badge mb-0">Episode <?= $index + 1; ?></p>
                   </div>
                 </a>
