@@ -8,12 +8,12 @@ redirectIfNotAuthenticated('login.php');
 $genreOptions = fetchAll('SELECT id, nama FROM genre');
 $novels = [];
 
-$novelSql = "SELECT
+$novelSql = 'SELECT
                 novel.id,
-                novel.judul,
+                IF(LENGTH(novel.judul) > 30, CONCAT(TRIM(SUBSTRING(novel.judul, 1, 30)), "..."), novel.judul) AS judul,
                 novel.slug,
                 novel.photo_filename,
-                novel.deskripsi,
+                IF(LENGTH(novel.deskripsi) > 100, CONCAT(TRIM(SUBSTRING(novel.deskripsi, 1, 100)), "..."), novel.deskripsi) AS deskripsi,
                 pengguna.username,
                 COUNT(episode_novel_disukai.id) AS jumlah_like
               FROM novel
@@ -23,7 +23,7 @@ $novelSql = "SELECT
               LEFT JOIN genre_novel ON genre_novel.id_novel = novel.id
               LEFT JOIN genre ON genre.id = genre_novel.id_genre
               WHERE genre.nama = :genre
-              GROUP BY novel.id;";
+              GROUP BY novel.id;';
 
 if (isset($_GET['genre'])) {
   $novelParams = [':genre' => $_GET['genre']];
@@ -75,7 +75,7 @@ if (isset($_GET['genre'])) {
             </div>
             <?php if (count($novels) > 0): ?>
               <?php foreach ($novels as $novel): ?>
-                <div class="col-lg-4 col-12 mb-4 mb-lg-0">
+                <div class="col-lg-4 col-12 d-flex align-items-stretch mb-4 mb-lg-0">
                   <div class="custom-block custom-block-full">
                     <div class="custom-block-image-wrap">
                       <a href="novel.php?slug=<?= $novel['slug']; ?>">
@@ -94,7 +94,7 @@ if (isset($_GET['genre'])) {
   
                       <!-- Nama penulis -->
                       <div class="profile-block d-flex">
-                        <p><?= $novel['username']; ?></p>
+                        <strong class="mb-2"><?= $novel['username']; ?></strong>
                       </div>
   
                       <!-- Sipnosis -->

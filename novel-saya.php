@@ -10,10 +10,10 @@ $user = getLoginUser();
 $novelSql = 'SELECT * FROM novel WHERE id_pengguna = :id_pengguna';
 $novelSql = 'SELECT
                 novel.id,
-                novel.judul,
                 novel.slug,
+                IF(LENGTH(novel.judul) > 30, CONCAT(TRIM(SUBSTRING(novel.judul, 1, 30)), "..."), novel.judul) AS judul,
                 novel.photo_filename,
-                novel.deskripsi,
+                IF(LENGTH(novel.deskripsi) > 100, CONCAT(TRIM(SUBSTRING(novel.deskripsi, 1, 100)), "..."), novel.deskripsi) AS deskripsi,
                 COUNT(episode_novel_disukai.id) AS jumlah_like
               FROM novel
               INNER JOIN pengguna ON pengguna.id = novel.id_pengguna
@@ -59,7 +59,7 @@ $novels = fetchAll($novelSql, $novelParams);
             </div>
             <?php if (count($novels)): ?>
               <?php foreach ($novels as $novel): ?>
-                <div class="col-lg-4 col-12 mb-4 mb-lg-0">
+                <div class="col-lg-4 col-12 d-flex align-items-stretch mb-4 mb-lg-0">
                   <div class="custom-block custom-block-full">
                     <div class="custom-block-image-wrap">
                       <a href="detail-novel-saya.php?slug=<?= $novel['slug']; ?>">
@@ -77,8 +77,8 @@ $novels = fetchAll($novelSql, $novelParams);
                       <p class="mb-0"><?= $novel['deskripsi']; ?></p>
 
                       <!-- Suka -->
-                      <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                        <div class="bi-heart me-1">
+                      <div class="custom-block-bottom">
+                        <div class="bi-heart me-1 mt-3">
                           <span><?= $novel['jumlah_like']; ?></span>
                         </div>
                       </div>
