@@ -3,7 +3,7 @@ Readify merupakan paltform membaca novel gratis dan berbayar yang dapat digunaka
 
 ## Spesifikasi
 1. PHP 8.0^
-2. MySQL 5.4^ (database dapat diunduh [disini](https://drive.google.com/file/d/1SuB-6I4gZkyFWsHxxuvpw4W9souF0Wef/view?usp=sharing))
+2. MySQL 5.4^
 3. Pastikan ekstensi GD milik PHP sudah terinstall.
 
 ## Fitur-fitur
@@ -72,6 +72,7 @@ Berikut adalah beberapa fitur yang tersedia di Readify:
 
 ## ERD
 [![readify-1.png](https://i.postimg.cc/7ZCw08r4/readify-1.png)](https://postimg.cc/Xr0R6Pv1)
+<p>File SQL-nya dapat diunduh <a href="https://drive.google.com/file/d/1SuB-6I4gZkyFWsHxxuvpw4W9souF0Wef/view?usp=sharing">disini</a>.</p>
 
 ## Anggota
 1. Muhammad Novil Fahlevy (2109116095)
