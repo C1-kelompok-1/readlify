@@ -83,13 +83,6 @@ $result = mysqli_query($conn, $query);
           </a>
         </li>
 
-        <li>
-          <a href="profile.php">
-            <i class="zmdi zmdi-face"></i> <span>Profile</span>
-          </a>
-        </li>
-      </ul>
-
     </div>
     <!--End sidebar-wrapper-->
 
@@ -104,26 +97,11 @@ $result = mysqli_query($conn, $query);
           </li>
           <li class="nav-item">
             <marquee>
-              <h4> HI ADMIN READLIFY </h4>
+              <h4> HI ADMIN READIFY </h4>
             </marquee>
           </li>
         </ul>
         </ul>
-
-
-        <ul class="dropdown-menu dropdown-menu-right">
-          <li class="dropdown-item user-details">
-            <a href="javaScript:void();">
-              <div class="media">
-                <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110"
-                    alt="user avatar"></div>
-                <div class="media-body">
-                  <h6 class="mt-2 user-title">Sarajhon Mccoy</h6>
-                  <p class="user-subtitle">mccoy@example.com</p>
-                </div>
-              </div>
-            </a>
-          </li>
 
         </ul>
         </li>
@@ -150,8 +128,11 @@ $result = mysqli_query($conn, $query);
       <div class="container-fluid">
 
         <div class="card mt-3">
-          <h1> Genre </h1>
+          <center><h3> Genre </h3></center>
+          <br>
           <a href="tambah_genre.php"> Tambah</a>
+          <br>
+          
           <table border="1" cellpadding="10" cellspacing="0">
 
             <tr>

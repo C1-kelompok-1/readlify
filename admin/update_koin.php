@@ -81,13 +81,6 @@ $result = mysqli_query($conn, $query);
           <i class="zmdi zmdi-balance"></i> <span>Koin</span>
         </a>
       </li>
-
-      <li>
-        <a href="profile.php">
-          <i class="zmdi zmdi-face"></i> <span>Profile</span>
-        </a>
-      </li>
-    </ul>
    
    </div>
    <!--End sidebar-wrapper-->
@@ -103,14 +96,9 @@ $result = mysqli_query($conn, $query);
     </li>
 
   <li class="nav-item">
-      <marquee> <h4> HI ADMIN READLIFY </h4> </marquee>
+      <marquee> <h4> HI ADMIN READIFY </h4> </marquee>
     </li>
     </ul>
-
-    <li class="nav-item">
-      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-        <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar"></span>
-      </a>
       
     </li>
   </ul>
@@ -190,23 +178,28 @@ if (isset($_POST["update"])) {
 
 <body>
 <div class="card mt-3">
-  <h1>Update</h1>
+  <center><h3>Update</h3></center>
+  <br>
   <form action="" method="post">
     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
       <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
-      Jumlah:
+      <br>
+      <center>Jumlah:
+      <br>
       <input type="text" name="jumlah" value="<?php echo $row['jumlah'] ?>">
       <br>
       <br>
       Harga:
+      <br>
       <input type="text" name="harga" value="<?php echo $row['harga'] ?>">
       <br>
       <br>
       Jumlah Tambahan:
+      <br>
       <input type="text" name="jumlah_tambahan" value="<?php echo $row['jumlah_tambahan'] ?>">
       <br>
       <br>
-      <button type="submit" name="update">UPDATE</button>
+      <button type="submit" name="update">UPDATE</button></center>
     <?php } ?>
   </form>
     </div>

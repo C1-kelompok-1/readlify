@@ -81,13 +81,6 @@ $result = mysqli_query($conn, $query);
           <i class="zmdi zmdi-balance"></i> <span>Koin</span>
         </a>
       </li>
-
-      <li>
-        <a href="profile.php">
-          <i class="zmdi zmdi-face"></i> <span>Profile</span>
-        </a>
-      </li>
-    </ul>
    
    </div>
    <!--End sidebar-wrapper-->
@@ -107,11 +100,6 @@ $result = mysqli_query($conn, $query);
     </li>
     </ul>
 
-    <li class="nav-item">
-      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-        <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar"></span>
-      </a>
-      
     </li>
   </ul>
 </nav>
@@ -133,20 +121,24 @@ $result = mysqli_query($conn, $query);
   <script src="assets/js/app-script.js"></script>
 
   <div class="content-wrapper">
-    <div class="container-fluid">
-
-    </table>
- </div>  
- <div class="card mt-3">
-    <h1> Daftar Novel </h1>
-    <table border="1" cellpadding="10" cellspacing="0">
-
-        <tr>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card mt-3">
+              <div class="card-body">
+                <center><h3> Daftar Novel </h3></center>
+                <br>
+                <br>
+                <table class="table">
+                  <thead>
+                    <tr>
             <th>Judul</th>
             <th>Slug</th>
             <th>Deskripsi</th>
             <th>Photo Filename</th>
         </tr>
+</thead>  
+</body>
         <?php 
 
         while( $row = mysqli_fetch_assoc($result)) {?>
@@ -161,6 +153,12 @@ $result = mysqli_query($conn, $query);
             </td>
         </tr>
         <?php } ?>
-    </table>
- </div> 
+        </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </html>
