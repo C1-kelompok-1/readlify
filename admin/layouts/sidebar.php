@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+require '../config.php';
+
+if (!isset($_SESSION['user'])) {
+  echo "<script>";
+  echo "window.location = '/".BASE_URL."/login.php';";
+  echo "</script>";
+  die;
+}
+
+?>
+
 <!--Start sidebar-wrapper-->
 <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
   <div class="brand-logo">
@@ -35,6 +49,11 @@
     <li>
       <a href="koin.php">
         <i class="zmdi zmdi-balance"></i> <span>Koin</span>
+      </a>
+    </li>
+    <li>
+      <a href="/<?= BASE_URL; ?>/logout.php">
+        <i class="fa fa-sign-out"></i> <span>Keluar</span>
       </a>
     </li>
 
