@@ -1,20 +1,6 @@
 <footer class="site-footer mt-5">
   <div class="container">
-    <div class="row">
-
-      <div class="col-lg-6 col-12 mb-5 mb-lg-0">
-        <div class="subscribe-form-wrap">
-          <h6>Subscribe. Every weekly.</h6>
-
-          <form class="custom-form subscribe-form" action="#" method="get" role="form">
-            <input type="email" name="subscribe-email" id="subscribe-email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email Address" required="">
-
-            <div class="col-lg-12 col-12">
-              <button type="submit" class="form-control" id="submit">Subscribe</button>
-            </div>
-          </form>
-        </div>
-      </div>
+    <div class="row justify-content-center">
 
       <div class="col-lg-3 col-md-6 col-12 mb-4 mb-md-0 mb-lg-0">
         <h6 class="site-footer-title mb-3">kontak</h6>
@@ -63,7 +49,7 @@
   </div>
 
   <div class="container pt-5">
-    <div class="row align-items-center">
+    <div class="row justify-content-center align-items-center">
 
       <div class="col-lg-2 col-md-3 col-12">
         <a class="navbar-brand" href="index.php">
