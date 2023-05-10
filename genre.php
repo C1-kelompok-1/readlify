@@ -87,7 +87,7 @@ if (isset($_GET['genre'])) {
                   <div class="custom-block custom-block-full">
                     <div class="custom-block-image-wrap">
                       <a href="novel.php?slug=<?= $novel['slug']; ?>">
-                        <img src="<?= 'photos/'.$novel['photo_filename']; ?>"
+                        <img src="photos/<?= $novel['photo_filename']; ?>"
                           class="custom-block-image img-fluid" alt="<?= $novel['judul']; ?>">
                       </a>
                     </div>

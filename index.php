@@ -1,10 +1,11 @@
 <?php
 
 require 'helpers/auth.php';
-
+require 'koneksi.php';
+require 'episode_baru.php';
+require 'genre_populer.php';
+require 'novel_populer.php';
 redirectIfNotAuthenticated('login.php');
-
-
 
 ?>
 
@@ -18,7 +19,6 @@ redirectIfNotAuthenticated('login.php');
 	<meta name="author" content="">
 
 	<title>Readify</title>
-
 	<?php require 'layouts/favicon.php'; ?>
 	<?php require 'layouts/styles.php'; ?>
 </head>
@@ -26,8 +26,8 @@ redirectIfNotAuthenticated('login.php');
 <body>
 
 	<main>
-		<?php require 'layouts/navbar.php'; ?>
 
+		<?php require 'layouts/navbar.php'; ?>
 		<section class="hero-section">
 			<div class="container">
 				<div class="row">
@@ -40,8 +40,7 @@ redirectIfNotAuthenticated('login.php');
 						<div class="mb-5">
 							<form action="cari.php" method="get" class="custom-form search-form flex-fill me-3">
 								<div class="input-group input-group-lg">
-									<input name="search" type="search" class="form-control" id="search" placeholder="Cari Novel"
-										aria-label="Search">
+									<input name="search" type="search" class="form-control" id="search" placeholder="Cari Novel" aria-label="Search">
 
 									<button type="submit" class="form-control" id="submit">
 										<i class="bi-search"></i>
@@ -54,6 +53,7 @@ redirectIfNotAuthenticated('login.php');
 			</div>
 		</section>
 
+		<!-- Episode terbaru -->
 		<section class="latest-podcast-section section-padding pb-0" id="section_2">
 			<div class="container">
 				<div class="row justify-content-center">
@@ -64,104 +64,58 @@ redirectIfNotAuthenticated('login.php');
 						</div>
 					</div>
 
-					<div class="col-lg-6 col-12">
-						<div class="custom-block d-flex">
-							<div class="">
-								<div class="custom-block-icon-wrap">
-									<div class="section-overlay"></div>
-									<a href="detail-page.php" class="custom-block-image-wrap">
-										<img src="assets/images/novel/Twilight.jpeg" class="custom-block-image img-fluid" alt="">
-									</a>
+
+
+
+					<?php while ($row = mysqli_fetch_assoc($result_episode_baru)) { ?>
+						<div class="col-lg-6 col-12">
+							<div class="custom-block d-flex mt-4">
+								<div class="">
+									<div class="custom-block-icon-wrap">
+										<div class="section-overlay"></div>
+										<a href="novel.php?slug=<?= $row['slug']; ?>" class="custom-block-image-wrap">
+											<img src="photos/<?php echo $row['photo_filename']; ?>" class="custom-block-image img-fluid" alt="">
+										</a>
+									</div>
+
+									<div class="mt-2">
+										<a href="episode.php?novel_slug=<?= $row['slug']; ?>" class="btn custom-btn">
+											Baca Sekarang
+										</a>
+									</div>
 								</div>
 
-								<div class="mt-2">
-									<a href="#" class="btn custom-btn">
-										Baca Sekarang
-									</a>
-								</div>
-							</div>
+								<div class="custom-block-info">
+									<div class="custom-block-top d-flex mb-1">
+										<small>Judul <span class="badge"><?php echo $row['judul']; ?></span></small>
+									</div>
 
-							<div class="custom-block-info">
-								<div class="custom-block-top d-flex mb-1">
-									<small>Episode <span class="badge">72</span></small>
-								</div>
+									<h5 class="mb-2">
+										<a href="detail-page.php">
+											<?php echo $row['episode']; ?>
+										</a>
+									</h5>
 
-								<h5 class="mb-2">
-									<a href="detail-page.php">
-										Twilight
-									</a>
-								</h5>
+									<div class="profile-block align-items-center d-flex mb-3">
+										<img src="photos/<?php echo $row['avatar']; ?>" class="profile-block-image img-fluid" alt="">
 
-								<div class="profile-block align-items-center d-flex mb-3">
-									<img src="assets/images/pengarang/Stephenie Meyer.jpg" class="profile-block-image img-fluid" alt="">
+										<strong><?php echo $row['username']; ?></strong>
+									</div>
 
-									<strong>Stephenie Meyer</strong>
-								</div>
-
-								<p class="mb-0">
-									Bella pindah ke Forks dan bertemu keluarga Cullen yang misterius. Edward yang
-									awalnya kasar pada Bella, tiba-tiba menyelamatkannya dari kecelakaan dan memiliki
-									kekuatan super. Bella yakin Edward menyembunyikan sesuatu.</p>
-
-								<div class="custom-block-bottom d-flex justify-content-between mt-3">
-									<a href="#" class="bi-heart me-1">
-										<span>24jt</span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-6 col-12">
-						<div class="custom-block d-flex">
-							<div class="">
-								<div class="custom-block-icon-wrap">
-									<div class="section-overlay"></div>
-									<a href="detail-page.php" class="custom-block-image-wrap">
-										<img src="assets/images/novel/bumi.jpg" class="custom-block-image img-fluid" alt="">
-									</a>
-								</div>
-
-								<div class="mt-2">
-									<a href="#" class="btn custom-btn">
-										Lanjut baca
-									</a>
-								</div>
-							</div>
-
-							<div class="custom-block-info">
-								<div class="custom-block-top d-flex mb-1">
-									<small>Episode <span class="badge">35</span></small>
-								</div>
-
-								<h5 class="mb-2">
-									<a href="detail-page.php">
-										Bumi
-									</a>
-								</h5>
-
-								<div class="profile-block align-items-center d-flex mb-3">
-									<img src="assets/images/pengarang/tere liye.jpeg" class="profile-block-image img-fluid" alt="">
-									<strong>Tere Liye</strong>
-								</div>
-
-								<p class="mb-0">Raib adalah seorang gadis berumur 15 tahun. Secara umum, tidak ada yang
-									berbeda dari Raib dengan remaja pada umumnya. Namun, Raib memiliki rahasia yang ia
-									simpan sendiri sejak kecil, yakni kemampuan untuk menghilangkan diri. </p>
-
-								<div class="custom-block-bottom d-flex justify-content-between mt-3">
-									<a href="#" class="bi-heart me-1">
-										<span>2jt</span>
-									</a>
+									<div class="custom-block-bottom d-flex justify-content-between mt-3">
+										<a href="#" class="bi-heart me-1">
+											<span><?php echo $row['jumlah_disukai']; ?></span>
+										</a>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					<?php } ?>
 
 				</div>
 			</div>
 		</section>
-
+		<!-- Genre Populer -->
 		<section class="topics-section section-padding pb-0" id="section_3">
 			<div class="container">
 				<div class="row">
@@ -171,67 +125,26 @@ redirectIfNotAuthenticated('login.php');
 							<h4 class="section-title">Genre</h4>
 						</div>
 					</div>
+					<?php while ($row = mysqli_fetch_assoc($result_genre_populer)) { ?>
+						<div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+							<div class="custom-block custom-block-overlay">
+								<div class="custom-block-info custom-block-overlay-info">
+									<h5 class="mb-1">
+										<a href="genre.php">
+											<?php echo $row['nama']; ?>
+										</a>
+									</h5>
 
-					<div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
-						<div class="custom-block custom-block-overlay">
-							<div class="custom-block-info custom-block-overlay-info">
-								<h5 class="mb-1">
-									<a href="genre.php">
-										Romantis
-									</a>
-								</h5>
-
-								<p class="badge mb-0">20 Novel</p>
+									<p class="badge mb-0"><?php echo $row['jumlah_novel']; ?></p>
+								</div>
 							</div>
 						</div>
-					</div>
-
-					<div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
-						<div class="custom-block custom-block-overlay">
-							<div class="custom-block-info custom-block-overlay-info">
-								<h5 class="mb-1">
-									<a href="genre.php">
-										Misteri
-									</a>
-								</h5>
-
-								<p class="badge mb-0">12 Novel</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
-						<div class="custom-block custom-block-overlay">
-							<div class="custom-block-info custom-block-overlay-info">
-								<h5 class="mb-1">
-									<a href="genre.php">
-										Fantasi
-									</a>
-								</h5>
-
-								<p class="badge mb-0">25 Novel</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
-						<div class="custom-block custom-block-overlay">
-							<div class="custom-block-info custom-block-overlay-info">
-								<h5 class="mb-1">
-									<a href="genre.php">
-										Petualangan
-									</a>
-								</h5>
-
-								<p class="badge mb-0">22 Novel</p>
-							</div>
-						</div>
-					</div>
-
+					<?php } ?>
 				</div>
 			</div>
 		</section>
 
+		<!-- Novel Populer -->
 		<section class="trending-podcast-section section-padding">
 			<div class="container">
 				<div class="row">
@@ -242,122 +155,43 @@ redirectIfNotAuthenticated('login.php');
 						</div>
 					</div>
 
-					<div class="col-lg-4 col-12 mb-4 mb-lg-0">
-						<div class="custom-block custom-block-full">
-							<div class="custom-block-image-wrap">
-								<a href="detail-page.php">
-									<img src="assets/images/novel/cantik itu luka2.png" class="custom-block-image img-fluid" alt="">
-								</a>
-							</div>
 
-							<div class="custom-block-info">
-								<h5 class="mb-2">
+					<?php while ($row = mysqli_fetch_assoc($result_novel_populer)) { ?>
+						<div class="col-lg-4 col-12 mb-4 mb-lg-0">
+							<div class="custom-block custom-block-full">
+								<div class="custom-block-image-wrap">
 									<a href="detail-page.php">
-										Cantik Itu Luka
+										<img src="photos/<?php echo $row['photo_filename']; ?>" class="custom-block-image img-fluid" alt="">
 									</a>
-								</h5>
-
-								<div class="profile-block d-flex">
-									<img src="assets/images/pengarang/eka kurniawan.jpg" class="profile-block-image img-fluid" alt="">
-
-									<p>Eka Kurniawan
-										<strong>Pengarang</strong>
-									</p>
 								</div>
 
-								<p class="mb-0">Di akhir masa kolonial, seorang perempuan dipaksa menjadi pelacur.
-									Kehidupan itu terus dijalaninya hingga ia memiliki tiga anak gadis yang kesemuanya
-									cantik. Ketika mengandung anaknya yang keempat, ia berharap anak itu akan lahir
-									buruk rupa. Itulah yang terjadi, meskipun secara ironik ia memberinya nama si
-									Cantik.
+								<div class="custom-block-info">
+									<h5 class="mb-2">
+										<a href="detail-page.php">
+											<?php echo $row['judul']; ?>
+										</a>
+									</h5>
 
-								</p>
+									<div class="profile-block d-flex">
+										<img src="photos/<?php echo $row['avatar']; ?>" class="profile-block-image img-fluid" alt="">
 
-								<div class="custom-block-bottom d-flex justify-content-between mt-3">
-									<a href="#" class="bi-heart me-1">
-										<span>15k</span>
-									</a>
+										<p><?php echo $row['username']; ?>
+											<strong>Pengarang</strong>
+										</p>
+									</div>
+
+									<p class="mb-0"><?php echo $row['deskripsi']; ?></p>
+
+									<div class="custom-block-bottom d-flex justify-content-between mt-3">
+										<a href="#" class="bi-heart me-1">
+											<span><?php echo $row['jumlah_disukai']; ?></span>
+										</a>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					<?php } ?>
 
-					<div class="col-lg-4 col-12 mb-4 mb-lg-0">
-						<div class="custom-block custom-block-full">
-							<div class="custom-block-image-wrap">
-								<a href="detail-page.php">
-									<img src="assets/images/novel/ancika.jpg" class="custom-block-image img-fluid" alt="">
-								</a>
-							</div>
-
-							<div class="custom-block-info">
-								<h5 class="mb-2">
-									<a href="detail-page.php">
-										Ancika 1995
-									</a>
-								</h5>
-
-								<div class="profile-block d-flex">
-									<img src="assets/images/pengarang/pidi baiq.jpg" class="profile-block-image img-fluid" alt="">
-
-									<p>Pidi Baiq
-										<strong>Pengarang</strong>
-									</p>
-								</div>
-
-								<p class="mb-0">Ancika 1995 menceritakan kisah cinta Dilan setelah putus dengan Milea.
-									Dilan yang kuliah di Bandung jatuh cinta dengan Ancika, gadis 17 tahun yang awalnya
-									merasa kesal dengannya. Namun, Ancika mulai merasakan ketertarikan pada Dilan ketika
-									mereka sering bertemu.
-								</p>
-
-								<div class="custom-block-bottom d-flex justify-content-between mt-3">
-									<a href="#" class="bi-heart me-1">
-										<span>25k</span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-12 mb-4 mb-lg-0">
-						<div class="custom-block custom-block-full">
-							<div class="custom-block-image-wrap">
-								<a href="detail-page.php">
-									<img src="assets/images/novel/nebula.jpg" class="custom-block-image img-fluid" alt="">
-								</a>
-							</div>
-
-							<div class="custom-block-info">
-								<h5 class="mb-2">
-									<a href="detail-page.php">
-										Nebula
-									</a>
-								</h5>
-
-								<div class="profile-block d-flex">
-									<img src="assets/images/pengarang/tere liye.jpeg" class="profile-block-image img-fluid" alt="">
-
-									<p>Tere Liye
-										<strong>Pengarang</strong>
-									</p>
-								</div>
-
-								<p class="mb-0">Nebula adalah kelanjutan dari novel Selena. Di sana, Selena membantu
-									Bibi Leh menyiapkan pernikahan, sementara persahabatan tiga mahasiswa diuji dengan
-									pengkhianatan. Dua buku ini menceritakan tentang Akademi Bayangan Tingkat Tinggi dan
-									orangtua Raib. Mereka juga memperkenalkan karakter kuat di dunia paralel dan membuka
-									portal menuju Klan Aldebaran.
-								</p>
-
-								<div class="custom-block-bottom d-flex justify-content-between mt-3">
-									<a href="#" class="bi-heart me-1">
-										<span>15k</span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
 
 				</div>
 			</div>
