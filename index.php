@@ -90,7 +90,7 @@ redirectIfNotAuthenticated('login.php');
 								</div>
 
 								<h5 class="mb-2">
-									<a href="detail-page.php">
+									<a href="episode.php?novel_slug=<?= $row['novel_slug']; ?>&episode_slug=<?= $row['slug']; ?>">
 										<?php echo $row['episode']; ?>
 									</a>
 								</h5>
