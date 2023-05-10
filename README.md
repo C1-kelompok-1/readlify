@@ -76,7 +76,7 @@ Berikut adalah beberapa fitur yang tersedia di Readify:
 
 ## Anggota
 1. Muhammad Novil Fahlevy (2109116095)
-2. Karlen Syahputra (2109116086)
+2. Karlen Syaputra (2109116086)
 3. Marliani Rura (2109116096)
 
 ## Kredit
