@@ -4,6 +4,8 @@ require 'helpers/auth.php';
 
 redirectIfNotAuthenticated('login.php');
 
+
+
 ?>
 
 <!doctype html>
@@ -58,7 +60,7 @@ redirectIfNotAuthenticated('login.php');
 
 					<div class="col-lg-12 col-12">
 						<div class="section-title-wrap mb-5 mt-5">
-							<h4 class="section-title">Terakhir dibaca</h4>
+							<h4 class="section-title">Episode Terbaru</h4>
 						</div>
 					</div>
 
@@ -74,7 +76,7 @@ redirectIfNotAuthenticated('login.php');
 
 								<div class="mt-2">
 									<a href="#" class="btn custom-btn">
-										Lanjut baca
+										Baca Sekarang
 									</a>
 								</div>
 							</div>

@@ -82,7 +82,7 @@ if (isset($_POST['submit'])) {
         <div class="container">
           <div class="row">
             <div class="col-12 text-end mb-3">
-              <a href="detail-novel-saya.php" class="btn custom-btn">
+              <a href="index.php" class="btn custom-btn">
                 <i class="bi-arrow-left"></i>
                 Kembali
               </a>
