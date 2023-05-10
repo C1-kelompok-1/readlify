@@ -640,7 +640,7 @@ main {
 .custom-block-image {
   border-radius: var(--border-radius-medium);
   display: block;
-  width: 112px;
+  min-width: 150px;
   height: 112px;
   object-fit: cover;
 }
