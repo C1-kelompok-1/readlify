@@ -87,7 +87,7 @@ if (isset($_POST['beli'])) {
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-12 col-12 text-center">
-							<h2 class="mb-0">Koin Readify</h2>
+							<h2 class="mb-0">Beli koin</h2>
 						</div>
 					</div>
 				</div>
