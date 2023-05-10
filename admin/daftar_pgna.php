@@ -83,13 +83,6 @@ $result = mysqli_query($conn, $query);
           </a>
         </li>
 
-        <li>
-          <a href="profile.php">
-            <i class="zmdi zmdi-face"></i> <span>Profile</span>
-          </a>
-        </li>
-      </ul>
-
     </div>
     <!--End sidebar-wrapper-->
 
@@ -105,16 +98,10 @@ $result = mysqli_query($conn, $query);
 
           <li class="nav-item">
             <marquee>
-              <h4> HI ADMIN READLIFY </h4>
+              <h4> HI ADMIN READIFY </h4>
             </marquee>
           </li>
         </ul>
-
-        <li class="nav-item">
-          <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-            <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle"
-                alt="user avatar"></span>
-          </a>
 
         </li>
         </ul>
@@ -142,7 +129,9 @@ $result = mysqli_query($conn, $query);
           <div class="col-12">
             <div class="card mt-3">
               <div class="card-body">
-                <h1> Daftar Pengguna </h1>
+                <center><h3> Daftar Pengguna </h3></center>
+                <br>
+                <br>
                 <table class="table">
                   <thead>
                     <tr>
@@ -153,7 +142,7 @@ $result = mysqli_query($conn, $query);
                       <th></th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <body>
                     <?php 
                 while( $row = mysqli_fetch_assoc($result)) {?>
                     <tr>
@@ -165,7 +154,7 @@ $result = mysqli_query($conn, $query);
                         <!-- <a href="hapus_pgna.php?id=<?php echo$row['id']?>">hapus</a> |
                         <a href="update_pgna.php?id=<?php echo$row['id']?>">update</a> | -->
                         <?php if ($row['role'] == 'pembaca'): ?>
-                          <a href="role_pgna.php?id=<?php echo$row['id']?>">jadikan penulis</a>
+                          <a href="role_pgna.php?id=<?php echo$row['id']?>">Jadikan Penulis</a>
                         <?php endif; ?>
                       </td>
                     </tr>

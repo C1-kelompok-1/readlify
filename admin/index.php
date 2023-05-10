@@ -2,8 +2,17 @@
 
 require "koneksi.php";
 
-$query = "SELECT * FROM genre";
-$result = mysqli_query($conn, $query);
+$sql1 = "SELECT COUNT(id) AS total FROM novel";
+$result1 = mysqli_query($conn, $sql1);
+$total1 = mysqli_fetch_assoc($result1)['total'];
+
+$sql2 = "SELECT COUNT(id) AS total FROM pengguna WHERE role='penulis'";
+$result2 = mysqli_query ($conn,$sql2);
+$total2 = mysqli_fetch_assoc($result2)['total'];
+
+$sql3 = "SELECT COUNT(id) AS total FROM pengguna WHERE role='pembaca'";
+$result3 = mysqli_query($conn, $sql3);
+$total3 = mysqli_fetch_assoc($result3)['total'];
 
 ?>
 
@@ -81,13 +90,6 @@ $result = mysqli_query($conn, $query);
           <i class="zmdi zmdi-balance"></i> <span>Koin</span>
         </a>
       </li>
-
-      <li>
-        <a href="profile.php">
-          <i class="zmdi zmdi-face"></i> <span>Profile</span>
-        </a>
-      </li>
-    </ul>
    
    </div>
    <!--End sidebar-wrapper-->
@@ -103,15 +105,10 @@ $result = mysqli_query($conn, $query);
     </li>
 
   <li class="nav-item">
-      <marquee> <h4> HI ADMIN READLIFY </h4> </marquee>
+      <marquee> <h4> HI ADMIN READIFY </h4> </marquee>
     </li>
     </ul>
-
-    <li class="nav-item">
-      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-        <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar"></span>
-      </a>
-      
+    
     </li>
   </ul>
 </nav>
@@ -135,6 +132,32 @@ $result = mysqli_query($conn, $query);
   <div class="content-wrapper">
     <div class="container-fluid">
 
-    </table>
+    <div class="card mt-3">
+    <div class="card-body">
+      <center><h3>Data yang Tersedia<h3></center>
+    <table class="table">
+    <thead>
+            <th>Nama Tabel</th>
+            <th>Jumlah</th>
+            <br>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Novel</td>
+            <td><?php echo $total1; ?></td>
+        </tr>
+        <tr>
+            <td>Penulis</td>
+            <td><?php echo $total2; ?></td>
+        </tr>
+        <tr>
+            <td>Pembaca</td>
+            <td><?php echo $total3; ?></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
  </div>  
 </html>
