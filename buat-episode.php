@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Readify | Buat episode</title>
+    <title>Buat episode</title>
 
     <?php require 'layouts/favicon.php'; ?>
     <?php require 'layouts/styles.php'; ?>

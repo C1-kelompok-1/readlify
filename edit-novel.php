@@ -126,7 +126,7 @@ if (isset($_POST['submit'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Readify | Edit novel</title>
+  <title>Edit novel</title>
 
   <?php require 'layouts/styles.php'; ?>
 

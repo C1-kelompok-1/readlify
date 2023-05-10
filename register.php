@@ -105,7 +105,7 @@ if (isset($_POST["daftar"])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Readify | Register</title>
+  <title>Register</title>
 
   <?php require 'layouts/favicon.php'; ?>
   <?php require 'layouts/auth/styles.php'; ?>

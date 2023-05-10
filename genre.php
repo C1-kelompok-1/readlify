@@ -45,7 +45,7 @@ if (isset($_GET['genre'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Readify | Genre</title>
+    <title>Genre</title>
 
     <?php require 'layouts/favicon.php'; ?>
     <?php require 'layouts/styles.php'; ?>
