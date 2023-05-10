@@ -28,20 +28,20 @@ if (isset($_POST['login'])) {
       ];
 
       if ($role == 'member' && $account['role'] == 'member') {
-        header('Location: books.php');
         $_SESSION['logged_account'] = $logged_account;
+        header('Location: books.php');
         die;
       }
 
       if ($role == 'staff' && $account['role'] == 'staff') {
-        header('Location: books.php');
         $_SESSION['logged_account'] = $logged_account;
+        header('Location: books.php');
         die;
       }
 
       if ($role == 'admin' && $account['role'] == 'admin') {
-        header('Location: dashboard.php');
         $_SESSION['logged_account'] = $logged_account;
+        header('Location: dashboard.php');
         die;
       }
     }

@@ -42,7 +42,11 @@ if (isset($_POST['login'])) {
           );
         }
 
-        redirect('index.php');
+        if ($user['role'] == 'admin') {
+          redirect('admin/index.php');
+        } else {
+          redirect('index.php');
+        }
       }
     }
 

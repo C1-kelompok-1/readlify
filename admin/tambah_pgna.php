@@ -2,21 +2,23 @@
 
 require "koneksi.php";
 
-$query = "SELECT * FROM genre";
+$query = "SELECT * FROM pengguna";
 $result = mysqli_query($conn, $query);
 
 if (isset($_POST["tambah"])){
-  $nama = $_POST["nama"];
+  $username = $_POST["username"];
+  $email = $_POST["email"];
+  $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
-  $query = "INSERT INTO genre (id, nama) VALUES (null, '$nama')";
+  $query = "INSERT INTO pengguna (id, username, email, password, role) VALUES (null, '$username', '$email', '$password', 'admin')";
   $result = mysqli_query($conn,$query);
 
   if (!$result) {
       die('Error: ' . mysqli_error($conn));
   } else {
       echo "<script>
-          alert ('Data berhasil ditambahkan');
-          window.location.href = 'genre.php';
+          alert ('Admin berhasil ditambahkan');
+          window.location.href = 'daftar_pgna.php';
           </script>";
   }
 }
@@ -26,7 +28,7 @@ if (isset($_POST["tambah"])){
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Tambah Genre</title>
+    <title>Tambah admin</title>
     <?php require 'layouts/styles.php'; ?>
   </head>
 
@@ -41,15 +43,21 @@ if (isset($_POST["tambah"])){
           <div class="card">
             <div class="card-body">
               <div class="d-flex align-items-center justify-content-between">
-                <h5 class="card-title">Tambah genre</h5>
+                <h5 class="card-title">Tambah admin</h5>
                 <a href="genre.php" class="btn btn-info mb-3">
                   <i class="fa fa-arrow-left"></i>
                   Kembali
                 </a>
               </div>
-              <form action="tambah_genre.php" method="POST">
+              <form action="tambah_pgna.php" method="POST">
                 <div class="form-group">
-                  <input type="text" class="form-control" name="nama" placeholder="Nama genre">
+                  <input type="text" class="form-control" name="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                  <input type="email" class="form-control" name="email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" name="password" placeholder="Password">
                 </div>
                 <div class="form-group">
                   <button type="submit" name="tambah" class="btn btn-primary">Tambah</button>

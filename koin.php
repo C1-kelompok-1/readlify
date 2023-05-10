@@ -33,9 +33,10 @@ if (isset($_POST['beli'])) {
 		beginTransaction();
 
 		try {
-			query('INSERT INTO pembelian_koin (id_pengguna, id_paket_koin, id_metode_pembayaran, nomor) VALUES (:id_pengguna, :id_paket_koin, :id_metode_pembayaran, :nomor)', [
+			query('INSERT INTO pembelian_koin (id_pengguna, jumlah, harga, id_metode_pembayaran, nomor) VALUES (:id_pengguna, :jumlah, :harga, :id_metode_pembayaran, :nomor)', [
 				':id_pengguna' => $user['id'],
-				':id_paket_koin' => $coinId,
+				':jumlah' => $coin['jumlah'],
+				':harga' => $coin['harga'],
 				':id_metode_pembayaran' => $paymentMethod,
 				':nomor' => $number,
 			]);
