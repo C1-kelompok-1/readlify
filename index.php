@@ -126,15 +126,13 @@ redirectIfNotAuthenticated('login.php');
 					</div>
 					<?php while ($row = mysqli_fetch_assoc($result_genre_populer)) { ?>
 					<div class="col-lg-3 col-md-6 col-12 mb-4">
-						<div class="custom-block h-100">
+						<div class="custom-block d-flex align-items-center h-100">
 							<div class="custom-block-info">
-								<h6 class="mb-1">
+								<h6 class="mb-0">
 									<a href="genre.php?genre=<?= $row['nama']; ?>">
 										<?php echo $row['nama']; ?>
 									</a>
 								</h6>
-
-								<p class="badge mb-0"><?php echo $row['jumlah_novel']; ?> novel</p>
 							</div>
 						</div>
 					</div>
