@@ -56,6 +56,12 @@ $result = mysqli_query($conn, $query);
                           <a href="<?= $row['twitter_url']; ?>" target="_blank"><i class="fa fa-twitter"></i></a>
                         </td>
                         <td class="text-right">
+                          <?php if ($row['role'] == 'pembaca'): ?>
+                            <a href="role_pgna.php?id=<?php echo $row['id']; ?>" class="btn btn-success" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
+                              <i class="fa fa-user"></i>
+                              Jadikan Penulis
+                            </a>
+                          <?php endif; ?>
                           <a href="hapus_pgna.php?id=<?php echo $row['id']; ?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
                             <i class="fa fa-trash"></i>
                             Hapus
