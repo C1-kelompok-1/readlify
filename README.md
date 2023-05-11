@@ -55,8 +55,8 @@ Berikut adalah beberapa fitur yang tersedia di Readify:
 <p>Halaman dashboard berisi informasi singkat berupa jumlah novel, jumlah penulis, jumlah pembaca, dan jumlah total pendapatan dari pembelian koin.</p>
 
 #### Daftar pengguna
-[![Screenshot-2023-05-10-213508.png](https://i.postimg.cc/g2rL5VMm/Screenshot-2023-05-10-213508.png)](https://postimg.cc/TKMP5DM4)
-<p>Daftar pengguna dapat dilihat di halaman ini, pengguna disini merupakan pengguna dengan role penulis maupun pembaca.</p>
+[![Screenshot-2023-05-11-111517.png](https://i.postimg.cc/dtxvw5yS/Screenshot-2023-05-11-111517.png)](https://postimg.cc/vcfCvLXW)
+<p>Daftar pengguna dapat dilihat di halaman ini, pengguna disini merupakan pengguna dengan role penulis maupun pembaca. Disini admin juga dapat mengangkat pengguna sebagai seorang penulis dengan menekan tombol Jadikan Penulis.</p>
 
 #### Daftar novel
 [![Screenshot-2023-05-10-213516.png](https://i.postimg.cc/BnyPGjyD/Screenshot-2023-05-10-213516.png)](https://postimg.cc/qNsvsvpM)
