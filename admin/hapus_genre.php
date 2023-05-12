@@ -1,22 +1,17 @@
 <?php
-require "koneksi.php";
+require "database.php";
+require "helpers/alert.php";
+require "helpers/auth.php";
 
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
-    
-    $query = "DELETE FROM genre WHERE id = $id";
-    $result = mysqli_query($conn,$query);
-
-    if ($result) {
-        echo "<script>
-            alert ('Data berhasil dihapus');
-            window.location.href = 'daftar_nvl.php';
-            </script>";
-    } else {
-        echo "<script>
-            alert ('Gagal menghapus data');
-            window.location.href = 'daftar_nvl.php';
-            </script>";
+    try {
+        query("DELETE FROM genre WHERE id = :id", [':id' => $id]);
+        setAlert('success', 'Genre berhasil dihapus');
+        redirect('genre.php');
+    } catch (Exception $error) {
+        setAlert('danger', 'Gagal menghapus genre');
+        redirect('genre.php');
     }
 }
 ?>

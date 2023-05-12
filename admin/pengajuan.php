@@ -1,6 +1,8 @@
 <?php
 
-require "koneksi.php";
+require "database.php";
+require "helpers/alert.php";
+require "helpers/auth.php";
 
 $id = $_GET['id'];
 $query = "SELECT
@@ -11,8 +13,7 @@ $query = "SELECT
           FROM pengajuan_penulis
           INNER JOIN pengguna ON pengguna.id = pengajuan_penulis.id_pengguna
           WHERE pengajuan_penulis.id = '$id' LIMIT 1";
-$result = mysqli_query($conn, $query);
-$result = mysqli_fetch_assoc($result);
+$result = fetchOne($query);
 
 if (isset($_GET['status'])) {
   $status = $_GET['status'];
@@ -20,23 +21,23 @@ if (isset($_GET['status'])) {
 
   try {
     $query = "UPDATE pengajuan_penulis SET status = $status WHERE id = '$id'";
-    mysqli_query($conn, $query);
-    mysqli_affected_rows($conn);
+    query($query);
     
     if ((int) $status == 1) {
       $query = "UPDATE pengguna SET role = 'penulis' WHERE id = '$userId'";
-      mysqli_query($conn, $query);
-      mysqli_affected_rows($conn);
+      query($query);
     }
 
-    echo "<script>
-            alert ('Status pengguna berhasil diedit');
-            window.location.href = 'daftar_pengajuan.php';
-            </script>";
+    if ($status) {
+      setAlert('success', 'Pengguna telah menjadi penulis');
+    } else {
+      setAlert('success', 'Pengguna telah ditolak');
+    }
+    
+    redirect('pengajuan.php?id='.$id);
   } catch (Exception $error) {
-    echo "<script>
-            alert ('Gagal mengedit status pengguna');
-            </script>";
+    setAlert('danger', 'Gagal mengubah status');
+    redirect('pengajuan.php?id='.$id);
   }
 }
 
@@ -58,6 +59,15 @@ if (isset($_GET['status'])) {
       <div class="content-wrapper">
         <div class="container-fluid">
           <div class="row">
+            <div class="col-12 mb-3">
+              <a href="daftar_pengajuan.php" class="btn btn-info">
+                <i class="fa fa-arrow-left"></i>
+                Kembali
+              </a>
+            </div>
+            <div class="col-12">
+              <?= getAlert(); ?>
+            </div>
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
@@ -100,24 +110,22 @@ if (isset($_GET['status'])) {
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">Cerita</h5>
-                  <div class="table-responsive">
-                    <table class="table">
-                      <body>
-                        <tr>
-                          <td style="width: 200px;">Judul</td>
-                          <td><?= $result['judul']; ?></td>
-                        </tr>
-                        <tr>
-                          <td style="width: 200px;">Deskripsi</td>
-                          <td><?= $result['deskripsi']; ?></td>
-                        </tr>
-                        <tr>
-                          <td style="width: 200px;"></td>
-                          <td><?= $result['konten']; ?></td>
-                        </tr>
-                      </body>
-                    </table>
-                  </div>
+                  <table class="table">
+                    <body>
+                      <tr>
+                        <td style="width: 200px;">Judul</td>
+                        <td><?= $result['judul']; ?></td>
+                      </tr>
+                      <tr>
+                        <td style="width: 200px;">Deskripsi</td>
+                        <td><?= $result['deskripsi']; ?></td>
+                      </tr>
+                      <tr>
+                        <td style="width: 200px;"></td>
+                        <td><?= $result['konten']; ?></td>
+                      </tr>
+                    </body>
+                  </table>
                 </div>
               </div>
             </div>

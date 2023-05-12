@@ -1,23 +1,35 @@
 <?php
 
-require "koneksi.php";
+require "database.php";
+require "helpers/alert.php";
+require "helpers/auth.php";
+require "helpers/input.php";
 
-$query = "SELECT * FROM genre";
-$result = mysqli_query($conn, $query);
-
-if (isset($_POST["tambah"])){
+if (isset($_POST["tambah"])) {
   $nama = $_POST["nama"];
 
-  $query = "INSERT INTO genre (id, nama) VALUES (null, '$nama')";
-  $result = mysqli_query($conn,$query);
+  // cek nama
+  if (!$nama) {
+    setInputError('nama', 'Nama perlu diisi');
+  }
 
-  if (!$result) {
-      die('Error: ' . mysqli_error($conn));
-  } else {
-      echo "<script>
-          alert ('Data berhasil ditambahkan');
-          window.location.href = 'genre.php';
-          </script>";
+  if (!isThereAnyInputError()) {
+    $genre = fetchOne('SELECT COUNT(id) AS jumlah FROM genre WHERE nama = :nama', [':nama' => $nama]);
+
+    if (!$genre['jumlah']) {
+      try {
+        query("INSERT INTO genre (id, nama) VALUES (null, :nama)", [':nama' => $nama]);
+    
+        setAlert('success', 'Berhasil menambah genre');
+        redirect('genre.php');
+      } catch (PDOException $error) {
+        setAlert('danger', 'gagal menambah genre');
+        redirect('tambah_genre.php');
+      }
+    } else {
+      setAlert('danger', 'Genre tersebut sudah ada');
+      redirect('tambah_genre.php');
+    }
   }
 }
 
@@ -38,6 +50,7 @@ if (isset($_POST["tambah"])){
       
       <div class="content-wrapper">
         <div class="container-fluid">
+          <?= getAlert(); ?>
           <div class="card">
             <div class="card-body">
               <div class="d-flex align-items-center justify-content-between">
@@ -50,6 +63,7 @@ if (isset($_POST["tambah"])){
               <form action="tambah_genre.php" method="POST">
                 <div class="form-group">
                   <input type="text" class="form-control" name="nama" placeholder="Nama genre">
+                  <?= getInputError('nama'); ?>
                 </div>
                 <div class="form-group">
                   <button type="submit" name="tambah" class="btn btn-primary">Tambah</button>

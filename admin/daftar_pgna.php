@@ -11,7 +11,7 @@ $result = fetchAll($query);
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Pengguna</title>
+    <title>Daftar Pengguna</title>
     <?php require 'layouts/styles.php'; ?>
   </head>
 

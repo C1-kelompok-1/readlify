@@ -1,9 +1,10 @@
 <?php
 
-require "koneksi.php";
+require "database.php";
+require "helpers/alert.php";
 
 $query = "SELECT * FROM paket_koin";
-$result = mysqli_query($conn, $query);
+$result = fetchAll($query);
 
 ?>
 
@@ -22,6 +23,7 @@ $result = mysqli_query($conn, $query);
 
       <div class="content-wrapper">
         <div class="container-fluid">
+          <?= getAlert(); ?>
           <div class="card">
             <div class="card-body">
               <div class="d-flex align-items-center justify-content-between">
@@ -41,7 +43,7 @@ $result = mysqli_query($conn, $query);
                     </tr>
                   </thead>
                   <tbody>
-                    <?php while( $row = mysqli_fetch_assoc($result)) { ?>
+                    <?php foreach ($result as $row) { ?>
                       <tr>
                         <td><?php echo $row["jumlah"]; ?></td>
                         <td><?php echo $row["harga"]; ?></td>

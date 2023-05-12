@@ -23,7 +23,7 @@ $result = fetchAll($query);
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Genre</title>
+    <title>Daftar Novel</title>
     <?php require 'layouts/styles.php'; ?>
   </head>
 

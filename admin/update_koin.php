@@ -1,49 +1,64 @@
 <?php
-require "koneksi.php";
 
-if (!isset($_GET["id"])) {
-  header("location: koin.php");
-  exit;
-}
+require "database.php";
+require "helpers/alert.php";
+require "helpers/auth.php";
+require "helpers/input.php";
 
-$id = $_GET["id"];
-$query = "SELECT * FROM paket_koin WHERE id = '$id' LIMIT 1";
-$result = mysqli_query($conn, $query);
-$coin = mysqli_fetch_assoc($result);
+$id = $_GET['id'];
+$coin = fetchOne('SELECT * FROM paket_koin WHERE id = :id', [':id' => $id]);
 
-if (mysqli_num_rows($result) != 1) {
-  header("location: koin.php");
-  exit;
-}
-
-function ubah() {
-  global $conn;
-
-  $id = $_GET["id"];
+if (isset($_POST["update"])) {
   $jumlah = $_POST["jumlah"];
   $harga = $_POST["harga"];
 
-  $query = "UPDATE paket_koin SET
-    harga = '$harga',
-    jumlah = '$jumlah'
-    WHERE id = '$id'";
-  mysqli_query($conn, $query);
-  return mysqli_affected_rows($conn);
-}
+  // cek jumlah
+  if (!$jumlah) {
+    setInputError('jumlah', 'Jumlah perlu diisi');
+  }
 
-if (isset($_POST["edit"])) {
-  if (ubah() > 0) {
-    echo "<script>
-        alert('Berhasil update data');
-        document.location.href = 'koin.php';
-        </script>";
+  // cek jumlah
+  if ($jumlah <= 0) {
+    setInputError('jumlah', 'Jumlah tidak valid');
+  }
+
+  // cek harga
+  if (!$harga) {
+    setInputError('harga', 'Harga perlu diisi');
+  }
+
+  // cek harga
+  if ($harga <= 0) {
+    setInputError('harga', 'Harga tidak valid');
+  }
+
+  if (!isThereAnyInputError()) {
+    $coin = fetchOne('SELECT COUNT(id) AS sudah_ada FROM paket_koin WHERE jumlah = :jumlah AND id != :id', [':jumlah' => $jumlah, ':id' => $id]);
+
+    if (!$coin['sudah_ada']) {
+      try {
+        query("UPDATE paket_koin SET jumlah = :jumlah, harga = :harga WHERE id = :id", [
+          ':jumlah' => $jumlah,
+          ':harga' => $harga,
+          ':id' => $id
+        ]);
+    
+        setAlert('success', 'Berhasil mengedit paket koin');
+        redirect('koin.php');
+      } catch (PDOException $error) {
+        setAlert('danger', 'Gagal mengedit paket koin');
+        redirect('update_koin.php?id='.$id);
+      }
+    } else {
+      setAlert('danger', 'Paket koin dengan jumlah tersebut sudah ada');
+      redirect('update_koin.php?id='.$id);
+    }
   } else {
-    echo "<script>
-        alert('Gagal update data');
-        document.location.href = 'koin.php';
-        </script>";
+    setOldInputs();
+    redirect('update_koin.php?id='.$id);
   }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -61,6 +76,7 @@ if (isset($_POST["edit"])) {
       
       <div class="content-wrapper">
         <div class="container-fluid">
+          <?= getAlert(); ?>
           <div class="card">
             <div class="card-body">
               <div class="d-flex align-items-center justify-content-between">
@@ -70,15 +86,17 @@ if (isset($_POST["edit"])) {
                   Kembali
                 </a>
               </div>
-              <form action="update_koin.php?id=<?= $_GET['id']; ?>" method="POST">
+              <form action="update_koin.php?id=<?= $id; ?>" method="POST">
                 <div class="form-group">
-                  <input type="number" class="form-control" name="jumlah" placeholder="Jumlah" value="<?= $coin['jumlah']; ?>">
+                  <input type="number" class="form-control" name="jumlah" placeholder="Jumlah" value="<?= getOldInput('jumlah', $coin['jumlah']); ?>">
+                  <?= getInputError('jumlah'); ?>
                 </div>
                 <div class="form-group">
-                  <input type="number" class="form-control" name="harga" placeholder="Harga" value="<?= $coin['harga']; ?>">
+                  <input type="number" class="form-control" name="harga" placeholder="Harga" value="<?= getOldInput('harga', $coin['harga']); ?>">
+                  <?= getInputError('harga'); ?>
                 </div>
                 <div class="form-group">
-                  <button type="submit" name="edit" class="btn btn-primary">Edit</button>
+                  <button type="submit" name="update" class="btn btn-primary">Edit</button>
                 </div>
               </form>
             </div>
