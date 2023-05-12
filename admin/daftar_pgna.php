@@ -1,9 +1,10 @@
 <?php
 
-require "koneksi.php";
+require "database.php";
+require "helpers/alert.php";
 
 $query = "SELECT * FROM pengguna WHERE role IN ('pembaca', 'penulis')";
-$result = mysqli_query($conn, $query);
+$result = fetchAll($query);
 
 ?>
 
@@ -22,6 +23,7 @@ $result = mysqli_query($conn, $query);
 
       <div class="content-wrapper">
         <div class="container-fluid">
+        <?= getAlert(); ?>
           <div class="card">
             <div class="card-body">
               <div class="d-flex align-items-center justify-content-between">
@@ -44,7 +46,7 @@ $result = mysqli_query($conn, $query);
                     </tr>
                   </thead>
                   <tbody>
-                    <?php while( $row = mysqli_fetch_assoc($result)) { ?>
+                    <?php foreach ($result as $row) { ?>
                       <tr>
                         <td><?php echo $row["username"]; ?></td>
                         <td><?php echo $row["email"]; ?></td>
@@ -56,12 +58,6 @@ $result = mysqli_query($conn, $query);
                           <a href="<?= $row['twitter_url']; ?>" target="_blank"><i class="fa fa-twitter"></i></a>
                         </td>
                         <td class="text-right">
-                          <?php if ($row['role'] == 'pembaca'): ?>
-                            <a href="role_pgna.php?id=<?php echo $row['id']; ?>" class="btn btn-success" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
-                              <i class="fa fa-user"></i>
-                              Jadikan Penulis
-                            </a>
-                          <?php endif; ?>
                           <a href="hapus_pgna.php?id=<?php echo $row['id']; ?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
                             <i class="fa fa-trash"></i>
                             Hapus

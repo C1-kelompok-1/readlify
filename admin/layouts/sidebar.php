@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+require '../session.php';
 require '../config.php';
 
 if (!isset($_SESSION['user'])) {
