@@ -41,6 +41,12 @@ if (!isset($_SESSION['user'])) {
     </li>
 
     <li>
+      <a href="daftar_pengajuan.php">
+        <i class="zmdi zmdi-grid"></i> <span>Pengajuan Penulis</span>
+      </a>
+    </li>
+
+    <li>
       <a href="genre.php">
         <i class="zmdi zmdi-book-image"></i> <span>Genre</span>
       </a>

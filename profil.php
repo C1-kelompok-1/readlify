@@ -8,6 +8,10 @@ require 'helpers/file.php';
 
 $user = $_SESSION['user'];
 
+$appeal = fetchOne('SELECT * FROM pengajuan_penulis WHERE id_pengguna = :id_pengguna', [
+  ':id_pengguna' => $user['id']
+]);
+
 if (isset($_POST['submit'])) {
   $username = $_POST['username'];
   $email = $_POST['email'];
@@ -136,12 +140,6 @@ if (isset($_POST['submit'])) {
     <section class="section-padding">
       <div class="container">
         <div class="row">
-          <div class="col-12 text-end mb-3">
-            <a href="index.php" class="btn custom-btn">
-              <i class="bi-arrow-left"></i>
-              Kembali
-            </a>
-          </div>
           <div class="col-12">
             <?= getAlert(); ?>
           </div>
@@ -150,7 +148,6 @@ if (isset($_POST['submit'])) {
               <div class="custom-block-info">
                 <h5 class="mb-4">Profil</h5>
                 <form action="profil.php" method="post" class="custom-form me-3" enctype="multipart/form-data">
-
                   <div class="form-group">
                     <input name="avatar" type="file" class="form-control" placeholder="Avatar">
                   </div>
@@ -187,6 +184,7 @@ if (isset($_POST['submit'])) {
             <div class="d-flex flex-column justify-content-center align-items-center mt-5">
               <div class="dropdown pe-auto">
                 <img src="photos/<?= $user['avatar']; ?>" class="rounded-circle dropdown-toggle foto-profil w-5 h-5" id="profil-image" data-bs-toggle="dropdown" aria-expanded="false" alt="Profil" />
+
                 <form action="profil.php" method="post" class="custom-form me-3" enctype="multipart/form-data">
                   <ul class="dropdown-menu">
                     <li>
@@ -212,6 +210,13 @@ if (isset($_POST['submit'])) {
                 <strong><?php echo $user['username']; ?></strong>
               </h5>
               <p class="text-muted"><?php echo $user["email"] ?></p>
+              <?php if ($user['role'] == 'pembaca'): ?>
+                <a href="pengajuan-penulis.php" class="btn custom-btn">Ajukan diri sebagai penulis</a>
+              <?php else: ?>
+                <div class="alert alert-info">
+                  <p class="mb-0">Selamat, pengajuanmu telah diterima dan kamu bisa menulis cerita sekarang, selamat berkarya.</p>
+                </div>
+              <?php endif; ?>
             </div>
           </div>
         </div>
