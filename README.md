@@ -72,7 +72,7 @@ Berikut adalah beberapa fitur yang tersedia di Readify:
 
 ## ERD
 [![readify-1.png](https://i.postimg.cc/7ZCw08r4/readify-1.png)](https://postimg.cc/Xr0R6Pv1)
-<p>File SQL-nya dapat diunduh <a href="https://drive.google.com/file/d/1SuB-6I4gZkyFWsHxxuvpw4W9souF0Wef/view?usp=sharing">disini</a>.</p>
+<p>File SQL-nya dapat diunduh <a href="https://drive.google.com/file/d/1C7VS8U2MGz6AlgrhIAcY9q_VJIzSo-Ki/view?usp=share_link">disini</a>.</p>
 
 ## Anggota
 1. Muhammad Novil Fahlevy (2109116095)
