@@ -9,9 +9,9 @@ Readify merupakan paltform membaca novel gratis dan berbayar yang dapat digunaka
 ## Tutorial pengunaan Readify
 Berikut adalah Tutorial penggunaan web Readify:
 
-#### Register
-[![Screenshot-2023-05-10-213241.png](https://i.postimg.cc/FFcdXFgk/Screenshot-2023-05-10-213241.png)](https://postimg.cc/CdhLjg2w)
+#### 1. Register
 <p>Pengguna bisa melakukan register atau pembuatan akun dengan mengisi email, username, dan password.</p>
+[![Screenshot-2023-05-10-213241.png](https://i.postimg.cc/FFcdXFgk/Screenshot-2023-05-10-213241.png)](https://postimg.cc/CdhLjg2w)
 
 #### Login
 [![Screenshot-2023-05-10-213235.png](https://i.postimg.cc/SRWJ6VNf/Screenshot-2023-05-10-213235.png)](https://postimg.cc/q6vJ0sKN)
