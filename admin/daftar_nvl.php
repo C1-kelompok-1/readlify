@@ -2,6 +2,7 @@
 
 require "database.php";
 require "helpers/alert.php";
+require "helpers/string.php";
 
 $query = "SELECT
             novel.id,
@@ -60,8 +61,8 @@ $result = fetchAll($query);
                         </td>
                         <td><?php echo $row["judul"]; ?></td>
                         <td><?php echo $row["username"]; ?></td>
-                        <td><?php echo $row["jumlah_episode"]; ?></td>
-                        <td><?php echo $row["jumlah_disukai"]; ?></td>
+                        <td><?php echo formatNumber($row["jumlah_episode"]); ?></td>
+                        <td><?php echo formatNumber($row["jumlah_disukai"]); ?></td>
                         <td><?php echo $row["tanggal"]; ?></td>
                         <td class="text-right">
                           <a href="hapus_nvl.php?id=<?php echo$row['id']?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">

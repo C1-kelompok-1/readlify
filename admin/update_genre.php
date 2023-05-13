@@ -6,8 +6,8 @@ require "helpers/auth.php";
 require "helpers/input.php";
 
 $id = $_GET['id'];
-$query = "SELECT * FROM genre";
-$result = fetchOne($query);
+$query = "SELECT * FROM genre WHERE id = :id";
+$result = fetchOne($query, [':id' => $id]);
 
 if (isset($_POST["update"])) {
   $nama = $_POST["nama"];
@@ -25,7 +25,7 @@ if (isset($_POST["update"])) {
         query("UPDATE genre SET nama = :nama WHERE id = :id", [':nama' => $nama, ':id' => $id]);
     
         setAlert('success', 'Berhasil mengedit genre');
-        redirect('genre.php');
+        redirect('update_genre.php?id='.$id);
       } catch (PDOException $error) {
         setAlert('danger', 'Gagal mengedit genre');
         redirect('update_genre.php?id='.$id);

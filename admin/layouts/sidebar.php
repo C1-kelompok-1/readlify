@@ -16,7 +16,7 @@ if (!isset($_SESSION['user'])) {
 <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
   <div class="brand-logo">
     <a href="index.php">
-      <img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+      <img src="../assets/images/readify logo.svg" class="logo-icon" alt="logo icon">
       <h5 class="logo-text">Readify Admin</h5>
     </a>
   </div>
@@ -48,13 +48,13 @@ if (!isset($_SESSION['user'])) {
 
     <li>
       <a href="genre.php">
-        <i class="zmdi zmdi-book-image"></i> <span>Genre</span>
+        <i class="zmdi zmdi-grid"></i> <span>Genre</span>
       </a>
     </li>
 
     <li>
       <a href="koin.php">
-        <i class="zmdi zmdi-balance"></i> <span>Koin</span>
+        <i class="zmdi zmdi-grid"></i> <span>Paket Koin</span>
       </a>
     </li>
     <li>

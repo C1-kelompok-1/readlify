@@ -114,15 +114,15 @@ if (isset($_GET['status'])) {
                     <body>
                       <tr>
                         <td style="width: 200px;">Judul</td>
-                        <td><?= $result['judul']; ?></td>
+                        <td style="white-space: normal;"><?= $result['judul']; ?></td>
                       </tr>
                       <tr>
                         <td style="width: 200px;">Deskripsi</td>
-                        <td><?= $result['deskripsi']; ?></td>
+                        <td style="white-space: normal;"><?= $result['deskripsi']; ?></td>
                       </tr>
                       <tr>
                         <td style="width: 200px;"></td>
-                        <td><?= $result['konten']; ?></td>
+                        <td style="white-space: normal; text-align: justify;"><?= $result['konten']; ?></td>
                       </tr>
                     </body>
                   </table>

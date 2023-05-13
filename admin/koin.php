@@ -1,6 +1,7 @@
 <?php
 
 require "database.php";
+require "helpers/string.php";
 require "helpers/alert.php";
 
 $query = "SELECT * FROM paket_koin";
@@ -46,7 +47,7 @@ $result = fetchAll($query);
                     <?php foreach ($result as $row) { ?>
                       <tr>
                         <td><?php echo $row["jumlah"]; ?></td>
-                        <td><?php echo $row["harga"]; ?></td>
+                        <td><?php echo 'Rp'.formatNumber($row["harga"]); ?></td>
                         <td class="text-right">
                           <a href="hapus_koin.php?id=<?php echo$row['id']?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
                             <i class="fa fa-trash"></i>

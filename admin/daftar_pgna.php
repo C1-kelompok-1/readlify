@@ -1,6 +1,7 @@
 <?php
 
 require "database.php";
+require "helpers/string.php";
 require "helpers/alert.php";
 
 $query = "SELECT * FROM pengguna WHERE role IN ('pembaca', 'penulis')";
@@ -51,7 +52,7 @@ $result = fetchAll($query);
                         <td><?php echo $row["username"]; ?></td>
                         <td><?php echo $row["email"]; ?></td>
                         <td><?php echo $row["role"]; ?></td>
-                        <td><?php echo $row["koin"]; ?></td>
+                        <td><?php echo formatNumber($row["koin"]); ?></td>
                         <td>
                           <a href="<?= $row['facebook_url']; ?>" target="_blank"><i class="fa fa-facebook mr-3"></i></a>
                           <a href="<?= $row['instagram_url']; ?>" target="_blank"><i class="fa fa-instagram mr-3"></i></a>

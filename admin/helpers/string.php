@@ -60,3 +60,16 @@ if (!function_exists('slugify')) {
     return $text;
   }
 }
+
+if (!function_exists('formatNumber')) {
+  /**
+   * 
+   * Format angka ke string rupiah (Rp)
+   * Sumber: https://www.malasngoding.com/membuat-format-rupiah-di-php.
+   * 
+   */
+  function formatNumber($angka){
+    $hasil_rupiah = number_format($angka,0,'','.');
+    return $hasil_rupiah;
+  }
+}
