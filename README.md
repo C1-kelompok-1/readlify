@@ -11,7 +11,7 @@ Berikut adalah Tutorial penggunaan web Readify:
 
 #### 1. Register
 <p>Pengguna bisa melakukan register atau pembuatan akun dengan mengisi email, username, dan password.</p>
-![image](https://github.com/C1-kelompok-1/readlify/assets/120198104/eb4189a3-7744-4d5a-9003-e082b5b7aef2)
+![image](https://github.com/C1-kelompok-1/readlify/assets/120198104/3da5fae5-19f5-456c-b4f1-4ca064b01ccf)
 
 #### Login
 [![Screenshot-2023-05-10-213235.png](https://i.postimg.cc/SRWJ6VNf/Screenshot-2023-05-10-213235.png)](https://postimg.cc/q6vJ0sKN)
