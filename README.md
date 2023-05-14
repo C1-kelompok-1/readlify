@@ -53,29 +53,44 @@ Berikut adalah Tutorial penggunaan web Readify:
 <img src="https://i.postimg.cc/cCW6xjQG/Screenshot-2023-05-10-214244.png)](https://postimg.cc/2bHCT0c0" />
 
 #### 5. Ganti profil
-[![Screenshot-2023-05-10-212313.png](https://i.postimg.cc/LX6QP09j/Screenshot-2023-05-10-212313.png)](https://postimg.cc/hJ60Ws7G)
 <p>Pengguna dapat mengganti informasi terkait akun mereka di halaman profil.</p>
+<img src="https://i.postimg.cc/LX6QP09j/Screenshot-2023-05-10-212313.png)](https://postimg.cc/hJ60Ws7G" />
 
 ### 6. Halaman admin
-#### Dashboard
+#### a. Dashboard
 <p>Halaman dashboard berisi informasi singkat berupa jumlah novel, jumlah penulis, jumlah pembaca, dan jumlah total pendapatan dari pembelian koin.</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/4bbb8f67-b0d5-4fbc-b13c-d9b8ec4d59ff" />
 
+#### b. Daftar pengguna
+<p>Daftar pengguna dapat dilihat di halaman ini, pengguna disini merupakan pengguna dengan role penulis maupun pembaca. Disini admin juga dapat menghapus dan mengangkat pengguna sebagai seorang penulis dengan menekan tombol Jadikan Penulis.</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/1e912337-d83f-40a1-84e3-fbbb637bebcf" />
 
-#### Daftar pengguna
-[![Screenshot-2023-05-11-111517.png](https://i.postimg.cc/dtxvw5yS/Screenshot-2023-05-11-111517.png)](https://postimg.cc/vcfCvLXW)
-<p>Daftar pengguna dapat dilihat di halaman ini, pengguna disini merupakan pengguna dengan role penulis maupun pembaca. Disini admin juga dapat mengangkat pengguna sebagai seorang penulis dengan menekan tombol Jadikan Penulis.</p>
+<p>Jika admin ingin menambahkan admin, maka pilih tombol tambah admin dan kemudian isi form yang tersedia</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/16390b3a-0b22-4623-96c8-4aba12362bce" />       
 
-#### Daftar novel
-[![Screenshot-2023-05-10-213516.png](https://i.postimg.cc/BnyPGjyD/Screenshot-2023-05-10-213516.png)](https://postimg.cc/qNsvsvpM)
-<p>Novel yang ada dapat dilihat pada halaman daftar novel.</p>
+#### c. Daftar novel
+<p>Novel yang ada dapat dilihat pada halaman daftar novel dan terdapat juga tombol hapus untuk menghapus Novel.</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/acb6320c-9973-4b63-94e5-f4f795f1b791" />
 
-#### Genre
-[![Screenshot-2023-05-10-213523.png](https://i.postimg.cc/rFftQnNf/Screenshot-2023-05-10-213523.png)](https://postimg.cc/gn6J0K5h)
+#### d. Genre
 <p>Data master genre dapat diatur di halaman ini.</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/8bf64587-8892-4f2e-9c26-0df62ff93fa3" />
 
-#### Paket koin
-[![Screenshot-2023-05-10-213529.png](https://i.postimg.cc/gcqh6kXF/Screenshot-2023-05-10-213529.png)](https://postimg.cc/hhvvkn1p)
+<p> Jika admin ingin menambahkan genre, maka pilih tombool tambah dan masukkan genre yang baru pada form</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/98ae050c-e8a3-40c9-8e5e-b841a21c9cf8" />
+
+<p> Namun jika ingin mengedit genre, maka di menu utama genre tadi pilih tombol edit. Kemudian edit genre</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/afc34cdb-6d37-49a6-802f-4a9f058b79ed" />
+
+#### e. Paket koin
 <p>Data master paket koin dapat diatur di halaman ini.</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/1dfacaf3-e52f-49a0-8125-0e15aa4950ed">
+
+<p> Jika admin ingin menambahkan Paket Koin, maka pilih tombool tambah kemudian masukkan jumlah dan harga yang baru </p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/7a8b7aed-7317-4355-90ba-dd59e4452537" />
+
+<p> Namun jika ingin mengedit Paket Koin, maka di menu utama paket koin tadi tadi pilih tombol edit. Kemudian edit paket koin</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/4fd9a219-7b6c-40dd-b975-9cb8f5f4d4c2" />
 
 ## ERD
 [![readify-1.png](https://i.postimg.cc/7ZCw08r4/readify-1.png)](https://postimg.cc/Xr0R6Pv1)
