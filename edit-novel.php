@@ -49,6 +49,11 @@ if (isset($_POST['submit'])) {
     setInputError('title', 'Judul novel harus diisi');
   }
 
+  // cek judul
+  if (strlen($title) > 100) {
+    setInputError('title', 'Maksimal panjang judul hanya 100 karakter');
+  }
+
   // cek deskripsi
   if (!$description) {
     setInputError('description', 'Deskripsi harus diisi');
@@ -109,10 +114,12 @@ if (isset($_POST['submit'])) {
       } catch (PDOException $error) {
         rollBack();
         setAlert('danger', 'Gagal membuat novel');
+        redirect('edit-novel.php?slug='.$novelSlug);
       }
     }
   } else {
     setOldInputs();
+    redirect('edit-novel.php?slug='.$novelSlug);
   }
 }
 ?>

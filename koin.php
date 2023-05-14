@@ -24,6 +24,11 @@ if (isset($_POST['beli'])) {
     setInputError('number', 'Masukkan nomor telepon');
   }
 
+	// cek number
+  if (strlen($number) > 15) {
+    setInputError('number', 'Maksimal panjang nomor telepon hanya 15 karakter');
+  }
+
 	$coin = fetchOne('SELECT * FROM paket_koin WHERE id = :id', [':id' => $coinId]);
 	$isThereAnyError = isThereAnyInputError();
 

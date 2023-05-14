@@ -28,6 +28,11 @@ if (isset($_POST['submit'])) {
     setInputError('title', 'Mohon masukkan judul episode');
   }
 
+  // cek judul
+  if (strlen($title) > 100) {
+    setInputError('title', 'Maksimal panjang judul hanya 100 karakter');
+  }
+
   // cek koin
   if ($isPaid && !$coin) {
     setInputError('coin', 'Mohon masukkan harga koin');
@@ -65,9 +70,11 @@ if (isset($_POST['submit'])) {
     } catch (PDOException $error) {
       rollBack();
       setAlert('danger', 'Gagal mengedit episode');
+      redirect('edit-episode.php?novel_slug='.$novelSlug.'&episode_slug='.$episodeSlug);
     }
   } else {
     setOldInputs();
+    redirect('edit-episode.php?novel_slug='.$novelSlug.'&episode_slug='.$episodeSlug);
   }
 }
 

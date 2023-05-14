@@ -24,6 +24,11 @@ if (isset($_POST['submit'])) {
     setInputError('title', 'Mohon masukkan judul episode');
   }
 
+  // cek judul
+  if (strlen($title) > 100) {
+    setInputError('title', 'Maksimal panjang judul hanya 100 karakter');
+  }
+
   // cek koin
   if ($isPaid && !$coin) {
     setInputError('coin', 'Mohon masukkan harga koin');
@@ -61,9 +66,11 @@ if (isset($_POST['submit'])) {
     } catch (PDOException $error) {
       rollBack();
       setAlert('danger', 'Gagal membuat episode');
+      redirect('buat-episode.php?slug='.$novel['slug']);
     }
   } else {
     setOldInputs();
+    redirect('buat-episode.php?slug='.$novel['slug']);
   }
 }
 

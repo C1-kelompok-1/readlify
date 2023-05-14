@@ -13,6 +13,11 @@ if (isset($_POST["tambah"])) {
     setInputError('nama', 'Nama perlu diisi');
   }
 
+  // cek nama
+  if (strlen($nama) > 50) {
+    setInputError('nama', 'Maksimal panjang nama hanya 50 karakter');
+  }
+
   if (!isThereAnyInputError()) {
     $genre = fetchOne('SELECT COUNT(id) AS jumlah FROM genre WHERE nama = :nama', [':nama' => $nama]);
 

@@ -946,12 +946,15 @@ main {
 /*---------------------------------------
   CUSTOM FORM               
 -----------------------------------------*/
+.form-group {
+  margin-bottom: 24px;
+}
+
 .custom-form .form-control {
   border-radius: var(--border-radius-small);
   color: var(--p-color);
   font-family: var(--title-font-family);
   font-size: var(--p-font-size);
-  margin-bottom: 24px;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 20px;

@@ -16,6 +16,11 @@ if (isset($_POST["tambah"])){
     setInputError('email', 'Tolong isi email');
   }
 
+  // cek email
+  if (strlen($email) > 50) {
+    setInputError('email', 'Maksimal panjang email hanya 50 karakter');
+  }
+
   // cek email valid
   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     setInputError('email', 'Email tidak valid');
@@ -24,6 +29,11 @@ if (isset($_POST["tambah"])){
   // cek username
   if (!$username) {
     setInputError('username', 'Tolong isi username');
+  }
+
+  // cek username
+  if (strlen($username) > 50) {
+    setInputError('username', 'Maksimal panjang username hanya 50 karakter');
   }
 
   // cek password

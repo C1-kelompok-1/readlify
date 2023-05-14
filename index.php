@@ -57,7 +57,7 @@ redirectIfNotAuthenticated('login.php');
 		<!-- Episode terbaru -->
 		<section class="latest-podcast-section section-padding pb-0" id="section_2">
 			<div class="container">
-				<div class="row justify-content-center">
+				<div class="row">
 
 					<div class="col-lg-12 col-12">
 						<div class="section-title-wrap mb-5 mt-5">
