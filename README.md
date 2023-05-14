@@ -6,17 +6,16 @@ Readify merupakan paltform membaca novel gratis dan berbayar yang dapat digunaka
 2. MySQL 5.4^
 3. Pastikan ekstensi GD milik PHP sudah terinstall.
 
-## Fitur-fitur
-Berikut adalah beberapa fitur yang tersedia di Readify:
+## Tutorial pengunaan Readify
+Berikut adalah Tutorial penggunaan web Readify:
 
-### Halaman depan
+#### 1. Register
+<p>Pengguna bisa melakukan register atau pembuatan akun dengan mengisi email, username, dan password.</p>
+![image](https://github.com/C1-kelompok-1/readlify/assets/120198104/d0383961-0575-432c-8fda-2a0791181ae2)
+
 #### Login
 [![Screenshot-2023-05-10-213235.png](https://i.postimg.cc/SRWJ6VNf/Screenshot-2023-05-10-213235.png)](https://postimg.cc/q6vJ0sKN)
 <p>Disini pengguna hanya perlu memasukkan email atau username serta password untuk melakukan login.</p>
-
-#### Register
-[![Screenshot-2023-05-10-213241.png](https://i.postimg.cc/FFcdXFgk/Screenshot-2023-05-10-213241.png)](https://postimg.cc/CdhLjg2w)
-<p>Pengguna bisa melakukan register atau pembuatan akun dengan mengisi email, username, dan password.</p>
 
 #### Halaman beranda
 [![Screenshot-2023-05-10-211929.png](https://i.postimg.cc/3whc8xzS/Screenshot-2023-05-10-211929.png)](https://postimg.cc/yDfPns1c)
