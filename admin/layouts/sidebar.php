@@ -1,13 +1,10 @@
 <?php
 
-require '../session.php';
-require '../config.php';
+require 'session.php';
+require 'helpers/auth.php';
 
 if (!isset($_SESSION['user'])) {
-  echo "<script>";
-  echo "window.location = '/".BASE_URL."/login.php';";
-  echo "</script>";
-  die;
+  redirect('/login.php');
 }
 
 ?>
@@ -58,7 +55,7 @@ if (!isset($_SESSION['user'])) {
       </a>
     </li>
     <li>
-      <a href="/<?= BASE_URL; ?>/logout.php">
+      <a href="logout.php">
         <i class="fa fa-sign-out"></i> <span>Keluar</span>
       </a>
     </li>
