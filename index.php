@@ -85,8 +85,8 @@ redirectIfNotAuthenticated('login.php');
 							</div>
 
 							<div class="custom-block-info">
-								<div class="custom-block-top d-flex mb-1">
-									<small>Judul <span class="badge"><?php echo $row['judul']; ?></span></small>
+								<div class="custom-block-top d-flex mb-3">
+									<small><span class="badge"><?php echo $row['judul']; ?></span></small>
 								</div>
 
 								<h5 class="mb-2">

@@ -135,6 +135,7 @@ if (isset($_POST['submit'])) {
 
   <title>Edit novel</title>
 
+  <?php require 'layouts/favicon.php'; ?>
   <?php require 'layouts/styles.php'; ?>
 
   <link rel="stylesheet" href="css/select2.min.css">
