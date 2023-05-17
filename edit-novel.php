@@ -8,11 +8,10 @@ require 'helpers/file.php';
 
 redirectIfNotAuthenticated('login.php');
 
+$novelSlug = $_GET['slug'];
 $user = getLoginUser();
 
-$novelSlug = $_GET['slug'];
-
-$novel = fetchOne('SELECT * FROM novel WHERE slug = :slug', [':slug' => $novelSlug]);
+$novel = fetchOne('SELECT * FROM novel WHERE slug = :slug AND id_pengguna = :id_pengguna', [':slug' => $novelSlug, ':id_pengguna' => $user['id']]);
 $novelGenres = fetchAll('SELECT id_genre FROM genre_novel WHERE id_novel = :id_novel', [':id_novel' => $novel['id']]);
 $novelGenres = array_map(fn ($genre) => $genre['id_genre'], $novelGenres);
 

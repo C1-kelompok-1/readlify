@@ -8,9 +8,10 @@ require 'helpers/auth.php';
 
 $novelSlug = $_GET['novel_slug'];
 $episodeSlug = $_GET['episode_slug'];
+$user = getLoginUser();
 
-$episodeSql = 'SELECT episode_novel.* FROM episode_novel JOIN novel ON episode_novel.id_novel = novel.id WHERE novel.slug = :novel_slug AND episode_novel.slug = :episode_slug';
-$episodeParams = [':novel_slug' => $novelSlug, ':episode_slug' => $episodeSlug];
+$episodeSql = 'SELECT episode_novel.* FROM episode_novel JOIN novel ON episode_novel.id_novel = novel.id WHERE novel.slug = :novel_slug AND episode_novel.slug = :episode_slug AND novel.id_pengguna = :id_pengguna';
+$episodeParams = [':novel_slug' => $novelSlug, ':episode_slug' => $episodeSlug, ':id_pengguna' => $user['id']];
 $episode = fetchOne($episodeSql, $episodeParams);
 
 if (!$episode) {

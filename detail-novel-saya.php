@@ -27,9 +27,10 @@ if (isset($_POST['hapus'])) {
 }
 
 $slug = $_GET['slug'];
+$user = getLoginUser();
 
-$novelSql = 'SELECT * FROM novel WHERE slug = :slug';
-$novelParams = [':slug' => $slug];
+$novelSql = 'SELECT * FROM novel WHERE slug = :slug AND id_pengguna = :id_pengguna';
+$novelParams = [':slug' => $slug, ':id_pengguna' => $user['id']];
 $novel = fetchOne($novelSql, $novelParams);
 
 $genreSql = 'SELECT nama FROM genre WHERE id IN (SELECT id_genre FROM genre_novel WHERE id_novel = :id_novel)';
