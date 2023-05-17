@@ -4,7 +4,7 @@ require "database.php";
 require "helpers/string.php";
 require "helpers/alert.php";
 
-$query = "SELECT * FROM pengguna WHERE role IN ('pembaca', 'penulis')";
+$query = "SELECT * FROM pengguna ORDER BY IF (role IN ('pembaca', 'penulis'), 0, 1)";
 $result = fetchAll($query);
 
 ?>
@@ -59,10 +59,12 @@ $result = fetchAll($query);
                           <a href="<?= $row['twitter_url']; ?>" target="_blank"><i class="fa fa-twitter"></i></a>
                         </td>
                         <td class="text-right">
-                          <a href="hapus_pgna.php?id=<?php echo $row['id']; ?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
-                            <i class="fa fa-trash"></i>
-                            Hapus
-                          </a>
+                          <?php if ($row['role'] != 'admin'): ?>
+                            <a href="hapus_pgna.php?id=<?php echo $row['id']; ?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
+                              <i class="fa fa-trash"></i>
+                              Hapus
+                            </a>
+                          <?php endif; ?>
                         </td>
                       </tr>
                     <?php } ?>
