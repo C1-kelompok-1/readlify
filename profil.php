@@ -41,6 +41,21 @@ if (isset($_POST['submit'])) {
     setInputError('email', 'Maksimal panjang email hanya 100 karakter');
   }
 
+  // cek url facebook
+  if (!filter_var($facebookUrl, FILTER_VALIDATE_URL)) {
+    setInputError('facebook_url', 'URL tidak valid');
+  }
+
+  // cek url instagram
+  if (!filter_var($instagramUrl, FILTER_VALIDATE_URL)) {
+    setInputError('instagram_url', 'URL tidak valid');
+  }
+
+  // cek url twitter
+  if (!filter_var($twitterUrl, FILTER_VALIDATE_URL)) {
+    setInputError('twitter_url', 'URL tidak valid');
+  }
+
   if (!isThereAnyInputError()) {
     $emailExists = fetchOne('SELECT COUNT(id) AS sudah_ada FROM pengguna WHERE email = :email AND id != :id', [
       ':email' => $email,
@@ -212,12 +227,15 @@ if (isset($_POST['submit'])) {
                   </div>
                   <div class="form-group">
                     <input name="facebook_url" type="url" class="form-control" id="facebook_url" placeholder="URL Facebook" value="<?= $user['facebook_url']; ?>">
+                    <?= getInputError('facebook_url'); ?>
                   </div>
                   <div class="form-group">
                     <input name="instagram_url" type="url" class="form-control" id="instagram_url" placeholder="URL Instagram" value="<?= $user['instagram_url']; ?>">
+                    <?= getInputError('instagram_url'); ?>
                   </div>
                   <div class="form-group">
                     <input name="twitter_url" type="url" class="form-control" id="twitter_url" placeholder="URL Twitter" value="<?= $user['twitter_url']; ?>">
+                    <?= getInputError('twitter_url'); ?>
                   </div>
                   <div class="form-group mt-3">
                     <button type="submit" name="submit" class="btn custom-btn">Simpan</button>
