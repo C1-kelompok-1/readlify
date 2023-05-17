@@ -1,6 +1,8 @@
 <?php
 
-require "koneksi.php";
+require "database.php";
+require "helpers/alert.php";
+require "helpers/string.php";
 
 $query = "SELECT
             novel.id,
@@ -15,14 +17,14 @@ $query = "SELECT
           LEFT JOIN episode_novel ON episode_novel.id_novel = novel.id
           LEFT JOIN episode_novel_disukai ON episode_novel_disukai.id_episode_novel = episode_novel.id
           GROUP BY novel.id;";
-$result = mysqli_query($conn, $query);
+$result = fetchAll($query);
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Genre</title>
+    <title>Daftar Novel</title>
     <?php require 'layouts/styles.php'; ?>
   </head>
 
@@ -34,6 +36,7 @@ $result = mysqli_query($conn, $query);
 
       <div class="content-wrapper">
         <div class="container-fluid">
+          <?= getAlert(); ?>
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Novel</h5>
@@ -51,15 +54,15 @@ $result = mysqli_query($conn, $query);
                     </tr>
                   </thead>
                   <tbody>
-                    <?php while( $row = mysqli_fetch_assoc($result)) { ?>
+                    <?php foreach ($result as $row) { ?>
                       <tr>
                         <td>
                           <img src="../photos/<?php echo $row["photo_filename"]; ?>" style="width: 190px; height: 110px;" />
                         </td>
                         <td><?php echo $row["judul"]; ?></td>
                         <td><?php echo $row["username"]; ?></td>
-                        <td><?php echo $row["jumlah_episode"]; ?></td>
-                        <td><?php echo $row["jumlah_disukai"]; ?></td>
+                        <td><?php echo formatNumber($row["jumlah_episode"]); ?></td>
+                        <td><?php echo formatNumber($row["jumlah_disukai"]); ?></td>
                         <td><?php echo $row["tanggal"]; ?></td>
                         <td class="text-right">
                           <a href="hapus_nvl.php?id=<?php echo$row['id']?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">

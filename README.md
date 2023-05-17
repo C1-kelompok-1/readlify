@@ -8,105 +8,114 @@ Readify merupakan paltform membaca novel gratis dan berbayar yang dapat digunaka
 2. MySQL 5.4^
 3. Pastikan ekstensi GD milik PHP sudah terinstall.
 
-## Fitur-fitur
+## Tutorial pengunaan Readify
 
-Berikut adalah beberapa fitur yang tersedia di Readify:
+Berikut adalah Tutorial penggunaan web Readify:
 
-### Halaman depan
-
-#### Login
-
-[![Screenshot-2023-05-10-213235.png](https://i.postimg.cc/SRWJ6VNf/Screenshot-2023-05-10-213235.png)](https://postimg.cc/q6vJ0sKN)
-
-<p>Disini pengguna hanya perlu memasukkan email atau username serta password untuk melakukan login.</p>
-
-#### Register
-
-[![Screenshot-2023-05-10-213241.png](https://i.postimg.cc/FFcdXFgk/Screenshot-2023-05-10-213241.png)](https://postimg.cc/CdhLjg2w)
+#### 1. Register
 
 <p>Pengguna bisa melakukan register atau pembuatan akun dengan mengisi email, username, dan password.</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/f02d387a-8c90-47a1-b538-99b06eab6f37" />
 
-#### Halaman beranda
+#### 2. Login
 
-[![Screenshot-2023-05-10-211929.png](https://i.postimg.cc/3whc8xzS/Screenshot-2023-05-10-211929.png)](https://postimg.cc/yDfPns1c)
+<p>Disini pengguna hanya perlu memasukkan email atau username serta password untuk melakukan login.</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/df773116-1636-40f6-aebf-4dc7346061f5" />
 
-<p>Halaman beranda berisi input pencarian yang dapat digunakan untuk mencari novel berdasarkan judul, juga terdapat beberapa section yang ada di halaman beranda.</p>
+#### 3. Halaman Pembaca
 
-#### Genre
+##### a. Beranda
 
-[![Screenshot-2023-05-10-212003.png](https://i.postimg.cc/rp9YKLk8/Screenshot-2023-05-10-212003.png)](https://postimg.cc/Typc4F1S)
+<p>Halaman beranda pada Pembaca berisi input pencarian yang dapat digunakan untuk mencari novel berdasarkan judul, juga terdapat beberapa section yang ada di halaman beranda.</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/8d512948-24ea-4482-b971-4bbe264efe63" />
+
+##### b. Genre
 
 <p>Halaman genre dapat digunakan untuk mencari novel berdasarkan genre yang dipilih.</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/5c92e8e9-635a-4058-b304-71aefcad88ea" />
+<p>Kemudian ketika pembaca memilih novel sesuai genre yang dipilih maka akan muncul informasi seputar novel dan episode yang tersedia</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/06bf5231-ad18-4464-8c5e-d2d78a586321" />
 
-#### Buat novelmu
-
-[![Screenshot-2023-05-10-212114.png](https://i.postimg.cc/dVrfcyNZ/Screenshot-2023-05-10-212114.png)](https://postimg.cc/PCfymPjd)
-
-<p>Di halaman "Novel saya" penulis dapat menulis novelnya.</p>
-
-[![Screenshot-2023-05-10-212133.png](https://i.postimg.cc/KzJVshq9/Screenshot-2023-05-10-212133.png)](https://postimg.cc/7GJmfdy7)
-
-<p>Buat novel dengan mengisi foto sampul, judul novel, deskripsi, dan beberapa genre yang sesuai.</p>
-
-[![Screenshot-2023-05-10-212144.png](https://i.postimg.cc/yYJ5n5FP/Screenshot-2023-05-10-212144.png)](https://postimg.cc/1fQJ3v7n)
-
-<p>Di halaman detail novel terdapat beberapa informasi terkait suatu novel seperti jumlah episode, jumlah disukai, genre, deskripsi, dan episode-episode novel tersebut.</p>
-
-[![Screenshot-2023-05-10-212233.png](https://i.postimg.cc/66bgrwGq/Screenshot-2023-05-10-212233.png)](https://postimg.cc/QV5fD2mZ)
-[![Screenshot-2023-05-10-214244.png](https://i.postimg.cc/cCW6xjQG/Screenshot-2023-05-10-214244.png)](https://postimg.cc/2bHCT0c0)
-
-<p>Di halaman ini pengguna dapat membaca setiap episode novel yang tersedia. Pengguna juga dapat membeli episode yang berbayar jika saldo koin penggua tersebut mencukupi.</p>
-
-#### Beli koin
-
-[![Screenshot-2023-05-10-212253.png](https://i.postimg.cc/RhYY4QzK/Screenshot-2023-05-10-212253.png)](https://postimg.cc/5Qwgmzy2)
-[![Screenshot-2023-05-10-212301.png](https://i.postimg.cc/Y00P5DTt/Screenshot-2023-05-10-212301.png)](https://postimg.cc/H8G35zpN)
+##### c. Beli Koin
 
 <p>Pengguna dapat membeli paket koin di halaman ini untuk mengisi saldo koin mereka.</p>
+<img src="https://i.postimg.cc/RhYY4QzK/Screenshot-2023-05-10-212253.png)](https://postimg.cc/5Qwgmzy2" />
+<img src="https://i.postimg.cc/Y00P5DTt/Screenshot-2023-05-10-212301.png)](https://postimg.cc/H8G35zpN" />
 
-#### Ganti profil
+#### 4. Halaman Penulis
 
-[![Screenshot-2023-05-10-212313.png](https://i.postimg.cc/LX6QP09j/Screenshot-2023-05-10-212313.png)](https://postimg.cc/hJ60Ws7G)
+##### a. Halaman Utama Pada Penulis
+
+<p>Halam penulis hampir sama sengan halaman pembaca, namun yang membedakan adalah pada halaman penulis terdapat menu novel saya untuk membuat novel sedangkan pada pembaca tidak ada.</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/25913a0f-d240-49d6-b248-24b9512100a2" />
+
+##### b. Buat Novel
+
+<p>Di halaman "Novel saya" penulis dapat menulis novelnya.</p>
+<img src="https://i.postimg.cc/dVrfcyNZ/Screenshot-2023-05-10-212114.png)](https://postimg.cc/PCfymPjd" />
+
+<p>Buat novel dengan mengisi foto sampul, judul novel, deskripsi, dan beberapa genre yang sesuai.</p>
+<img src="https://i.postimg.cc/KzJVshq9/Screenshot-2023-05-10-212133.png)](https://postimg.cc/7GJmfdy7" />
+
+<p>Di halaman detail novel terdapat beberapa informasi terkait suatu novel seperti jumlah episode, jumlah disukai, genre, deskripsi, dan episode-episode novel tersebut.</p>
+<img src="https://i.postimg.cc/yYJ5n5FP/Screenshot-2023-05-10-212144.png)](https://postimg.cc/1fQJ3v7n" />
+
+<p>Di halaman ini pengguna dapat membaca setiap episode novel yang tersedia. Pengguna juga dapat membeli episode yang berbayar jika saldo koin penggua tersebut mencukupi.</p>
+<img src="https://i.postimg.cc/66bgrwGq/Screenshot-2023-05-10-212233.png)](https://postimg.cc/QV5fD2mZ" />
+<img src="https://i.postimg.cc/cCW6xjQG/Screenshot-2023-05-10-214244.png)](https://postimg.cc/2bHCT0c0" />
+
+#### 5. Ganti profil
 
 <p>Pengguna dapat mengganti informasi terkait akun mereka di halaman profil.</p>
+<img src="https://i.postimg.cc/LX6QP09j/Screenshot-2023-05-10-212313.png)](https://postimg.cc/hJ60Ws7G" />
 
-### Halaman admin
+### 6. Halaman admin
 
-#### Dashboard
-
-[![Screenshot-2023-05-10-213501.png](https://i.postimg.cc/xTfzGDMk/Screenshot-2023-05-10-213501.png)](https://postimg.cc/F16zm6Pm)
+#### a. Dashboard
 
 <p>Halaman dashboard berisi informasi singkat berupa jumlah novel, jumlah penulis, jumlah pembaca, dan jumlah total pendapatan dari pembelian koin.</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/4bbb8f67-b0d5-4fbc-b13c-d9b8ec4d59ff" />
 
-#### Daftar pengguna
+#### b. Daftar pengguna
 
-[![Screenshot-2023-05-10-213508.png](https://i.postimg.cc/g2rL5VMm/Screenshot-2023-05-10-213508.png)](https://postimg.cc/TKMP5DM4)
+<p>Daftar pengguna dapat dilihat di halaman ini, pengguna disini merupakan pengguna dengan role penulis maupun pembaca. Disini admin juga dapat menghapus dan mengangkat pengguna sebagai seorang penulis dengan menekan tombol Jadikan Penulis.</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/1e912337-d83f-40a1-84e3-fbbb637bebcf" />
 
-<p>Daftar pengguna dapat dilihat di halaman ini, pengguna disini merupakan pengguna dengan role penulis maupun pembaca.</p>
+<p>Jika admin ingin menambahkan admin, maka pilih tombol tambah admin dan kemudian isi form yang tersedia</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/16390b3a-0b22-4623-96c8-4aba12362bce" />
 
-#### Daftar novel
+#### c. Daftar novel
 
-[![Screenshot-2023-05-10-213516.png](https://i.postimg.cc/BnyPGjyD/Screenshot-2023-05-10-213516.png)](https://postimg.cc/qNsvsvpM)
+<p>Novel yang ada dapat dilihat pada halaman daftar novel dan terdapat juga tombol hapus untuk menghapus Novel.</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/acb6320c-9973-4b63-94e5-f4f795f1b791" />
 
-<p>Novel yang ada dapat dilihat pada halaman daftar novel.</p>
-
-#### Genre
-
-[![Screenshot-2023-05-10-213523.png](https://i.postimg.cc/rFftQnNf/Screenshot-2023-05-10-213523.png)](https://postimg.cc/gn6J0K5h)
+#### d. Genre
 
 <p>Data master genre dapat diatur di halaman ini.</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/8bf64587-8892-4f2e-9c26-0df62ff93fa3" />
 
-#### Paket koin
+<p> Jika admin ingin menambahkan genre, maka pilih tombool tambah dan masukkan genre yang baru pada form</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/98ae050c-e8a3-40c9-8e5e-b841a21c9cf8" />
 
-[![Screenshot-2023-05-10-213529.png](https://i.postimg.cc/gcqh6kXF/Screenshot-2023-05-10-213529.png)](https://postimg.cc/hhvvkn1p)
+<p> Namun jika ingin mengedit genre, maka di menu utama genre tadi pilih tombol edit. Kemudian edit genre</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/afc34cdb-6d37-49a6-802f-4a9f058b79ed" />
+
+#### e. Paket koin
 
 <p>Data master paket koin dapat diatur di halaman ini.</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/1dfacaf3-e52f-49a0-8125-0e15aa4950ed">
+
+<p> Jika admin ingin menambahkan Paket Koin, maka pilih tombool tambah kemudian masukkan jumlah dan harga yang baru </p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/7a8b7aed-7317-4355-90ba-dd59e4452537" />
+
+<p> Namun jika ingin mengedit Paket Koin, maka di menu utama paket koin tadi tadi pilih tombol edit. Kemudian edit paket koin</p>
+<img src="https://github.com/C1-kelompok-1/readlify/assets/120198104/4fd9a219-7b6c-40dd-b975-9cb8f5f4d4c2" />
 
 ## ERD
 
 [![readify-1.png](https://i.postimg.cc/7ZCw08r4/readify-1.png)](https://postimg.cc/Xr0R6Pv1)
 
-<p>File SQL-nya dapat diunduh <a href="https://drive.google.com/file/d/1SuB-6I4gZkyFWsHxxuvpw4W9souF0Wef/view?usp=sharing">disini</a>.</p>
+<p>File SQL-nya dapat diunduh <a href="https://drive.google.com/drive/folders/1ml8GR9rZriynJIHetj5aBOM-4-yt4gKb?usp=share_link">disini</a>.</p>
 
 ## Use case
 

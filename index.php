@@ -57,7 +57,7 @@ redirectIfNotAuthenticated('login.php');
 		<!-- Episode terbaru -->
 		<section class="latest-podcast-section section-padding pb-0" id="section_2">
 			<div class="container">
-				<div class="row justify-content-center">
+				<div class="row">
 
 					<div class="col-lg-12 col-12">
 						<div class="section-title-wrap mb-5 mt-5">
@@ -85,8 +85,8 @@ redirectIfNotAuthenticated('login.php');
 							</div>
 
 							<div class="custom-block-info">
-								<div class="custom-block-top d-flex mb-1">
-									<small>Judul <span class="badge"><?php echo $row['judul']; ?></span></small>
+								<div class="custom-block-top d-flex mb-3">
+									<small><span class="badge"><?php echo $row['judul']; ?></span></small>
 								</div>
 
 								<h5 class="mb-2">
@@ -126,15 +126,13 @@ redirectIfNotAuthenticated('login.php');
 					</div>
 					<?php while ($row = mysqli_fetch_assoc($result_genre_populer)) { ?>
 					<div class="col-lg-3 col-md-6 col-12 mb-4">
-						<div class="custom-block h-100">
+						<div class="custom-block d-flex align-items-center h-100">
 							<div class="custom-block-info">
-								<h6 class="mb-1">
+								<h6 class="mb-0">
 									<a href="genre.php?genre=<?= $row['nama']; ?>">
 										<?php echo $row['nama']; ?>
 									</a>
 								</h6>
-
-								<p class="badge mb-0"><?php echo $row['jumlah_novel']; ?> novel</p>
 							</div>
 						</div>
 					</div>

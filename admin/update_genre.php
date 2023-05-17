@@ -1,52 +1,47 @@
-
 <?php
 
-require "koneksi.php";
+require "database.php";
+require "helpers/alert.php";
+require "helpers/auth.php";
+require "helpers/input.php";
 
-$query = "SELECT * FROM genre";
-$result = mysqli_query($conn, $query);
-
-if (!isset($_GET["id"])) {
-  header("location: genre.php");
-  exit;
-}
-
-$id = $_GET["id"];
-$query = "SELECT * FROM genre WHERE id = '$id' LIMIT 1";
-$result = mysqli_query($conn, $query);
-$genre = mysqli_fetch_assoc($result);
-
-if (mysqli_num_rows($result) != 1) {
-  header("location: genre.php");
-  exit;
-}
-
-function ubah() {
-  global $conn;
-
-  $id = $_GET["id"];
-  $nama = $_POST["nama"];
-
-  $query = "UPDATE genre SET
-    nama = '$nama'
-    WHERE id = '$id'";
-  $result = mysqli_query($conn, $query);
-  return mysqli_affected_rows($conn);
-}
+$id = $_GET['id'];
+$query = "SELECT * FROM genre WHERE id = :id";
+$result = fetchOne($query, [':id' => $id]);
 
 if (isset($_POST["update"])) {
-  if (ubah() > 0) {
-    echo "<script>
-        alert('Berhasil update data');
-        document.location.href = 'genre.php';
-        </script>";
-  } else {
-    echo "<script>
-        alert('Gagal update data');
-        document.location.href = 'genre.php';
-        </script>";
+  $nama = $_POST["nama"];
+
+  // cek nama
+  if (!$nama) {
+    setInputError('nama', 'Nama perlu diisi');
+  }
+
+  // cek nama
+  if (strlen($nama) > 50) {
+    setInputError('nama', 'Maksimal panjang nama hanya 50 karakter');
+  }
+
+  if (!isThereAnyInputError()) {
+    $genre = fetchOne('SELECT COUNT(id) AS jumlah FROM genre WHERE nama = :nama AND id != :id', [':nama' => $nama, ':id' => $id]);
+
+    if (!$genre['jumlah']) {
+      try {
+        query("UPDATE genre SET nama = :nama WHERE id = :id", [':nama' => $nama, ':id' => $id]);
+    
+        setAlert('success', 'Berhasil mengedit genre');
+        redirect('update_genre.php?id='.$id);
+      } catch (PDOException $error) {
+        setAlert('danger', 'Gagal mengedit genre');
+        redirect('update_genre.php?id='.$id);
+      }
+    } else {
+      setAlert('danger', 'Genre tersebut sudah ada');
+      redirect('update_genre.php?id='.$id);
+    }
   }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -64,6 +59,7 @@ if (isset($_POST["update"])) {
       
       <div class="content-wrapper">
         <div class="container-fluid">
+          <?= getAlert(); ?>
           <div class="card">
             <div class="card-body">
               <div class="d-flex align-items-center justify-content-between">
@@ -73,9 +69,10 @@ if (isset($_POST["update"])) {
                   Kembali
                 </a>
               </div>
-              <form action="update_genre.php?id=<?= $_GET['id']; ?>" method="POST">
+              <form action="update_genre.php?id=<?= $id; ?>" method="POST">
                 <div class="form-group">
-                  <input type="text" class="form-control" name="nama" placeholder="Nama genre" value="<?= $genre['nama']; ?>">
+                  <input type="text" class="form-control" name="nama" placeholder="Nama genre" value="<?= $result['nama']; ?>">
+                  <?= getInputError('nama'); ?>
                 </div>
                 <div class="form-group">
                   <button type="submit" name="update" class="btn btn-primary">Edit</button>

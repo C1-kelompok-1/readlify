@@ -1,22 +1,17 @@
 <?php
-require "koneksi.php";
+require "database.php";
+require "helpers/alert.php";
+require "helpers/auth.php";
 
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
-    
-    $query = "DELETE FROM paket_koin WHERE id = $id";
-    $result = mysqli_query($conn,$query);
-
-    if ($result) {
-        echo "<script>
-            alert ('Data berhasil dihapus');
-            window.location.href = 'koin.php';
-            </script>";
-    } else {
-        echo "<script>
-            alert ('Gagal menghapus data');
-            window.location.href = 'koin.php';
-            </script>";
+    try {
+        query("DELETE FROM paket_koin WHERE id = :id", [':id' => $id]);
+        setAlert('success', 'Paket koin berhasil dihapus');
+        redirect('koin.php');
+    } catch (Exception $error) {
+        setAlert('danger', 'Gagal menghapus paket koin');
+        redirect('koin.php');
     }
 }
 ?>

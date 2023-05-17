@@ -1,16 +1,18 @@
 <?php
 
-require "koneksi.php";
+require "database.php";
+require "helpers/string.php";
+require "helpers/alert.php";
 
 $query = "SELECT * FROM pengguna WHERE role IN ('pembaca', 'penulis')";
-$result = mysqli_query($conn, $query);
+$result = fetchAll($query);
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Pengguna</title>
+    <title>Daftar Pengguna</title>
     <?php require 'layouts/styles.php'; ?>
   </head>
 
@@ -22,6 +24,7 @@ $result = mysqli_query($conn, $query);
 
       <div class="content-wrapper">
         <div class="container-fluid">
+        <?= getAlert(); ?>
           <div class="card">
             <div class="card-body">
               <div class="d-flex align-items-center justify-content-between">
@@ -44,12 +47,12 @@ $result = mysqli_query($conn, $query);
                     </tr>
                   </thead>
                   <tbody>
-                    <?php while( $row = mysqli_fetch_assoc($result)) { ?>
+                    <?php foreach ($result as $row) { ?>
                       <tr>
                         <td><?php echo $row["username"]; ?></td>
                         <td><?php echo $row["email"]; ?></td>
                         <td><?php echo $row["role"]; ?></td>
-                        <td><?php echo $row["koin"]; ?></td>
+                        <td><?php echo formatNumber($row["koin"]); ?></td>
                         <td>
                           <a href="<?= $row['facebook_url']; ?>" target="_blank"><i class="fa fa-facebook mr-3"></i></a>
                           <a href="<?= $row['instagram_url']; ?>" target="_blank"><i class="fa fa-instagram mr-3"></i></a>

@@ -5,8 +5,13 @@ require 'session.php';
 require 'helpers/alert.php';
 require 'helpers/auth.php';
 require 'helpers/file.php';
+require 'helpers/input.php';
 
 $user = $_SESSION['user'];
+
+$appeal = fetchOne('SELECT * FROM pengajuan_penulis WHERE id_pengguna = :id_pengguna', [
+  ':id_pengguna' => $user['id']
+]);
 
 if (isset($_POST['submit'])) {
   $username = $_POST['username'];
@@ -16,43 +21,93 @@ if (isset($_POST['submit'])) {
   $twitterUrl = $_POST['twitter_url'];
   $avatar = $_FILES['avatar'];
 
-  try {
-    $userSql = "UPDATE pengguna
-                SET
-                  avatar = :avatar,
-                  username = :username,
-                  email = :email,
-                  facebook_url = :facebook_url,
-                  instagram_url = :instagram_url,
-                  twitter_url = :twitter_url
-                WHERE id = :id";
+  // cek username
+  if (!$username) {
+    setInputError('username', 'Mohon isi usernamemu');
+  }
 
-    $avatar = saveAndResizeImage($avatar, 80, 80);
+  // cek username
+  if (strlen($username) > 100) {
+    setInputError('username', 'Maksimal panjang username hanya 100 karakter');
+  }
 
-    query($userSql, [
-      ':avatar' => $avatar,
-      ':username' => $username,
+  // cek email
+  if (!$email) {
+    setInputError('email', 'Mohon isi emailmu');
+  }
+
+  // cek email
+  if (strlen($email) > 100) {
+    setInputError('email', 'Maksimal panjang email hanya 100 karakter');
+  }
+
+  if (!isThereAnyInputError()) {
+    $emailExists = fetchOne('SELECT COUNT(id) AS sudah_ada FROM pengguna WHERE email = :email AND id != :id', [
       ':email' => $email,
-      ':facebook_url' => $facebookUrl,
-      ':instagram_url' => $instagramUrl,
-      ':twitter_url' => $twitterUrl,
       ':id' => $user['id']
     ]);
 
-    $_SESSION['user'] = [
-      ...$_SESSION['user'],
-      'avatar' => $avatar,
-      'username' => $username,
-      'email' => $email,
-      'facebook_url' => $facebookUrl,
-      'instagram_url' => $instagramUrl,
-      'twitter_url' => $twitterUrl,
-    ];
+    if ($emailExists['sudah_ada']) {
+      setInputError('email', 'Email tersebut sudah digunakan');
+      setOldInputs();
+      redirect('profil.php');
+    }
 
-    setAlert('success', 'Profil berhasil diedit');
-    redirect('profil.php');
-  } catch (PDOException $error) {
-    setAlert('danger', 'Gagal mengubah profil');
+    $usernameExists = fetchOne('SELECT COUNT(id) AS sudah_ada FROM pengguna WHERE username = :username AND id != :id', [
+      ':username' => $username,
+      ':id' => $user['id']
+    ]);
+
+    if ($usernameExists['sudah_ada']) {
+      setInputError('username', 'Username tersebut sudah digunakan');
+      setOldInputs();
+      redirect('profil.php');
+    }
+    
+    try {
+      $userSql = "UPDATE pengguna
+                  SET
+                    avatar = :avatar,
+                    username = :username,
+                    email = :email,
+                    facebook_url = :facebook_url,
+                    instagram_url = :instagram_url,
+                    twitter_url = :twitter_url
+                  WHERE id = :id";
+  
+      $isAvatarAvailable = isset($avatar['size']) && $avatar['size'];
+  
+      if ($isAvatarAvailable) {
+        $avatar = saveAndResizeImage($avatar, 80, 80);
+      }
+  
+      query($userSql, [
+        ':avatar' => $isAvatarAvailable ? $avatar : $user['avatar'],
+        ':username' => $username,
+        ':email' => $email,
+        ':facebook_url' => $facebookUrl,
+        ':instagram_url' => $instagramUrl,
+        ':twitter_url' => $twitterUrl,
+        ':id' => $user['id']
+      ]);
+  
+      $_SESSION['user'] = [
+        ...$_SESSION['user'],
+        'avatar' => $isAvatarAvailable ? $avatar : $user['avatar'],
+        'username' => $username,
+        'email' => $email,
+        'facebook_url' => $facebookUrl,
+        'instagram_url' => $instagramUrl,
+        'twitter_url' => $twitterUrl,
+      ];
+  
+      setAlert('success', 'Profil berhasil diedit');
+      redirect('profil.php');
+    } catch (PDOException $error) {
+      setAlert('danger', 'Gagal mengubah profil');
+    }
+  } else {
+    setOldInputs();
   }
 }
 
@@ -136,12 +191,6 @@ if (isset($_POST['submit'])) {
     <section class="section-padding">
       <div class="container">
         <div class="row">
-          <div class="col-12 text-end mb-3">
-            <a href="index.php" class="btn custom-btn">
-              <i class="bi-arrow-left"></i>
-              Kembali
-            </a>
-          </div>
           <div class="col-12">
             <?= getAlert(); ?>
           </div>
@@ -150,15 +199,16 @@ if (isset($_POST['submit'])) {
               <div class="custom-block-info">
                 <h5 class="mb-4">Profil</h5>
                 <form action="profil.php" method="post" class="custom-form me-3" enctype="multipart/form-data">
-
                   <div class="form-group">
                     <input name="avatar" type="file" class="form-control" placeholder="Avatar">
                   </div>
                   <div class="form-group">
                     <input name="username" type="text" class="form-control" id="username" placeholder="Username" value="<?= $user['username']; ?>">
+                    <?= getInputError('username'); ?>
                   </div>
                   <div class="form-group">
                     <input name="email" type="email" class="form-control" id="email" placeholder="Email" value="<?= $user['email']; ?>">
+                    <?= getInputError('email'); ?>
                   </div>
                   <div class="form-group">
                     <input name="facebook_url" type="url" class="form-control" id="facebook_url" placeholder="URL Facebook" value="<?= $user['facebook_url']; ?>">
@@ -187,6 +237,7 @@ if (isset($_POST['submit'])) {
             <div class="d-flex flex-column justify-content-center align-items-center mt-5">
               <div class="dropdown pe-auto">
                 <img src="photos/<?= $user['avatar']; ?>" class="rounded-circle dropdown-toggle foto-profil w-5 h-5" id="profil-image" data-bs-toggle="dropdown" aria-expanded="false" alt="Profil" />
+
                 <form action="profil.php" method="post" class="custom-form me-3" enctype="multipart/form-data">
                   <ul class="dropdown-menu">
                     <li>
@@ -212,6 +263,13 @@ if (isset($_POST['submit'])) {
                 <strong><?php echo $user['username']; ?></strong>
               </h5>
               <p class="text-muted"><?php echo $user["email"] ?></p>
+              <?php if ($user['role'] == 'pembaca'): ?>
+                <a href="pengajuan-penulis.php" class="btn custom-btn">Ajukan diri sebagai penulis</a>
+              <?php else: ?>
+                <div class="alert alert-info">
+                  <p class="mb-0">Selamat, pengajuanmu telah diterima dan kamu bisa menulis cerita sekarang, selamat berkarya.</p>
+                </div>
+              <?php endif; ?>
             </div>
           </div>
         </div>

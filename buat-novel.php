@@ -38,6 +38,11 @@ if (isset($_POST['submit'])) {
     setInputError('title', 'Judul novel harus diisi');
   }
 
+  // cek judul
+  if (strlen($title) > 100) {
+    setInputError('title', 'Maksimal panjang judul hanya 100 karakter');
+  }
+
   // cek deskripsi
   if (!$description) {
     setInputError('description', 'Deskripsi harus diisi');
@@ -59,8 +64,9 @@ if (isset($_POST['submit'])) {
     $usedNovelParams = [':judul' => $title];
     $usedNovel = fetchOne($usedNovelSql, $usedNovelParams);
     if ($usedNovel) {
-      setAlert('danger', 'Judul novel sudah digunakan');
+      setAlert('danger', 'Judul tersebut sudah digunakan');
       setOldInputs();
+      redirect('buat-novel.php');
     } else {
       $filename = saveAndResizeImage($thumbnail, 290, 210);
 
@@ -95,10 +101,12 @@ if (isset($_POST['submit'])) {
       } catch (PDOException $error) {
         rollBack();
         setAlert('danger', 'Gagal membuat novel');
+        redirect('buat-novel.php');
       }
     }    
   } else {
     setOldInputs();
+    redirect('buat-novel.php');
   }
 }
 ?>
@@ -127,14 +135,14 @@ if (isset($_POST['submit'])) {
       <section class="section-padding">
         <div class="container">
           <div class="row">
-            <div class="col-12">
-              <?= getAlert(); ?>
-            </div>
             <div class="col-12 text-end mb-3">
               <a href="novel-saya.php" class="btn custom-btn">
                 <i class="bi-arrow-left"></i>
                 Kembali
               </a>
+            </div>
+            <div class="col-12">
+              <?= getAlert(); ?>
             </div>
             <div class="col-12">
               <div class="custom-block custom-block-full custom-block-no-hover">

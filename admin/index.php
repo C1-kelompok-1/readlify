@@ -1,6 +1,7 @@
 <?php
 
 require "koneksi.php";
+require "helpers/string.php";
 
 $sql1 = "SELECT COUNT(id) AS total FROM novel";
 $result1 = mysqli_query($conn, $sql1);
@@ -42,7 +43,7 @@ $total4 = mysqli_fetch_assoc($result4)['total'];
               <div class="col-12 col-lg-6 col-xl-3 border-light">
                 <div class="card-body">
                   <h5 class="text-white">
-                    <?= $total1 ?: 0; ?>
+                    <?= formatNumber($total1 ?: 0); ?>
                     <span class="float-right"><i class="fa fa-book"></i></span>
                   </h5>
                   <p class="mb-0 text-white small-font">Jumlah novel</p>
@@ -51,7 +52,7 @@ $total4 = mysqli_fetch_assoc($result4)['total'];
               <div class="col-12 col-lg-6 col-xl-3 border-light">
                 <div class="card-body">
                   <h5 class="text-white">
-                    <?= $total2 ?: 0; ?>
+                    <?= formatNumber($total2 ?: 0); ?>
                     <span class="float-right"><i class="fa fa-pencil"></i></span>
                   </h5>
                   <p class="mb-0 text-white small-font">Jumlah penulis</p>
@@ -60,7 +61,7 @@ $total4 = mysqli_fetch_assoc($result4)['total'];
               <div class="col-12 col-lg-6 col-xl-3 border-light">
                 <div class="card-body">
                   <h5 class="text-white">
-                    <?= $total3 ?: 0; ?>
+                    <?= formatNumber($total3 ?: 0); ?>
                     <span class="float-right"><i class="fa fa-eye"></i></span>
                   </h5>
                   <p class="mb-0 text-white small-font">Jumlah pembaca</p>
@@ -69,7 +70,7 @@ $total4 = mysqli_fetch_assoc($result4)['total'];
               <div class="col-12 col-lg-6 col-xl-3 border-light">
                 <div class="card-body">
                   <h5 class="text-white">
-                    Rp <?= $total4 ?: 0; ?>
+                    Rp<?= formatNumber($total4 ?: 0); ?>
                     <span class="float-right"><i class="fa fa-dollar"></i></span>
                   </h5>
                   <p class="mb-0 text-white small-font">Jumlah pendapatan koin</p>

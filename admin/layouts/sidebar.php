@@ -1,13 +1,10 @@
 <?php
 
-session_start();
-require '../config.php';
+require 'session.php';
+require 'helpers/auth.php';
 
 if (!isset($_SESSION['user'])) {
-  echo "<script>";
-  echo "window.location = '/".BASE_URL."/login.php';";
-  echo "</script>";
-  die;
+  redirect('/login.php');
 }
 
 ?>
@@ -16,7 +13,7 @@ if (!isset($_SESSION['user'])) {
 <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
   <div class="brand-logo">
     <a href="index.php">
-      <img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+      <img src="../assets/images/readify logo.svg" class="logo-icon" alt="logo icon">
       <h5 class="logo-text">Readify Admin</h5>
     </a>
   </div>
@@ -41,18 +38,24 @@ if (!isset($_SESSION['user'])) {
     </li>
 
     <li>
+      <a href="daftar_pengajuan.php">
+        <i class="zmdi zmdi-grid"></i> <span>Pengajuan Penulis</span>
+      </a>
+    </li>
+
+    <li>
       <a href="genre.php">
-        <i class="zmdi zmdi-book-image"></i> <span>Genre</span>
+        <i class="zmdi zmdi-grid"></i> <span>Genre</span>
       </a>
     </li>
 
     <li>
       <a href="koin.php">
-        <i class="zmdi zmdi-balance"></i> <span>Koin</span>
+        <i class="zmdi zmdi-grid"></i> <span>Paket Koin</span>
       </a>
     </li>
     <li>
-      <a href="/<?= BASE_URL; ?>/logout.php">
+      <a href="logout.php">
         <i class="fa fa-sign-out"></i> <span>Keluar</span>
       </a>
     </li>
